@@ -1,0 +1,79 @@
+/**
+*
+* @package mChat ProSilver Style
+* @version 1.3.1 27.08.2009
+* @copyright (c) djs596 ( http://djs596.com/ ), (c) RMcGirr83 ( http://www.rmcgirr83.org/ ), (c) Stokerpiller ( http://www.phpbb3bbcodes.com/ )
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+**/
+
+div.mChatBG1 {
+	background-color: #FBFBFB;
+	padding: 5px 5px 5px 15px;
+	border-bottom: 1px dotted #DDDDDD;
+	overflow: hidden;
+}
+
+div.mChatBG2 {
+	background-color: #FFFFFF;
+	padding: 5px 5px 5px 15px;
+	border-bottom: 1px dotted #DDDDDD;
+	overflow: hidden;
+}
+
+div.mChatRowLimit {
+	overflow: auto;
+	width: 100%;
+	height: 200px;
+}
+
+div.mChatRowLimitCustom {
+	overflow: auto;
+	width: 100%;
+	height: 500px;
+}
+
+div.mChatPanel {
+	text-align: center;
+	padding: 5px;
+}
+
+input.mChatText {
+	cursor: text;
+	width: 50%;
+	background-color: #FFFFFF;
+	border: 1px solid #B4BAC0;
+	color: #333333;
+	padding: 3px 5px 3px 5px;
+	margin: 5px 0px 0px 5px;
+}
+
+input.mChatText:hover {
+	border-color: #11A3EA;
+}
+
+input.mChatButton {
+	width: auto;
+	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	background-color: #ECECEC;
+	background-image: url("bg_button.gif");
+	border: 1px solid #666666;
+	padding: 2px 5px 2px 5px;
+	margin: 5px 0px 0px 5px;
+	font-size: 1em;
+}
+
+input.mChatButton:hover {
+	border-color: #BC2A4D;
+	color: #BC2A4D;
+}
+
+div.mChatHover:hover {
+	background-color: #F6F4D0;
+}
+
+div.mChatBodyFix {
+	width: 100% !important;
+	background-color: #E9F0F5 !important;
+}

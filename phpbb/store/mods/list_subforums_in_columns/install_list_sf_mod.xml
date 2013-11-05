@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">List subforums in columns</title>
+		<title lang="ru">Список подфорумов в столбик</title>
+		
+		<description lang="en">MOD allows you to choose the form of display list subforums - in line or in column (columns) in each forum.</description>
+		<description lang="ru">Мод позволяет выбрать форму отображения списка подфорумов - в строку или в колонку (колонки) в каждом форуме.</description>
+		
+		<author-notes lang="en">Type display list subforums and number of columns set in ACP in tab Forums</author-notes>
+		<author-notes lang="ru">Тип отображения списка подфорумов и число колонок устанавливается в административном разделе на вкладке Форумы.</author-notes>
+		
+		<author-group>
+			<author>
+				<realname>Палыч</realname>
+				<username>Палыч</username>
+				<email>varzaev@mail.ru</email>
+				<homepage>http://phpbbguru.net/community/</homepage>
+			</author>
+		</author-group>
+		
+		<mod-version>1.0.0</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>120</time>
+			<target-version>3.0.5</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2009-06-26</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+					<change>Start date.</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Первая версия.</change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="language" href="contrib/ru.xml" lang="en">Russian</link>
+		</link-group>
+	</header>
+	
+	<action-group>
+		<sql><![CDATA[ALTER TABLE phpbb_forums ADD forum_subforumslist_type TINYINT(4) DEFAULT '0'; ]]></sql>
+		<copy>
+			<file from="root/language/en/mods/info_acp_sflist.php" to="language/en/mods/info_acp_sflist.php" />
+		</copy>
+		<open src="adm/style/acp_forums.html">
+			<edit>
+				<find><![CDATA[			<dd><select id="forum_perm_from" name="forum_perm_from"><option value="0">{L_NO_PERMISSIONS}</option>{S_FORUM_OPTIONS}</select></dd>
+		</dl>
+	<!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[		<dl>
+			<dt><label for="subforumslist_type">{L_SUBFORUMSLIST_TYPE}:</label><br /><span>{L_SUBFORUMSLIST_TYPE_EXPLAIN}</span></dt>
+			<dd><input type="text" id="subforumslist_type" name="subforumslist_type" value="{SUBFORUMSLIST_TYPE}" size="4" maxlength="4" /></dd>
+		</dl>]]></action>
+			</edit>
+		</open>
+		<open src="includes/functions_display.php">
+			<edit>
+				<find><![CDATA[		$s_subforums_list = (string) implode(', ', $s_subforums_list);]]></find>
+				<action type="replace-with"><![CDATA[		if ($row['forum_subforumslist_type'])
+		{		
+			$s_subforums_list_m = array();
+			$s_subforums_list_str ='';
+			$s_subforums_list_m = $s_subforums_list;
+			$sf_list = count($s_subforums_list);
+			if ($sf_list)
+			{
+				$rows = ceil ($sf_list / $row['forum_subforumslist_type']); 
+				$s_subforums_list_m = array_chunk($s_subforums_list_m, $rows);		
+				$s_subforums_list_str = '<br /> <span style="float: left;">';
+				$s_subforums_list_str .= (string) implode(',<br />', $s_subforums_list_m[0]);
+				$s_subforums_list_str .= '</span> ';
+				for ($i=1; $i*$rows < $sf_list; $i++)
+				{
+					$s_subforums_list_str .= '<span style="float: left;">&nbsp;&nbsp;';		
+					$s_subforums_list_str .= (string) implode(',<br />&nbsp;&nbsp;', $s_subforums_list_m[$i]);
+					$s_subforums_list_str .= '</span>';	
+				}
+				$s_subforums_list = $s_subforums_list_str;
+			}
+		}
+		else
+		{
+			$s_subforums_list = (string) implode(', ', $s_subforums_list);
+		}]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/acp_forums.php">
+			<edit>
+				<find><![CDATA[						'display_subforum_list'	=> request_var('display_subforum_list', false),]]></find>
+				<action type="after-add"><![CDATA[//subforumslist_type_article_mod_start
+						'forum_subforumslist_type'	=> request_var('subforumslist_type', 0),
+//subforumslist_type_article_mod_end]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[							'display_subforum_list'	=> true,]]></find>
+				<action type="after-add"><![CDATA[//subforumslist_type_article_mod_start
+							'forum_subforumslist_type'	=> 0,
+//subforumslist_type_article_mod_end]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[					'S_DISPLAY_SUBFORUM_LIST'	=> ($forum_data['display_subforum_list']) ? true : false,]]></find>
+				<action type="after-add"><![CDATA[//subforumslist_type_article_mod_start
+					'SUBFORUMSLIST_TYPE'	=> $forum_data['forum_subforumslist_type'],
+//subforumslist_type_article_mod_end]]></action>
+			</edit>
+		</open>
+		<diy-instructions lang="en">Purge cashe after install MOD</diy-instructions>
+		<diy-instructions lang="ru">Очистите кеш после установки МОДа</diy-instructions>
+	</action-group>
+</mod>

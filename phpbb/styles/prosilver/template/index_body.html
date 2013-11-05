@@ -1,0 +1,66 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- INCLUDE announcements.html -->
+
+<!-- IF SCRIPT_NAME eq 'index' -->
+<div id="adindice" style="text-align:center;">
+	<script type="text/javascript"><!--
+	google_ad_client = "ca-pub-7781832856172734";
+	/* Index */
+	google_ad_slot = "4278661210";
+	google_ad_width = 728;
+	google_ad_height = 15;
+	//-->
+	</script>
+	<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
+<!-- INCLUDE forumlist_body.html -->
+<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and not S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
+
+<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+	<form method="post" action="{S_LOGIN_ACTION}" class="headerspace">
+	<h3><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a><!-- IF S_REGISTER_ENABLED -->&nbsp; &bull; &nbsp;<a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></h3>
+		<fieldset class="quick-login">
+			<label for="username">{L_USERNAME}:</label>&nbsp;<input type="text" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" />
+			<label for="password">{L_PASSWORD}:</label>&nbsp;<input type="password" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" />
+			<!-- IF S_AUTOLOGIN_ENABLED -->
+				| <label for="autologin">{L_LOG_ME_IN} <input type="checkbox" name="autologin" id="autologin" /></label>
+			<!-- ENDIF -->
+			<input type="submit" name="login" value="{L_LOGIN}" class="button2" />
+			{S_LOGIN_REDIRECT}
+		</fieldset>
+	</form>
+<!-- ENDIF -->
+
+<div id="facebook_fanbox" style="float:left;background-color:#FFFFFF; margin-bottom:15px;">
+<style>
+.fbConnectWidgetTopmost { width:auto !important; height: auto !important; }
+</style>
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/pages/foroFYL/152936784767079" show_faces="true" stream="false" header="false"></fb:like-box>
+</div>
+
+<div id="home_stats" style="margin-left: 310px; margin-bottom:15px;">
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+	<!-- IF U_VIEWONLINE --><h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3><!-- ELSE --><h3>{L_WHO_IS_ONLINE}</h3><!-- ENDIF -->
+	<p>{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}
+	<!-- IF LEGEND --><br /><em>{L_LEGEND}: {LEGEND}</em><!-- ENDIF --></p>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_BIRTHDAY_LIST and BIRTHDAY_LIST -->
+	<h3>{L_BIRTHDAYS}</h3>
+	<p><!-- IF BIRTHDAY_LIST -->{L_CONGRATULATIONS}: <strong>{BIRTHDAY_LIST}</strong><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF --></p>
+<!-- ENDIF -->
+
+<!-- IF NEWEST_USER -->
+	<h3>{L_STATISTICS}</h3>
+	<p>{TOTAL_POSTS} &bull; {TOTAL_TOPICS} &bull; {TOTAL_USERS} &bull; {NEWEST_USER}</p>
+<!-- ENDIF -->
+</div>
+<div style="clear:both;"></div>
+
+<!-- INCLUDE overall_footer.html -->

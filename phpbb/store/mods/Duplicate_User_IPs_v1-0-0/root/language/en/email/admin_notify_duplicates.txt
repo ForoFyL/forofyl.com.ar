@@ -1,0 +1,18 @@
+Subject: A new user has registered with common IP
+
+A new user has registered on your board "{SITENAME}".
+The new user shares common IP addresses with some other users. 
+Please visit his profile for  detailed information.
+
+User details:
+
+Username:				{USERNAME}
+Common IP usernames:	{DUPE_USERNAMES}
+User profile:			{U_USERNAME}
+
+User IP adress:			{USER_IP}
+E-mail:					{USER_MAIL}
+Registered on:			{USER_REGDATE}
+
+
+{EMAIL_SIG}

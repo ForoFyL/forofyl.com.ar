@@ -1,0 +1,112 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_ACP_CAT_CONTACT}</h1><br /><span>{L_ACP_CONTACT_SETTINGS_EXPLAIN}</span>
+<p>{L_CONTACT_VERSION} {CONTACT_VERSION}</p>
+
+<!-- IF CONTACT_ERROR -->
+	<div class="errorbox"><h3>{L_WARNING}</h3>
+		<p>{CONTACT_ERROR}</p>
+	</div>
+<!-- ENDIF -->
+
+<form id="acp_contact" method="post" action="{U_ACTION}">
+	<fieldset>
+	<legend>{L_CONTACT_GENERAL_SETTINGS}</legend>
+		<dl>
+			<dt><label for="contact_enable">{L_CONTACT_ENABLE}:</label><br />
+			<span>{L_CONTACT_ENABLE_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="contact_enable" value="1" id="contact_enable1" <!-- IF CONTACT_ENABLE -->checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="contact_enable" value="0" id="contact_enable0" <!-- IF not CONTACT_ENABLE -->checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="contact_confirm">{L_CONTACT_ACP_CONFIRM}:</label><br />
+			<span>{L_CONTACT_ACP_CONFIRM_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="contact_confirm" value="1" id="contact_confirm1" <!-- IF CONTACT_CONFIRM --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="contact_confirm" value="0" id="contact_confirm0" <!-- IF not CONTACT_CONFIRM -->checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>		
+		<dl>
+			<dt><label for="contact_confirm_guests">{L_CONTACT_CONFIRM_GUESTS}:</label><br />
+			<span>{L_CONTACT_CONFIRM_GUESTS_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="contact_confirm_guests" value="1" id="contact_confirm_guests1" <!-- IF CONTACT_CONFIRM_GUESTS -->checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="contact_confirm_guests" value="0" id="contact_confirm_guests0" <!-- IF not CONTACT_CONFIRM_GUESTS -->checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="contact_username_chk">{L_CONTACT_USERNAME_CHK}:</label><br />
+			<span>{L_CONTACT_USERNAME_CHK_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="contact_username_chk" value="1" id="contact_username_chk1" <!-- IF CONTACT_USERNAME_CHK -->checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="contact_username_chk" value="0" id="contact_username_chk0" <!-- IF not CONTACT_USERNAME_CHK -->checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="contact_email_chk">{L_CONTACT_EMAIL_CHK}:</label><br />
+			<span>{L_CONTACT_EMAIL_CHK_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="contact_email_chk" value="1" id="contact_email_chk1" <!-- IF CONTACT_EMAIL_CHK -->checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="contact_email_chk" value="0" id="contact_email_chk0" <!-- IF not CONTACT_EMAIL_CHK -->checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>		
+		<dl>
+			<dt><label for="contact_max_attempts">{L_CONTACT_MAX_ATTEMPTS}:</label><br />
+			<span>{L_CONTACT_MAX_ATTEMPTS_EXPLAIN}</span></dt>
+			<dd><input type="text" name="contact_max_attempts" size="10" value="{CONTACT_MAX_ATTEMPTS}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="contact_bbcodes_allowed">{L_CONTACT_BBCODES}:</label><br />
+			<span>{L_CONTACT_BBCODES_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="contact_bbcodes_allowed" value="1" id="contact_bbcodes_allowed1" <!-- IF CONTACT_BBCODES -->checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="contact_bbcodes_allowed" value="0" id="contact_bbcodes_allowed0" <!-- IF not CONTACT_BBCODES -->checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>		
+		<dl>
+			<dt><label for="contact_smilies_allowed">{L_CONTACT_SMILIES}:</label><br />
+			<span>{L_CONTACT_SMILIES_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="contact_smilies_allowed" value="1" id="contact_smilies_allowed1" <!-- IF CONTACT_SMILIES -->checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="contact_smilies_allowed" value="0" id="contact_smilies_allowed0" <!-- IF not CONTACT_SMILIES -->checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="contact_urls_allowed">{L_CONTACT_URLS}:</label><br />
+			<span>{L_CONTACT_URLS_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="contact_urls_allowed" value="1" id="contact_urls_allowed1" <!-- IF CONTACT_URLS -->checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="contact_urls_allowed" value="0" id="contact_urls_allowed0" <!-- IF not CONTACT_URLS -->checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>		
+		<dl>
+			<dt><label for="contact_attach_allowed">{L_CONTACT_ATTACHMENTS}:</label><br />
+			<span>{L_CONTACT_ATTACHMENTS_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" name="contact_attach_allowed" value="1" id="contact_attach_allowed1" <!-- IF CONTACT_ATTACHMENTS -->checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="contact_attach_allowed" value="0" id="contact_attach_allowed0" <!-- IF not CONTACT_ATTACHMENTS -->checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>		
+		<dl>
+			<dt><label for="contact_method">{L_CONTACT_FOUNDER}:</label><br />
+			<span>{L_CONTACT_FOUNDER}</span></dt>
+			<dd><label><input type="radio" class="radio" name="contact_founder_only" value="1" id="contact_prune_enable1"<!-- IF CONTACT_FOUNDER --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="contact_founder_only" value="0" id="contact_prune_enable0"<!-- IF not CONTACT_FOUNDER --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>		
+		<dl>
+			<dt><label for="contact_reasons">{L_CONTACT_REASONS}:</label><br />
+			<span>{L_CONTACT_REASONS_EXPLAIN}</span></dt>
+			<dd><textarea name="contact_reasons" id="contact_reasons" rows="10" cols="40">{CONTACT_REASONS}</textarea></dd>
+		</dl>
+		<dl>
+			<dt><label for="contact_method">{L_CONTACT_METHOD}:</label><br />
+			<span>{L_CONTACT_METHOD_EXPLAIN}</span></dt>
+			<dd>{CONTACT_METHOD}</dd>
+		</dl>	
+		<dl>
+			<dt><label for="contact_bot_user">{L_CONTACT_BOT_USER}:</label><br />
+			<span>{L_CONTACT_BOT_USER_EXPLAIN}</span></dt>
+			<dd>{CONTACT_BOT_USER}</dd>
+		</dl>		
+		<dl>
+			<dt><label for="contact_bot_poster">{L_CONTACT_BOT_POSTER}:</label><br />
+			<span>{L_CONTACT_BOT_POSTER_EXPLAIN}</span></dt>
+			<dd>{CONTACT_BOT_POSTER}</dd>
+		</dl>
+		<dl>
+			<dt><label for="contact_bot_forum">{L_CONTACT_BOT_FORUM}:</label><br />
+			<span>{L_CONTACT_BOT_FORUM_EXPLAIN}</span></dt>
+			<dd>{CONTACT_BOT_FORUM}</dd>
+		</dl>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+	{S_FORM_TOKEN}
+	</fieldset>
+</form>
+<!-- INCLUDE overall_footer.html -->

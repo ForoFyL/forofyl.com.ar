@@ -1,0 +1,153 @@
+<!-- IF ANNOUNCEMENT_SHOW_BIRTHDAYS_ALWAYS and not ANNOUNCEMENT_ENABLE and ANNOUNCEMENT_BIRTHDAYS-->
+	<div class="forumbg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<table class="table1" cellspacing="1">
+				<thead>
+					<tr>
+						<th style="text-align:left;">
+							<!-- IF ANNOUNCEMENT_TITLE --> {ANNOUNCEMENT_TITLE} <!-- ELSE --> {L_ANNOUNCEMENT_TITLE}<!-- ENDIF -->
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="bg3">
+						<td style="text-align:center;">
+							{ANNOUNCEMENT_BIRTHDAY_IMG}<br />
+								<table width="100%" >
+									<tr style="border: 0px; padding:0;">
+										<td align="center" style="border: 0px; padding:0;">
+											<table>	
+												<tr align="center" style="border: 0px; padding:0;">
+												<!-- IF ANNOUNCEMENT_BIRTHDAY_AVATAR -->
+													<!-- BEGIN bdannounce -->
+													<td style="border: 0px; padding:0;">
+														<table>
+															<tr style="text-align:center; border: 0px;">
+																<td style="border: 0px; padding:0;">{bdannounce.ANNOUNCEMENT_AVATAR}</td>
+															</tr>
+															<tr align="center" valign="bottom" style="border: 0px; padding:0;">
+																<td style="border: 0px; padding:0;font-size: 10px;" ><b>{bdannounce.ANNOUNCEMENT_USERNAME}</b></td>
+															</tr>
+														</table>
+													</td>
+													<!-- END bdannounce -->
+												<!-- ELSE -->
+													<!-- BEGIN bdannounce -->
+													<td style="border: 0px; padding:0 0 0 3px;font-size: 10px;"><b>{bdannounce.ANNOUNCEMENT_USERNAME}</b></td>
+													<!-- END bdannounce -->
+												<!-- ENDIF -->
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+<!-- IF ANNOUNCEMENT_ENABLE -->
+	<!-- IF ANNOUNCEMENT_ENABLE_GUESTS and not S_USER_LOGGED_IN and not ANNOUNCEMENT_SHOW_EVERYONE and not ANNOUNCEMENT_SHOW or ANNOUNCEMENT_SHOW-->
+	<div class="forumbg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<table class="table1" cellspacing="1">
+				<thead>
+					<tr>
+						<th style="text-align:left;">
+						<!-- IF ANNOUNCEMENT_ENABLE_GUESTS and not S_USER_LOGGED_IN and not ANNOUNCEMENT_SHOW_EVERYONE and not ANNOUNCEMENT_SHOW -->
+							<!-- IF ANNOUNCEMENT_TITLE_GUESTS -->{ANNOUNCEMENT_TITLE_GUESTS} <!-- ELSE --> {L_ANNOUNCEMENT_TITLE_GUESTS}<!-- ENDIF -->
+						<!-- ELSEIF ANNOUNCEMENT_SHOW-->
+							<!-- IF ANNOUNCEMENT_TITLE --> {ANNOUNCEMENT_TITLE} <!-- ELSE --> {L_ANNOUNCEMENT_TITLE}<!-- ENDIF -->
+						<!-- ENDIF -->
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="bg3">
+						<td >
+						<!-- IF ANNOUNCEMENT_ENABLE_GUESTS and not S_USER_LOGGED_IN and not ANNOUNCEMENT_SHOW_EVERYONE and not ANNOUNCEMENT_SHOW-->
+						
+							<div style="text-align:{ANNOUNCEMENT_GUESTS_ALIGN}; list-style-position: inside;"><br />{ANNOUNCEMENT_TEXT_GUESTS}<br /><br /></div>
+						<!-- ELSEIF ANNOUNCEMENT_SHOW-->
+							<!-- IF ANNOUNCEMENT_SHOW_BIRTHDAY-->
+							<div style="text-align:center;">{ANNOUNCEMENT_BIRTHDAY_IMG}<br /></div>
+								<table width="100%" >
+									<tr style="border: 0px; padding:0;">
+										<td align="center" style="border: 0px; padding:0;">
+											<table>	
+												<tr align="center" style="border: 0px; padding:0;">
+												<!-- IF ANNOUNCEMENT_BIRTHDAY_AVATAR -->
+													<!-- BEGIN bdannounce -->
+													<td style="border: 0px; padding:0;">
+														<table>
+															<tr style="text-align:center; border: 0px;">
+																<td style="border: 0px; padding:0;">{bdannounce.ANNOUNCEMENT_AVATAR}</td>
+															</tr>
+															<tr align="center" valign="bottom" style="border: 0px; padding:0;">
+																<td style="border: 0px; padding:0;font-size: 10px;"><b>{bdannounce.ANNOUNCEMENT_USERNAME}</b></td>
+															</tr>
+														</table>
+													</td>
+													<!-- END bdannounce -->
+												<!-- ELSE -->
+													<!-- BEGIN bdannounce -->
+													<td style="border: 0px; padding:0 0 0 3px;font-size: 10px;"><b>{bdannounce.ANNOUNCEMENT_USERNAME}</b></td>
+													<!-- END bdannounce -->
+												<!-- ENDIF -->
+												</tr>
+											</table>
+										</td>
+									</tr>
+							</table>
+							<!-- IF ANNOUNCEMENT_SHOW_BIRTHDAYS_AND_ANNOUNCE -->
+									
+										<div style="text-align:{ANNOUNCEMENT_ALIGN}; list-style-position: inside;">
+										<hr/><br />{ANNOUNCEMENT_TEXT}
+											<!-- IF S_HASATTACHMENTS -->
+												<dl class="attachbox">
+													<dt>{L_ATTACHMENTS}</dt>
+													<!-- BEGIN announcement_attachments -->
+														<dd>{announcement_attachments.DISPLAY_ATTACHMENTS}</dd>
+													<!-- END announcement_attachments -->
+												</dl>
+											<!-- ENDIF -->
+											<!-- IF U_ANNOUNCEMENT_GOTOPOST -->
+												<br /><br />
+												<a href="{U_ANNOUNCEMENT_GOTOPOST}">{L_ANNOUNCEMENT_GOTOPOST}</a>
+																					
+											<!-- ENDIF -->
+											<br /><br />
+										</div>					
+							<!-- ENDIF -->
+							<!-- ELSE -->
+							<div style="text-align:{ANNOUNCEMENT_ALIGN}; list-style-position: inside;"><br />{ANNOUNCEMENT_TEXT}
+							<!-- IF S_HASATTACHMENTS -->
+								<dl class="attachbox">
+									<dt>{L_ATTACHMENTS}</dt>
+									<!-- BEGIN announcement_attachments -->
+										<dd>{announcement_attachments.DISPLAY_ATTACHMENTS}</dd>
+									<!-- END announcement_attachments -->
+								</dl>
+							<!-- ENDIF -->
+							<!-- IF U_ANNOUNCEMENT_GOTOPOST -->
+								<br /><br />
+								 <a href="{U_ANNOUNCEMENT_GOTOPOST}" >{L_ANNOUNCEMENT_GOTOPOST}</a>
+																	
+							<!-- ENDIF -->
+							<br /><br /></div>
+											<!-- ENDIF -->
+						<!-- ENDIF -->
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+<!-- ENDIF -->
+

@@ -1,0 +1,72 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_ACP_THANKS_SETTINGS}</h1>
+<p>{L_ACP_THANKS_MOD_VER}{THANKS_MOD_VERSION}</p>
+<p>{L_ACP_THANKS_SETTINGS_EXPLAIN}</p>
+
+
+<form id="acp_thanks" method="post" action="{U_ACTION}">
+
+<fieldset>
+	<legend>{L_GENERAL_OPTIONS}</legend>
+	<dl>
+		<dt><label for="remove_thanks">{L_REMOVE_THANKS}:</label><br /><span>{L_REMOVE_THANKS_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="remove_thanks" name="remove_thanks" value="1"<!-- IF REMOVE_THANKS --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="remove_thanks" value="0"<!-- IF not REMOVE_THANKS --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_postlist_view">{L_THANKS_POSTLIST_VIEW}:</label><br /><span>{L_THANKS_POSTLIST_VIEW_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="thanks_postlist_view" name="thanks_postlist_view" value="1"<!-- IF THANKS_POSTLIST_VIEW --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="thanks_postlist_view" value="0"<!-- IF not THANKS_POSTLIST_VIEW --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_time_view">{L_THANKS_TIME_VIEW}:</label><br /><span>{L_THANKS_TIME_VIEW_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="thanks_time_view" name="thanks_time_view" value="1"<!-- IF THANKS_TIME_VIEW --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="thanks_time_view" value="0"<!-- IF not THANKS_TIME_VIEW --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_counters_view">{L_THANKS_COUNTERS_VIEW}:</label><br /><span>{L_THANKS_COUNTERS_VIEW_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="thanks_counters_view" name="thanks_counters_view" value="1"<!-- IF THANKS_COUNTERS_VIEW --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="thanks_counters_view" value="0"<!-- IF not THANKS_COUNTERS_VIEW --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_profilelist_view">{L_THANKS_PROFILELIST_VIEW}:</label><br /><span>{L_THANKS_PROFILELIST_VIEW_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="thanks_profilelist_view" name="thanks_profilelist_view" value="1"<!-- IF THANKS_PROFILELIST_VIEW --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="thanks_profilelist_view" value="0"<!-- IF not THANKS_PROFILELIST_VIEW --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_info_page">{L_THANKS_INFO_PAGE}:</label><br /><span>{L_THANKS_INFO_PAGE_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="thanks_info_page" name="thanks_info_page" value="1"<!-- IF THANKS_INFO_PAGE --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="thanks_info_page" value="0"<!-- IF not THANKS_INFO_PAGE --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_info_page">{L_THANKS_ONLY_FIRST_POST}:</label><br /><span>{L_THANKS_ONLY_FIRST_POST_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="thanks_only_first_post" name="thanks_only_first_post" value="1"<!-- IF THANKS_ONLY_FIRST_POST --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="thanks_only_first_post" value="0"<!-- IF not THANKS_ONLY_FIRST_POST --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_top_number">{L_THANKS_TOP_NUMBER}:</label><br /><span>{L_THANKS_TOP_NUMBER_EXPLAIN}</span></dt>
+		<dd><input id="thanks_top_number" name="thanks_top_number" value="{THANKS_TOP_NUMBER}" type="text" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_number">{L_THANKS_NUMBER}:</label><br /><span>{L_THANKS_NUMBER_EXPLAIN}</span></dt>
+		<dd><input id="thanks_number" name="thanks_number" value="{THANKS_NUMBER}" type="text" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_number_post">{L_THANKS_NUMBER_POST}:</label><br /><span>{L_THANKS_NUMBER_POST_EXPLAIN}</span></dt>
+		<dd><input id="thanks_number_post" name="thanks_number_post" value="{THANKS_NUMBER_POST}" type="text" /></dd>
+	</dl>
+</fieldset>
+<fieldset class="submit-buttons">
+	<legend>{L_SUBMIT}</legend>
+	<input type="hidden" name="action" value="save" />
+
+	<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+	<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

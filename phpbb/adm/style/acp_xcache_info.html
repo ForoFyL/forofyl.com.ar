@@ -1,0 +1,83 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<!-- IF XCACHE_FILES -->
+<h1>{L_ACP_XCACHE_FILES}</h1>
+{L_XCACHE_FILES_EXPLAIN}
+<!-- ELSEIF XCACHE_VARS -->
+<h1>{L_ACP_XCACHE_VARS}</h1>
+{L_XCACHE_VARS_EXPLAIN}
+<!-- ELSE --><h1>{L_ACP_XCACHE_STATUS}</h1>
+{L_XCACHE_STATUS_EXPLAIN}
+<!-- ENDIF -->
+
+
+<!-- IF XCACHE_INSTALLED -->
+<div class="phpinfo">
+<h2>{L_CACHES}</h2>
+<table>
+	<tr>
+		<th style="text-align:center;width:15%">{L_CACHE}</th>
+		<th style="text-align:center">{L_SLOT_USE}</th>
+		<th style="text-align:center">{L_MEM_USE}</th>
+		<th style="text-align:center">{L_OOMS}</th>
+		<th style="text-align:center">{L_HITS}</th>
+		<th style="text-align:center">{L_CLOGS}</th>
+		<th style="text-align:center">{L_COMPILING}</th>
+		<th style="text-align:center">{L_PROTECTED}</th>
+		<th style="text-align:center">{L_DELETED}</th>
+		<th style="text-align:center"><!-- IF CAN_EMPTY -->{L_GC_AND_EMPTY}<!-- ELSE -->{L_GC}<!-- ENDIF --></th>
+	</tr>
+	<!-- BEGIN cache_info -->
+	<tr>
+		<td class="row1">{cache_info.CACHE_NAME}</td>
+		<td class="row2" style="text-align:center">{cache_info.SLOT_USE}</td>
+		<td class="row2">{cache_info.MEM_USE}</td>
+		<td class="row2" style="text-align:center">{cache_info.OOMS}</td>
+		<td class="row2" style="text-align:center">{cache_info.HITS}</td>
+		<td class="row2" style="text-align:center">{cache_info.CLOGS}</td>
+		<td class="row2" style="text-align:center">{cache_info.COMPILING}</td>
+		<td class="row2" style="text-align:center">{cache_info.CAN_READONLY}</td>
+		<td class="row2" style="text-align:center">{cache_info.DELETED}</td>
+		<td class="row2">
+			<!-- IF CAN_EMPTY -->
+			<form action="{U_ACTION}" method="post">
+				<div>
+					<input type="hidden" name="type" value="{cache_info.TYPE}"><input type="hidden" name="cacheid" value="{cache_info.CACHEID}">
+			<!-- ENDIF -->
+					{cache_info.GC}
+			<!-- IF CAN_EMPTY -->
+					<input type="submit" name="clearcache" class="button1" style="float:right" value="{L_CLEAR}" />
+				</div>
+			</form>
+			<!-- ENDIF -->
+		</td>
+	</tr>
+	<!-- END cache_info -->
+</table>
+<h2>{L_FREE_BLOCKS}</h2>
+<table>
+	<tr>
+		<th style="text-align:center;width:15%">{L_CACHE}</th>
+		<th>{L_BLOCKS}</th>
+	</tr>
+	<!-- BEGIN free_block_row -->
+	<tr>
+		<td class="row1">{free_block_row.CACHE_NAME}</td>
+		<td class="row2"><!-- BEGIN free_block --><div class="row1" style="float:left;border:#123456 1px solid;margin:3px;padding:5px;"><b>{L_SIZE}:</b> {free_block_row.free_block.SIZE}<br/><b>{L_OFFSET}:</b> {free_block_row.free_block.OFFSET}</div><!-- END free_block --><hr style="clear:both;visibility:hidden;margin:0;padding:0;"/></td>
+	</tr>
+	<!-- END free_block_row -->
+</table>
+<h2>{L_PHPINFO}</h2>
+<!-- IF PHPINFO -->
+{PHPINFO}
+<!-- ELSE -->
+<table><tr><td>{L_NO_PHPINFO_AVAILABLE}</td></tr></table>
+<!-- ENDIF -->
+</div>
+<!-- ELSE -->
+{L_NOT_LOADED}
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!-- 
+	NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.
+-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Duplicate User IPs</title>
+		<title lang="tr">Benzer IP lerden gelen kullanıcılar</title>
+
+		<description lang="en">This file provides instructions for installing the Turkish language portions of this MOD. See the main install file for any additional information about the MOD.</description>
+		<description lang="tr">Bu dosya mod Türkçe dil dosyası talimatlarını içerir. MOD kurulum talimatları hakkında ek bilgi almak için ana kurulum dosyası incelenmelidir.</description>		
+
+		<author-notes lang="en"></author-notes>
+		<author-notes lang="tr"></author-notes>		
+		
+		<author-group>
+			<author>
+				<realname></realname>
+				<username>mtrs</username>
+				<email>trst2007@gmail.com</email>
+			</author>
+		</author-group>
+		<mod-version>1.0.0</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>60</time>
+			<target-version>3.0.5</target-version>
+		</installation>
+			<history>
+			<entry>
+				<date>2009-02-27</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+					<change>Initial release</change>
+				</changelog>
+				<changelog lang="tr">
+					<change>Başlangıç sürümü</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-06-29</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Version change</change>
+				</changelog>
+				<changelog lang="tr">
+					<change>Sürüm değişimi</change>
+				</changelog>
+			</entry>
+		</history> 	
+		<link-group>
+			<link type="parent" href="./install.xml" lang="en">Main Install File</link>
+			<link type="parent" href="./install.xml" lang="tr">Ana Kurulum Dosyası</link>
+		</link-group>
+	</header>
+	<action-group>	
+       <copy>
+			<file from="root/language/tr/mods/dupe_ip.php" to="language/tr/mods/dupe_ip.php" />
+			<file from="root/language/tr/mods/acp_info_dupe_ip.php" to="language/tr/mods/acp_info_dupe_ip.php" />
+			<file from="root/language/tr/email/admin_notify_duplicates.txt" to="language/tr/email/admin_notify_duplicates.txt" />
+	   </copy>
+
+	</action-group>	
+</mod>

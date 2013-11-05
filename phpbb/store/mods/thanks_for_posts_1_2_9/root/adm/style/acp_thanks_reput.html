@@ -1,0 +1,81 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+<h1>{L_ACP_THANKS_REPUT_SETTINGS}</h1>
+<p>{L_ACP_THANKS_REPUT_SETTINGS_EXPLAIN}</p>
+<form id="acp_thanks" method="post" action="{U_ACTION}">
+<fieldset>
+	<legend>{L_GENERAL_OPTIONS}</legend>
+	<dl>
+		<dt><label for="thanks_post_reput_view">{L_THANKS_POST_REPUT_VIEW}:</label><br /><span>{L_THANKS_POST_REPUT_VIEW_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="thanks_post_reput_view" name="thanks_post_reput_view" value="1"<!-- IF THANKS_POST_REPUT_VIEW --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="thanks_post_reput_view" value="0"<!-- IF not THANKS_POST_REPUT_VIEW --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_topic_reput_view">{L_THANKS_TOPIC_REPUT_VIEW}:</label><br /><span>{L_THANKS_TOPIC_REPUT_VIEW_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="thanks_topic_reput_view" name="thanks_topic_reput_view" value="1"<!-- IF THANKS_TOPIC_REPUT_VIEW --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="thanks_topic_reput_view" value="0"<!-- IF not THANKS_TOPIC_REPUT_VIEW --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_forum_reput_view">{L_THANKS_FORUM_REPUT_VIEW}:</label><br /><span>{L_THANKS_FORUM_REPUT_VIEW_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="thanks_forum_reput_view" name="thanks_forum_reput_view" value="1"<!-- IF THANKS_FORUM_REPUT_VIEW --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="thanks_forum_reput_view" value="0"<!-- IF not THANKS_FORUM_REPUT_VIEW --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_number_digits">{L_THANKS_NUMBER_DIGITS}:</label><br /><span>{L_THANKS_NUMBER_DIGITS_EXPLAIN}</span></dt>
+		<dd><input id="thanks_number_digits" name="thanks_number_digits" value="{THANKS_NUMBER_DIGITS}" type="text" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_number_row_reput">{L_THANKS_NUMBER_ROW_REPUT}:</label><br /><span>{L_THANKS_NUMBER_ROW_REPUT_EXPLAIN}</span></dt>
+		<dd><input id="thanks_number_row_reput" name="thanks_number_row_reput" value="{THANKS_NUMBER_ROW_REPUT}" type="text" /></dd>
+	</dl>
+</fieldset>	
+<fieldset>
+	<legend>{L_GRAPHIC_OPTIONS}</legend>
+	<dl>
+			<dt><label for="thanks_reput_graphic">{L_THANKS_REPUT_GRAPHIC}:</label><br /><span>{L_THANKS_REPUT_GRAPHIC_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" id="thanks_reput_graphic" name="thanks_reput_graphic" value="1"<!-- IF THANKS_REPUT_GRAPHIC --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="thanks_reput_graphic" value="0"<!-- IF not THANKS_REPUT_GRAPHIC --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_reput_image">{L_THANKS_REPUT_IMAGE}:</label><br /><span>{L_THANKS_REPUT_IMAGE_EXPLAIN}</span></dt>
+		<dd><input class="text medium" type="text" id="thanks_reput_image" name="thanks_reput_image" value="{THANKS_REPUT_IMAGE}" maxlength="255" /></dd>
+		<!-- IF THANKS_REPUT_IMAGE_SRC -->
+			<dd><img src="{THANKS_REPUT_IMAGE_SRC}" alt="{L_THANKS_REPUT_IMAGE}" /></dd>
+		<!-- ENDIF -->
+	</dl>
+	<dl>
+		<dt><label for="thanks_reput_image_back">{L_THANKS_REPUT_IMAGE_BACK}:</label><br /><span>{L_THANKS_REPUT_IMAGE_BACK_EXPLAIN}</span></dt>
+		<dd><input class="text medium" type="text" id="thanks_reput_image_back" name="thanks_reput_image_back" value="{THANKS_REPUT_IMAGE_BACK}" maxlength="255" /></dd>
+		<!-- IF THANKS_REPUT_IMAGE_BACK_SRC -->
+			<dd><img src="{THANKS_REPUT_IMAGE_BACK_SRC}" alt="{L_THANKS_REPUT_IMAGE_BACK}" /></dd>
+		<!-- ENDIF -->
+	</dl>
+	<dl>
+		<dt><label for="thanks_reput_height">{L_THANKS_REPUT_HEIGHT}:</label><br /><span>{L_THANKS_REPUT_HEIGHT_EXPLAIN}</span></dt>
+		<dd><input id="thanks_reput_height" name="thanks_reput_height" value="{THANKS_REPUT_HEIGHT}" type="text" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="thanks_reput_level">{L_THANKS_REPUT_LEVEL}:</label><br /><span>{L_THANKS_REPUT_LEVEL_EXPLAIN}</span></dt>
+		<dd><input id="thanks_reput_level" name="thanks_reput_level" value="{THANKS_REPUT_LEVEL}" type="text" /></dd>
+	</dl>
+</fieldset>
+<fieldset>
+	<legend>{L_GRAPHIC_DEFAULT}</legend>
+	<dl>
+		<dt><label for="thanks_reput_image_default">{L_THANKS_REPUT_IMAGE_DEFAULT}:</label><br /><span>{L_THANKS_REPUT_IMAGE_DEFAULT_EXPLAIN}</span></dt>
+         <dd><img src="{GRAPHIC_STAR_BLUE_EXAMPLE}" alt="{L_THANKS_REPUT_IMAGE_BACK}" />&nbsp;{L_GRAPHIC_STAR_BLUE}</dd>
+         <dd><img src="{GRAPHIC_STAR_GOLD_EXAMPLE}" alt="{L_THANKS_REPUT_IMAGE_BACK}" />&nbsp;{L_GRAPHIC_STAR_GOLD}</dd>
+         <dd><img src="{GRAPHIC_STAR_BACK_EXAMPLE}" alt="{L_THANKS_REPUT_IMAGE_BACK}" />&nbsp;{L_GRAPHIC_STAR_BACK}</dd>
+         <dd><img src="{GRAPHIC_BLOCK_RED_EXAMPLE}" alt="{L_THANKS_REPUT_IMAGE_BACK}" />&nbsp;{L_GRAPHIC_BLOCK_RED}</dd>
+         <dd><img src="{GRAPHIC_BLOCK_BACK_EXAMPLE}" alt="{L_THANKS_REPUT_IMAGE_BACK}" />&nbsp;{L_GRAPHIC_BLOCK_BACK}</dd>
+ 	</dl>
+</fieldset>
+<fieldset class="submit-buttons">
+	<legend>{L_SUBMIT}</legend>
+	<input type="hidden" name="action" value="save" />
+	<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+	<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+<!-- INCLUDE overall_footer.html -->

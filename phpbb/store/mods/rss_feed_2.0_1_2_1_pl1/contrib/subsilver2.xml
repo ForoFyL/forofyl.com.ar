@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+
+		<title lang="en">MSSTI RSS Feed 2.0 with ACP - Template : subsilver2</title>
+
+		<description lang="en">Changes for Subsilver2 based off style </description>
+
+		<author-notes lang="en"><![CDATA[See the main install file for any additional information about the MOD.
+		-------------------------------------------------------------------
+		Need extra support ?
+		--------------------
+		You can contact me at http://www.mssti.com/phpbb3/]]></author-notes>
+
+		<author-group>
+			<author>
+				<realname>Gabriel</realname>
+				<username>leviatan21</username>
+				<email>info@mssti.com</email>
+				<homepage>http://www.mssti.com/phpbb3/</homepage>
+				<contributions-group>
+					<contributions status="current" from="2008-08-27" position="Developer"/>
+	      		</contributions-group>			 				
+			</author>
+		</author-group>
+
+		<mod-version>1.2.1-PL1</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>120</time>
+			<target-version>3.0.5</target-version>
+		</installation>
+
+		<link-group>
+			<link type="parent"  href="../install_RSSFeed20_v121.xml" lang="en">Code change</link>
+		</link-group>
+	</header>
+
+	<action-group>
+		<open src="styles/subsilver2/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>]]></find>
+				<action type="after-add"><![CDATA[
+
+<!-- MOD : MSSTI RSS Feeds (V1.2.1) - Start //-->
+<!-- IF S_FEEDS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {SITENAME}" href="{U_RSS}" />
+<!-- IF U_FEEDS_NEWS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_NEWS}" href="{U_FEEDS_NEWS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_NEWPOST --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_NEWPOST}" href="{U_FEEDS_NEWPOST}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_FORUMS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_FORUMS}" href="{U_FEEDS_FORUMS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_THREADS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_TOPICS}" href="{U_FEEDS_THREADS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_POSTS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_POSTS}" href="{U_FEEDS_POSTS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_ATTACH --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_ATTACH}" href="{U_FEEDS_ATTACH}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_EGOSEARCH --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_YOUR_POSTS}" href="{U_FEEDS_EGOSEARCH}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_FORUM --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_FORUM} {FORUM_NAME}" href="{U_FEEDS_FORUM}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_THREAD --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_TOPIC} {TOPIC_TITLE}" href="{U_FEEDS_THREAD}" /><!-- ENDIF -->
+<!-- ENDIF -->
+<!-- MOD : MSSTI RSS Feeds (V1.2.1) - End //-->
+
+]]></action>
+				<comment lang="en"><![CDATA[NOTE: if you don't find it, add the lines after the <title, into a new line]]></comment>
+			</edit>
+		</open>
+
+		<diy-instructions lang="en"><![CDATA[IMPORTANT !
+
+Follow the DIY Instructions from the main install : install_RSSFeed20_v121.xml
+
+]]></diy-instructions>
+
+	</action-group>
+
+</mod>

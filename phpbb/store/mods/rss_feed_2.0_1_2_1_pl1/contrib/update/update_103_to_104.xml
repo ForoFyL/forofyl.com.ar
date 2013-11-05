@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="../../modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">MSSTI RSS Feed 2.0 with ACP</title>
+
+		<description lang="en">This file provides instructions for upgrading the MOD from version 1.0.3 to 1.0.4.
+		See the main install file for any additional information about the MOD.</description>
+
+		<author-notes lang="en"><![CDATA[]]></author-notes>
+	
+		<author-group>
+			<author>
+				<realname>Gabriel</realname>
+				<username>leviatan21</username>
+				<email>info@mssti.com</email>
+				<homepage>http://www.mssti.com/phpbb3/</homepage>
+			</author>
+		</author-group>
+		
+		<mod-version>1.0.4</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>100</time>
+			<target-version>3.0.4</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2008-08-25</date>
+				<rev-version>1.0.4</rev-version>
+				<changelog lang="en">
+					<change> [Fix] severals issues reported by MOD Team</change>
+				</changelog>
+			</entry>
+
+			<entry>
+				<date>2008-07-23</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change> [Fix] pagination problems</change>
+					<change> [Feature] Display forum stats only in the first page</change>
+				</changelog>
+			</entry>
+
+			<entry>
+				<date>2008-01-30</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change> [Fix] some IE problems</change>
+					<change> [Fix] display post content if is allowed</change>
+				</changelog>
+			</entry>
+
+			<entry>
+				<date>2008-01-10</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>First release to phpbb 3.0.1 Gold</change>
+				</changelog>
+			</entry>
+		</history>
+	
+	</header>
+
+	<action-group>
+		
+		<copy>
+			<file from="root/rss.php" to="rss.php" />
+			<file from="root/includes/acp/acp_rss.php" to="includes/acp/acp_rss.php" />
+			<file from="root/includes/acp/info/acp_rss.php" to="includes/acp/info/acp_rss.php" />
+			<file from="root/language/en/mods/rss.php" to="language/en/mods/rss.php" />
+			<file from="root/styles/rss_template.xml" to="styles/rss_template.xml" />
+		</copy>
+		
+		<open src="language/en/common.php">
+			<edit>
+				<find><![CDATA[
+// MOD : MSSTI RSS Feeds (V1.0.3) - Start
+	'YOUR_POSTS'				=> 'Your posts',
+// MOD : MSSTI RSS Feeds (V1.0.3) - End
+]]></find>
+				<action type="replace-with"><![CDATA[
+// MOD : MSSTI RSS Feeds (V1.0.4) - Start
+	'YOUR_POSTS'				=> 'Your posts',
+	'RSS_FEEDS'					=> 'RSS Feeds',
+// MOD : MSSTI RSS Feeds (V1.0.4) - End
+]]></action>
+			</edit>
+		</open>
+
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[
+<!-- // MOD : MSSTI RSS Feeds (V1.0.3) - Start-->
+
+<!-- IF S_ENABLE_FEEDS -->
+<link rel="alternate" type="application/rss+xml" title="RSS {SITENAME}" href="{U_RSS}" />
+<!-- IF S_ENABLE_FEEDS_FORUMS -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_ALL_FORUMS}" href="{U_RSS}?mode=forum" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREADS -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_ALL_TOPICS}" href="{U_RSS}?mode=topics" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_POSTS -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_ALL_POSTS}" href="{U_RSS}?mode=posts" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_EGOSEARCH && S_USER_LOGGED_IN -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_YOUR_POSTS}" href="{U_RSS}?mode=egosearch" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_FORUM && S_FORUM_ID -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_FORUM} {PAGE_TITLE}" href="{U_RSS}?f={S_FORUM_ID}" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREAD && S_TOPIC_ID -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_TOPIC} {PAGE_TITLE}" href="{U_RSS}?t={S_TOPIC_ID}" />
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- // MOD : MSSTI RSS Feeds (V1.0.3) - End -->
+]]></find>
+				<action type="replace-with"><![CDATA[
+<!-- // MOD : MSSTI RSS Feeds (V1.0.4) - Start-->
+
+<!-- IF S_ENABLE_FEEDS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {SITENAME}" href="{U_RSS}" />
+<!-- IF S_ENABLE_FEEDS_FORUMS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_FORUMS}" href="{U_RSS}?mode=forums" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREADS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_TOPICS}" href="{U_RSS}?mode=topics" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_POSTS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_POSTS}" href="{U_RSS}?mode=posts" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_EGOSEARCH && S_USER_LOGGED_IN -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_YOUR_POSTS}" href="{U_RSS}?mode=egosearch" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_FORUM && S_FORUM_ID -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_FORUM} {FORUM_NAME}" href="{U_RSS}?f={S_FORUM_ID}" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREAD && S_TOPIC_ID -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_TOPIC} {TOPIC_TITLE}" href="{U_RSS}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" />
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- // MOD : MSSTI RSS Feeds (V1.0.4) - End -->
+]]></action>
+				<comment lang="en">NOTE: You will have to make this change to ALL themes you have installed. I use "prosilver" as an example.</comment>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/overall_header.html">
+			<edit>
+				<find><![CDATA[
+<!-- // MOD : MSSTI RSS Feeds (V1.0.3) - Start-->
+
+<!-- IF S_ENABLE_FEEDS -->
+<link rel="alternate" type="application/rss+xml" title="RSS {SITENAME}" href="{U_RSS}" />
+<!-- IF S_ENABLE_FEEDS_FORUMS -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_ALL_FORUMS}" href="{U_RSS}?mode=forum" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREADS -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_ALL_TOPICS}" href="{U_RSS}?mode=topics" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_POSTS -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_ALL_POSTS}" href="{U_RSS}?mode=posts" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_EGOSEARCH && S_USER_LOGGED_IN -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_YOUR_POSTS}" href="{U_RSS}?mode=egosearch" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_FORUM && S_FORUM_ID -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_FORUM} {PAGE_TITLE}" href="{U_RSS}?f={S_FORUM_ID}" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREAD && S_TOPIC_ID -->
+<link rel="alternate" type="application/rss+xml" title="RSS Feed - {L_TOPIC} {PAGE_TITLE}" href="{U_RSS}?t={S_TOPIC_ID}" />
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- // MOD : MSSTI RSS Feeds (V1.0.3) - End -->
+]]></find>
+				<action type="replace-with"><![CDATA[
+<!-- // MOD : MSSTI RSS Feeds (V1.0.4) - Start-->
+
+<!-- IF S_ENABLE_FEEDS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {SITENAME}" href="{U_RSS}" />
+<!-- IF S_ENABLE_FEEDS_FORUMS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_FORUMS}" href="{U_RSS}?mode=forums" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREADS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_TOPICS}" href="{U_RSS}?mode=topics" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_POSTS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_POSTS}" href="{U_RSS}?mode=posts" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_EGOSEARCH && S_USER_LOGGED_IN -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_YOUR_POSTS}" href="{U_RSS}?mode=egosearch" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_FORUM && S_FORUM_ID -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_FORUM} {FORUM_NAME}" href="{U_RSS}?f={S_FORUM_ID}" />
+<!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREAD && S_TOPIC_ID -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_TOPIC} {TOPIC_TITLE}" href="{U_RSS}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" />
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- // MOD : MSSTI RSS Feeds (V1.0.4) - End -->
+]]></action>
+				<comment lang="en">NOTE: You will have to make this change to ALL themes you have installed. I use "subsilver2" as an example.</comment>
+			</edit>
+		</open>
+
+		<diy-instructions lang="en"><![CDATA[IMPORTANT !
+
+Log on to Administration Control Panel
+
+#####################################################################
+A) Purge the cache :
+
+	A.1) Navigate to "GENERAL" Tab.
+	A.2) Next to "Purge the cache" click on "Run now".
+	A.3) in the next screen, click on "Yes".
+
+#####################################################################
+B) Purge the templates :
+
+	B.1) Navigate to "Styles" Tab.
+	B.2) Under "Style components " click on "Templates".
+	B.3) Under "Actions" click on "Refresh".
+	B.4) in the next screen, click on "Yes".
+	B.5) Repeat last 2 steps to each instaled style.
+	
+#####################################################################
+C) RSS Settings
+
+	C.1) Navigate to "SYSTEM" Tab. ( This is the default location for the feed module )
+	C.2) Al left menu click on "RSS".
+	C.3) Adjust the feed value that best suits your needs.
+	C.4) Submit, even if you don't change anything, this will update your database to fit the new version.
+
+#####################################################################
+C) Enjoy it !.
+
+		]]></diy-instructions>
+	</action-group>
+</mod>

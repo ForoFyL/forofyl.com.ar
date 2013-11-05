@@ -1,0 +1,6 @@
+/* Facebook Profile Link
+---------------------------------------- */
+
+.facebook-icon, .facebook-icon a		{ background: none top left no-repeat; }
+ul.profile-icons li.facebook-icon	{ width: 20px; height: 20px; }
+.facebook-icon, .facebook-icon a		{ background-image: url("./styles/prosilver/imageset/icon_contact_facebook.gif"); }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Google Search]]></title>
+		<description lang="en"><![CDATA[Google search checkbox with standard search.]]></description>
+		<author-group>
+			<author>
+				<realname><![CDATA[Shapoval Andrey Vladimirovich]]></realname>
+				<username><![CDATA[AllCity]]></username>
+				<homepage><![CDATA[http://allcity.net.ru/]]></homepage>
+			</author>
+		</author-group>
+		<mod-version>1.0.1</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>120</time>
+			<target-version>3.0.8</target-version>
+		</installation>
+		<history>
+			<entry>
+				<date>2009-05-24</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Initial Release.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-01-18</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Support phpBB 3.0.8]]></change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="template" href="subsilver2.xml" lang="en">SubSilver2</link>
+			<link type="language" href="ru.xml" lang="en">Russian</link>
+		</link-group>
+	</header>
+	<action-group>
+		<open src="search.php">
+			<edit>
+				<find><![CDATA[$return_chars	= request_var('ch', ($topic_id) ? -1 : 300);
+$search_forum	= request_var('fid', array(0));
+]]></find>
+				<action type="after-add"><![CDATA[$gsearch = request_var('gsearch', false);
+if($gsearch)
+{
+  $board_url = parse_url(generate_board_url());
+  redirect('http://www.google.com/search?sitesearch='.$board_url['host'].'&q='.$keywords, false, true);
+}
+]]></action>
+			</edit>
+		</open>
+		<open src="language/en/common.php">
+			<edit>
+				<find><![CDATA[	'SEARCH_ADV'				=> 'Advanced search',]]></find>
+				<action type="after-add"><![CDATA[	'SEARCH_GOOGLE' => 'Using Google search?',]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[					<input class="button2" value="{L_SEARCH}" type="submit" /><br />]]></find>
+				<action type="after-add"><![CDATA[					<label for="gSearch"><span style="color: #FFFFFF;">{L_SEARCH_GOOGLE}</span> <input class="radio" name="gsearch" type="checkbox" id="gSearch" /></label><br />]]></action>
+			</edit>
+		</open>
+		<diy-instructions lang="en"><![CDATA[Go to Administration Control Panel (ACP) then purge the cache.]]></diy-instructions>
+	</action-group>
+</mod>

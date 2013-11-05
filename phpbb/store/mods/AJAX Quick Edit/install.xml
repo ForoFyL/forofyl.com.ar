@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+  <header>
+    <license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+    <title lang="en">AJAX Quick Edit</title>
+	<title lang="de">AJAX Quick Edit</title>
+    <description lang="en">Edit posts quickly without reloading the page.</description>
+	<description lang="de"><![CDATA[Beiträge können ohne neu laden der Seite bearbeitet werden.]]></description>
+    <author-notes lang="en">Support can be found on www.m-a-styles.de</author-notes>
+	<author-notes lang="de">Support gibt es auch auf www.m-a-styles.de</author-notes>
+    <author-group>
+		<author>
+			<realname>Marc Alexander</realname>
+			<email>admin@m-a-styles.de</email>
+			<username>marc1706</username>
+			<homepage>http://www.m-a-styles.de</homepage>
+			<contributions-group>
+				<contributions status="current" position="Developer"/>
+			</contributions-group>
+		</author>
+		<author>
+			<realname>Mave</realname>
+			<email>mave@thesaltinez.com</email>
+			<username>xMave</username>
+			<homepage>http://www.thesaltinez.com/</homepage>
+			<contributions-group>
+					<contributions status="past" position="Former Developer"/>
+			</contributions-group>	
+		</author>
+    </author-group>
+    <mod-version>1.0.9</mod-version>
+    <installation>
+      <level>intermediate</level>
+      <time>600</time>
+      <target-version>3.0.5</target-version>
+    </installation>
+    <history>
+      <entry>
+        <date>2008-01-12</date>
+        <rev-version>1.0.0</rev-version>
+        <changelog lang="en">
+          <change>First Release</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2008-01-14</date>
+        <rev-version>1.0.1</rev-version>
+        <changelog lang="en">
+          <change>Fixed Spelling Error</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2008-01-19</date>
+        <rev-version>1.0.2</rev-version>
+        <changelog lang="en">
+          <change>Cleaned Up Image</change>
+          <change>Included Cancel</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2008-02-13</date>
+        <rev-version>1.0.3</rev-version>
+        <changelog lang="en">
+          <change>Updated to Recent Version of phpBB3</change>
+          <change>Cleaned Up File Organization</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2008-03-12</date>
+        <rev-version>1.0.5</rev-version>
+        <changelog lang="en">
+          <change>Compatible with phpBB3 Gold</change>
+          <change>New Quickedit Image</change>
+          <change>Positioning of Image Fixed</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2008-03-14</date>
+        <rev-version>1.0.6</rev-version>
+        <changelog lang="en">
+          <change>Prosilver Install Instructions</change>
+        </changelog>
+      </entry>
+	  <entry>
+        <date>2009-05-04</date>
+        <rev-version>1.0.7</rev-version>
+        <changelog lang="en">
+          <change>It's now impossible to open up two or more Quick Edits at once</change>
+		  <change>Global Announcements can be edited</change>
+		  <change>Now works with Prime's Multi-Quote MOD</change>
+		  <change>It now shows if the post has been edited like it does with normal posts</change>
+		  <change>A style bug when searching for user's posts has been solved</change>
+		  <change>BBCodes</change>
+		  <change>Fixed the security bug</change>
+        </changelog>
+		<changelog lang="de">
+          <change>Es ist jetzt unmöglich zwei oder mehr Quick Edits gleichzeitig zu öffnen</change>
+		  <change>Globale Bekanntmachungen können editiert werden</change>
+		  <change>Funktioniert jetzt mit Prime's Multi-Quote MOD</change>
+		  <change>Es wird jetzt angezeigt wann und wie oft der Beitrag bearbeitet wurde</change>
+		  <change>Ein Style Bug, der auftrat wenn man die Beiträge eines Benutzers gesucht hat, wurde beseitigt</change>
+		  <change>BBCodes</change>
+		  <change>Sicherheits Leck wurde geschlossen</change>
+        </changelog>
+      </entry>
+	  <entry>
+        <date>2009-05-05</date>
+        <rev-version>1.0.8</rev-version>
+        <changelog lang="en">
+          <change>Custom BBCodes work</change>
+		  <change>Fixed an SQL error when editing posts as admin or moderator</change>
+		  <change>The button now says "Submit"</change>
+        </changelog>
+		<changelog lang="de">
+          <change>Benutzerdefinierte BBCodes funktionieren jetzt</change>
+		  <change>SQL Fehler beim bearbeiten eines Beitrages durch Admins oder Moderatoren wurde beseitigt</change>
+		  <change>Der Buttons zum Absenden wurde zu "Absenden" umgeändert</change>
+        </changelog>
+      </entry>
+	  <entry>
+        <date>2009-08-12</date>
+        <rev-version>1.0.9</rev-version>
+        <changelog lang="en">
+          <change>Edited Posts now show up in the Moderator log as it is supposed to</change>
+		  <change>Fixed problems with ASCII characters - bugs reported by kida7</change>
+		  <change>Updated the Quick Edit Editor to phpBB 3.0.5</change>
+		  <change>Fixed "Submit" and "Cancel" button appearing on top of the textbox</change>
+		  <change>Completely reworked the editor</change>
+        </changelog>
+		<changelog lang="de">
+          <change>Bearbeitete Beiträge werden jetzt korrekt im Moderations-Protokoll angezeigt</change>
+		  <change>Probleme mit ASCII Symbolen beseitigt</change>
+		  <change>Quick Edit Editor auf phpBB 3.0.5 aktualisiert</change>
+		  <change>Problem gelöst, bei dem die Buttons über der Textbox erschienen sind</change>
+		  <change>Der Editor wurde komplett überarbeitet</change>
+        </changelog>
+      </entry>
+    </history>
+	<link-group>
+			<link type="template" lang="de" href="contrib/subsilver2.xml">subsilver2</link>
+			<link type="template" lang="en" href="contrib/subsilver2.xml">subsilver2</link>
+			<link type="contrib" lang="en" href="contrib/update_quickedit_1.0.6.xml">Update instructions for AJAX Quick Edit Version 1.0.6</link>
+			<link type="contrib" lang="de" href="contrib/update_quickedit_1.0.6.xml">Updateanleitung für AJAX Quick Edit Version 1.0.6</link>
+			<link type="contrib" lang="en" href="contrib/update_quickedit_1.0.7.xml">Update instructions for AJAX Quick Edit Version 1.0.7</link>
+			<link type="contrib" lang="de" href="contrib/update_quickedit_1.0.7.xml">Updateanleitung für AJAX Quick Edit Version 1.0.7</link>
+			<link type="contrib" lang="en" href="contrib/update_quickedit_1.0.8.xml">Update instructions for AJAX Quick Edit Version 1.0.8</link>
+			<link type="contrib" lang="de" href="contrib/update_quickedit_1.0.8.xml">Updateanleitung für AJAX Quick Edit Version 1.0.8</link>
+			<link type="parent" lang="de" href="install.xml">Installations-Anleitung</link>
+			<link type="parent" lang="en" href="install.xml">Install instructions</link>
+			<link type="language" lang="de" href="contrib/de.xml">Deutsch</link>
+			<link type="language" lang="en" href="contrib/de.xml">German</link>
+		</link-group>
+  </header>
+  <action-group>
+	<copy>
+		<file from="root/quickedit.php" to="quickedit.php" />
+		<file from="root/styles/prosilver/template/quickedit.html" to="styles/prosilver/template/quickedit.html" />
+        <file from="root/styles/prosilver/imageset/en/icon_post_quickedit.gif" to="styles/prosilver/imageset/en/icon_post_quickedit.gif" />
+	</copy>    
+    <open src="language/en/common.php">
+      <edit>
+        <find><![CDATA[	'EDIT_POST'							=> 'Edit post',]]></find>
+        <action type="after-add"><![CDATA[//added by Ajax Quick Edit
+	'QUICKEDIT_POST'					=> 'QuickEdit post',
+//end added by Ajax Quick Edit]]></action>
+      </edit>
+    </open>
+    <open src="language/en/acp/styles.php">
+      <edit>
+        <find><![CDATA[	'IMG_ICON_POST_EDIT'			=> 'Edit post',]]></find>
+        <action type="after-add"><![CDATA[//added by Ajax Quick Edit
+	'IMG_ICON_POST_QUICKEDIT'		=> 'QuickEdit post',
+//end added by Ajax Quick Edit]]></action>
+      </edit>
+    </open>
+    <open src="includes/acp/acp_styles.php">
+      <edit>
+        <find><![CDATA['icon_post_edit',]]></find>
+        <inline-edit>
+          <inline-find><![CDATA['icon_post_edit',]]></inline-find>
+          <inline-action type="after-add"><![CDATA[ 'icon_post_quickedit',]]></inline-action>
+        </inline-edit>
+      </edit>
+    </open>
+    <open src="viewtopic.php">
+      <edit>
+        <find><![CDATA[	'EDIT_IMG' 			=> $user->img('icon_post_edit', 'EDIT_POST'),]]></find>
+        <action type="after-add"><![CDATA[//added by Ajax Quick Edit
+	'QUICKEDIT_IMG'		=> $user->img('icon_post_quickedit', 'QUICKEDIT_POST'),
+//end added by Ajax Quick Edit]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[	'U_WATCH_TOPIC' 		=> $s_watching_topic['link'],]]></find>
+        <action type="before-add"><![CDATA[//added by Ajax Quick Edit
+	'U_QUICKEDIT' 			=> append_sid("{$phpbb_root_path}quickedit.$phpEx"),
+//end added by Ajax Quick Edit]]></action>
+      </edit>
+    </open>
+	<open src="styles/prosilver/template/viewtopic_body.html">
+      <edit>
+        <find><![CDATA[<!-- INCLUDE overall_header.html -->]]></find>
+        <action type="after-add"><![CDATA[<!-- INCLUDE quickedit.html -->]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[<!-- IF postrow.U_EDIT --><li class="edit-icon"><a href="{postrow.U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li><!-- ENDIF -->]]></find>
+        <action type="before-add"><![CDATA[					<!-- IF postrow.U_EDIT --><li class="quick-edit-icon"><a href="#" id="quick_edit{postrow.POST_ID}" onclick="quick_edit({postrow.POST_ID}); return false;" title="{L_QUICKEDIT_POST}"><span>{L_QUICKEDIT_POST}</span></a></li><!-- ENDIF -->]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[<div class="content">{postrow.MESSAGE}</div>]]></find>
+        <inline-edit>
+          <inline-find><![CDATA[<div class="content"]]></inline-find>
+          <inline-action type="after-add"><![CDATA[ id="postdiv{postrow.POST_ID}"]]></inline-action>
+        </inline-edit>
+      </edit>
+    </open>
+    <open src="styles/prosilver/imageset/en/imageset.cfg">
+      <edit>
+        <find><![CDATA[img_icon_post_edit = icon_post_edit.gif]]></find>
+        <action type="after-add"><![CDATA[img_icon_post_quickedit = icon_post_quickedit.gif*20*70]]></action>
+      </edit>
+    </open>
+    <open src="styles/prosilver/theme/colours.css">
+      <edit>
+        <find><![CDATA[.edit-icon, .edit-icon a			{ background-image: url("{IMG_ICON_POST_EDIT_SRC}"); }]]></find>
+        <action type="after-add"><![CDATA[.quick-edit-icon, .quick-edit-icon a			{ background-image: url("{IMG_ICON_POST_QUICKEDIT_SRC}"); }]]></action>
+      </edit>
+    </open>
+    <open src="styles/prosilver/theme/buttons.css">
+      <edit>
+        <find><![CDATA[.edit-icon, .edit-icon a			{ background: none top left no-repeat; }]]></find>
+        <action type="after-add"><![CDATA[.quick-edit-icon, .quick-edit-icon a			{ background: none top left no-repeat; }]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[ul.profile-icons li.edit-icon	{ width: {IMG_ICON_POST_EDIT_WIDTH}px; height: {IMG_ICON_POST_EDIT_HEIGHT}px; }]]></find>
+        <action type="after-add"><![CDATA[ul.profile-icons li.quick-edit-icon   { width: {IMG_ICON_POST_QUICKEDIT_WIDTH}px; height: {IMG_ICON_POST_QUICKEDIT_HEIGHT}px; }]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[ul.profile-icons li.edit-icon	{ margin: 0 0 0 3px; }]]></find>
+        <action type="after-add"><![CDATA[ul.profile-icons li.quick-edit-icon	{ margin: 0 0 0 3px; }]]></action>
+      </edit>
+    </open>
+    <diy-instructions lang="en"><![CDATA[After editing all the files please do the following:
+
+Go to ACP->Styles->Templates-> And click "Refresh" for all your templates.
+Go to ACP->Styles->Themes-> And click "Refresh" for all your themes.
+Go to ACP->Styles->Imageset-> And click "Refresh" for all your imagesets.
+
+If you still do not see it, go to any topic and clear your browser cache.]]></diy-instructions>
+	<diy-instructions lang="de"><![CDATA[Nach dem Editieren bitte noch folgendes ausführen:
+Gehe zu Admin-Bereich->Styles->Templates-> und klicke bei allen bearbeiteten Styles auf "Aktualisieren".
+Gehe zu Admin-Bereich->Styles->Themes-> und klicke bei allen bearbeiteten Styles auf "Aktualisieren".
+Gehe zu Admin-Bereich->Styles->Imageset-> und klicke bei allen bearbeiteten Styles auf "Aktualisieren".
+
+Wenn du immer noch nichts siehts, öffne irgendein beliebiges Thema und leere dort deinen Browser-Cache.]]></diy-instructions>
+  </action-group>
+</mod>

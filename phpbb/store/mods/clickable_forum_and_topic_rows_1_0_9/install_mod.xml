@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="./contrib/xsl/modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator 1.0.1 by tumba25 (phpBB version) at phpbbmodders.net"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Clickable Rows]]></title>
+		<description lang="en"><![CDATA[Allows you to open a forum, topic, search result or member profile (in the memberlist) by clicking anywhere within that row.]]></description>
+		<author-notes lang="en"><![CDATA[These instructions include edits for prosilver styles. You can find installation instructions for subsilver2 styles in the contrib folder.]]></author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Jari Kanerva]]></realname>
+				<username><![CDATA[tumba25]]></username>
+				<homepage><![CDATA[http://testforum.vilden.se]]></homepage>
+				<email><![CDATA[tumba25@gmail.com]]></email>
+			</author>
+		</author-group>
+		<mod-version>1.0.9</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>1800</time>
+			<target-version>3.0.8</target-version>
+		</installation>
+		<history>
+			<entry>
+				<date>2010-11-23</date>
+				<rev-version>1.0.9</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Minor change in needed for phpBB 3.0.8]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-12-26</date>
+				<rev-version>1.0.8</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Fixed issues with AutoMOD in the Subsilver2 edits]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-12-25</date>
+				<rev-version>1.0.7</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Some bug fixes]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-12-16</date>
+				<rev-version>1.0.6</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Updated for the changes in phpBB 3.0.4]]></change>
+					<change><![CDATA[Some bug fixes]]></change>
+					<change><![CDATA[Instructions rewritten for ModX 1.2.1 by oddfish, thanks.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2007-10-04</date>
+				<rev-version>1.0.5</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Fixed a validation error.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2007-10-10</date>
+				<rev-version>1.0.5b</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Fixed an xml-file error.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2007-10-30</date>
+				<rev-version>1.0.5c</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Fixed validation errors.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2007-10-01</date>
+				<rev-version>1.0.4</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Added clickable rows almost everywhere.]]></change>
+					<change><![CDATA[Fixed bug with checkboxes.]]></change>
+					<change><![CDATA[Rewrote the xml-files]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2007-08-05</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Fixed an error in the zip-file.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2007-08-05</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Added support for the subsilver2 template.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2007-06-30</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Fixed some problems with the XML-code.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2007-06-21</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[This is the first release of the MOD.]]></change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="template" href="./contrib/subsilver2.xml" lang="en">Instructions for subsilver2 style</link>
+		</link-group>
+	</header>
+	<action-group>
+		<open src="memberlist.php">
+			<edit>
+				<find><![CDATA['U_VIEW_PROFILE'	=> get_username_string('profile', $row['user_id'], $row['username'], $row['user_colour']),]]></find>
+				<action type="after-add"><![CDATA[				'U_CLICK_LINK' => append_sid($phpbb_root_path . "memberlist.{$phpEx}?mode=viewprofile&amp;u=" . $row['user_id']),]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/drafts.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF draftrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{draftrow.U_INSERT}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/forumlist_body.html">
+			<edit>
+				<find><![CDATA[<li class="row">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{forumrow.U_VIEWFORUM}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/mcp_forum.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[reported<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{topicrow.U_VIEW_TOPIC}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<!-- IF not topicrow.S_MOVED_TOPIC --><input type="checkbox" name="topic_id_list[]" value="{topicrow.TOPIC_ID}"<!-- IF topicrow.S_TOPIC_CHECKED --> checked="checked"<!-- ENDIF --> /><!-- ELSE -->&nbsp;<!-- ENDIF -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/mcp_front.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF unapproved.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{unapproved.U_POST_DETAILS}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="checkbox" name="post_id_list[]" value="{unapproved.POST_ID}" /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF report.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{report.U_POST_DETAILS}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/mcp_queue.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF postrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{postrow.U_VIEW_DETAILS}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="checkbox" name="post_id_list[]" value="{postrow.POST_ID}" /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/mcp_reports.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF postrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{postrow.U_VIEW_DETAILS}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="checkbox" name="report_id_list[]" value="{postrow.REPORT_ID}" /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/mcp_warn_front.html">
+			<edit>
+				<find><![CDATA[<tr class="<!-- IF highest.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{highest.U_USER}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<tr class="<!-- IF latest.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{latest.U_USER}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/mcp_warn_list.html">
+			<edit>
+				<find><![CDATA[<tr class="<!-- IF user.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{user.U_USER}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/memberlist_body.html">
+			<edit>
+				<find><![CDATA[<tr class="<!-- IF memberrow.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{memberrow.U_VIEW_PROFILE}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<input type="checkbox" name="user" value="{memberrow.USERNAME}" />]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/memberlist_leaders.html">
+			<edit>
+				<find><![CDATA[<tr class="<!-- IF admin.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{admin.U_CLICK_LINK}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<tr class="<!-- IF mod.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{mod.U_CLICK_LINK}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="info"><!-- IF not mod.FORUMS -->{L_ALL_FORUMS}<!-- ELSE --><select style="width: 100%;">{mod.FORUMS}</select><!-- ENDIF --></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<select]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/search_results.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF searchresults.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='<!-- IF searchresults.S_UNREAD_TOPIC -->{searchresults.U_NEWEST_POST}<!-- ELSE -->{searchresults.U_LAST_POST}<!-- ENDIF -->'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/ucp_attachments.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF attachrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{attachrow.U_VIEW_ATTACHMENT}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<input type="checkbox" name="attachment[{attachrow.ATTACH_ID}]" value="1" />]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/ucp_groups_membership.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF leader.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{leader.U_VIEW_GROUP}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dt><!-- IF S_CHANGE_DEFAULT --><input title="{L_CHANGE_DEFAULT_GROUP}" type="radio" name="default"<!-- IF leader.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{leader.GROUP_ID}" /> <!-- ENDIF -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="radio" name="selected" value="{leader.GROUP_ID}" <!-- IF leader.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF member.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{member.U_VIEW_GROUP}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dt><!-- IF S_CHANGE_DEFAULT --><input title="{L_CHANGE_DEFAULT_GROUP}" type="radio" name="default"<!-- IF member.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{member.GROUP_ID}" /> <!-- ENDIF -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="radio" name="selected" value="{member.GROUP_ID}" <!-- IF member.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF pending.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{pending.U_VIEW_GROUP}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="radio" name="selected" value="{pending.GROUP_ID}" <!-- IF pending.GROUP_SPECIAL -->disabled="diabled"<!-- ENDIF --> /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF nonmember.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{nonmember.U_VIEW_GROUP}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="radio" name="selected" value="{nonmember.GROUP_ID}" <!-- IF not nonmember.S_CAN_JOIN -->disabled="disabled"<!-- ENDIF --> /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/ucp_main_bookmarks.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ELSEIF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{topicrow.U_VIEW_TOPIC}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/ucp_main_drafts.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF draftrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{draftrow.U_VIEW_EDIT}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="checkbox" name="d[{draftrow.DRAFT_ID}]" id="d{draftrow.DRAFT_ID}" /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/ucp_main_subscribed.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF forumrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{forumrow.U_VIEWFORUM}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="checkbox" name="f[{forumrow.FORUM_ID}]" id="f{forumrow.FORUM_ID}" /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ELSEIF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bg2<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{topicrow.U_VIEW_TOPIC}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/ucp_pm_viewfolder.html">
+			<edit>
+				<find><![CDATA[<li class="row<!-- IF messagerow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF messagerow.PM_CLASS --> {messagerow.PM_CLASS}<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[PM_CLASS}<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{messagerow.U_VIEW_PM}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<dd class="mark"><input type="checkbox" name="marked_msg_id[]" value="{messagerow.MESSAGE_ID}" /></dd>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<input type="checkbox"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="event.cancelBubble=true"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/viewforum_body.html">
+			<edit>
+				<find><![CDATA[		<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_GLOBAL --> global-announce<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[reported<!-- ENDIF -->"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_LAST_POST}<!-- ENDIF -->'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<diy-instructions lang="en"><![CDATA[Go to ACP > General and "Purge the cache".]]></diy-instructions>
+	</action-group>
+</mod>

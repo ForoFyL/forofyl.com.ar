@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.1.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Front Page News Syndication</title>
+		
+		<description lang="en">Allows you to easily pull threads from a forum to display on another page as news articles. An example would be like at phpBB.com except this also pulls the text of the post (however you can use whatever part of it as you wish).</description>
+		
+		<author-notes lang="en">Existing experience with PHP will make customisation easier, though not required!</author-notes>
+		
+		<author-group>
+			<author>
+				<realname>Richard Fuller</realname>
+				<username>chAos</username>
+			</author>
+		</author-group>
+		
+		<mod-version>1.0.0</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>60</time>
+			<target-version>3.0.4</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2008-12-16</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Changed the default way posts are outputted to not require CSS to move the post information below the topic title. Also, lets call this final.</change>
+				</changelog>
+			</entry>
+		</history>
+	</header>
+	
+	<action-group>
+
+		<copy>
+			<file from="root/news.php" to="news.php" />
+		</copy>
+				
+		<diy-instructions lang="en">Open news.php and look for the 4 customisable options at the top of the script.
+		
+Most importantly is the path to you forums and the ID of the forum to syndicate posts from.</diy-instructions>
+		
+	</action-group>
+</mod>

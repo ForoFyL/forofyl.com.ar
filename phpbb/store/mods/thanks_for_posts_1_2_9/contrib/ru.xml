@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (offline version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Thanks for posts (for russian)]]></title>
+		<title lang="ru"><![CDATA[Благодарность за сообщения (для русского языка)]]></title>
+		<description lang="en"><![CDATA[Mod adds the ability to thank the author (thanks to cancel), and use the rating system.]]></description>
+		<description lang="ru"><![CDATA[Мод добавляет возможность поблагодарить автора сообщения (отменить благодарность), а также использовать систему рейтинга.]]></description>
+		<author-notes lang="en"><![CDATA[Note:
+- The option is realised by inclusion of the added access right to forums. When you install MOD the permission added to the role of Standard access. (If you want to set other preferences: Goto ACP - Permissions and select forums where you wish to resolve the right "Can thanks for posts" and resolve it in TAB Misc).
+- The choice of reception of notices on thanks in UCP - Board preferences.
+- The setting options and upgrade of counters after mass removal of post/topic/users - in ACP - Tab .MODS - Thanks for post.
+- To view a list of thanks need to allow the global user permission - "Can view list of thanks" in TAB Misc. When you install MOD the permission added to the role of Standard features.
+- To view a toplist need to allow the global user permission - "Can view toplist" in TAB Misc. When you install MOD the permission added to the role of Standard features.]]></author-notes>
+		<author-notes lang="ru"><![CDATA[Примечания:
+- Опции реализованы включением добавленного права доступа к форумам. При установке право добавлено в роль Стандартный доступ. (Если вы хотите установить другие настройки: перейдите в Администраторский раздел - Права доступа - Локальные права - Права доступа к форумам и выберите форумы, где вы хотите иметь функцию благодарностей за сообщения. Разрешите право "Может благодарить за сообщения" на вкладке Разное).
+- Переключатель выбора опции получения уведомлений о благодарностях в Личном разделе - Личные настройки.
+- Настройки опций, в том числе обновление счётчиков после массового удаления сообщений/тем/пользователей - в Администраторском разделе - Модули - Благодарности.
+- Для просмотра списка благодарностей нужно разрешить глобальное пользовательское право - "Может просматривать лист благодарностей" на вкладке Разное. При установке право добавлено в роль Стандартные возможности.
+- Для просмотра топлиста нужно разрешить глобальное пользовательское право - "Может просматривать топлист" на вкладке Разное. При установке право добавлено в роль Стандартные возможности.]]></author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Палыч]]></realname>
+				<username><![CDATA[Палыч]]></username>
+				<homepage><![CDATA[http://phpbbguru.net/community/]]></homepage>
+				<email><![CDATA[varzaev@mail.ru]]></email>
+			</author>
+		</author-group>
+		<mod-version>1.2.9</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>600</time>
+			<target-version>3.0.7-PL1</target-version>
+		</installation>
+		<history>
+			<entry>
+				<date>2010-08-15</date>
+				<rev-version>1.2.9</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Small cosmetic and css fix]]></change>
+					<change><![CDATA[Optimization of SQL-queries]]></change>
+					<change><![CDATA[Added option for notification by Email]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Небольшие косметические и css правки]]></change>
+					<change><![CDATA[Оптимизация SQL-запросов]]></change>
+					<change><![CDATA[Добавлена опция уведомления по Email]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-06-20</date>
+				<rev-version>1.2.8</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Added a rating system posts, topics, forums]]></change>
+					<change><![CDATA[Added option on/off display time thanks.]]></change>
+					<change><![CDATA[Added option users toplist in thankslist]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Добавлена система рейтинга сообщений, тем, форумов]]></change>
+					<change><![CDATA[Добавлена опция вывода времени благодарности]]></change>
+					<change><![CDATA[Добавлена опция топлиста пользователей в списке благодарностей]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-04-11</date>
+				<rev-version>1.2.7</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Some bugs css fixed.]]></change>
+					<change><![CDATA[Added sorting by number of thanks]]></change>
+					<change><![CDATA[Changed module in ACP]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Исправлены ошибки css.]]></change>
+					<change><![CDATA[Добавлена сортировка по числу благодарностей]]></change>
+					<change><![CDATA[Изменен модуль в ACP]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-02-05</date>
+				<rev-version>1.2.6</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Some small bugs fixed.]]></change>
+					<change><![CDATA[Fix bug display thanks if user delete.]]></change>
+					<change><![CDATA[Added limit of display in the post list thanks.]]></change>
+					<change><![CDATA[Added links to the post of general lists of gratitude.]]></change>
+					<change><![CDATA[Added style envision]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Исправлены небольшие ошибки.]]></change>
+					<change><![CDATA[Исправлено отображение благодарностей при удалении пользователя.]]></change>
+					<change><![CDATA[Добавлен лимит отображения в посте списка благодарностей.]]></change>
+					<change><![CDATA[Добавлены ссылки с поста на общие списки благодарностей.]]></change>
+					<change><![CDATA[Добавлен стиль envision]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-10-11</date>
+				<rev-version>1.2.5</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Adapted for UMIL]]></change>
+					<change><![CDATA[Adapted for version phpbb 3.0.6]]></change>
+					<change><![CDATA[Some small bugs fixed.]]></change>
+					<change><![CDATA[Added style Avalon]]></change>
+					<change><![CDATA[Added style DirtyBoard2.0]]></change>
+					<change><![CDATA[Added Dutch language.]]></change>
+					<change><![CDATA[Added Spanish language.]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Адаптирован под UMIL]]></change>
+					<change><![CDATA[Адаптирован под версию phpbb 3.0.6]]></change>
+					<change><![CDATA[Исправлены небольшие ошибки.]]></change>
+					<change><![CDATA[Добавлен стиль Avalon]]></change>
+					<change><![CDATA[Добавлен стиль DirtyBoard2.0]]></change>
+					<change><![CDATA[Добавлен датский язык.]]></change>
+					<change><![CDATA[Добавлен испанский язык.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-08-03</date>
+				<rev-version>1.2.4</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Change the terms of inserting a thanks to avoid messages about sql-error when user double-click on button.]]></change>
+					<change><![CDATA[Optimized function refresh().]]></change>
+					<change><![CDATA[Fixed translation of linguistic variables.]]></change>
+					<change><![CDATA[Added option on/off display counters thanks.]]></change>
+					<change><![CDATA[Added option on/off display info pages.]]></change>
+					<change><![CDATA[Added option clear the list of thanks.]]></change>
+					<change><![CDATA[Added option thanks only to the first message to the topic.]]></change>
+					<change><![CDATA[Fix minor bag in viewtopic.php.]]></change>
+					<change><![CDATA[Change image buttons style prosilver.]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Изменены условия вставки "спасибо" для избежания сообщения об sql-ошибке при двойном клике на кнопку.]]></change>
+					<change><![CDATA[Оптимизирована функция refresh().]]></change>
+					<change><![CDATA[Исправлены ошибки перевода языковых переменных.]]></change>
+					<change><![CDATA[Добавлена опция отключения вывода счётчиков благодарностей в блок сведений об авторе сообщения.]]></change>
+					<change><![CDATA[Добавлена опция отключения вывода информационных сообщений о выдаче/отмене благодарности.]]></change>
+					<change><![CDATA[Добавлена опция полной очистки списка благодарностей.]]></change>
+					<change><![CDATA[Добавлена опция благодарности только за первое сообщение темы.]]></change>
+					<change><![CDATA[Исправлена небольшая ошибка вызова функции в viewtopic.php.]]></change>
+					<change><![CDATA[Изменены изображения кнопок в стиле prosilver.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-06-11</date>
+				<rev-version>1.2.3</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Fix minor bags and optimized code (thanks tumba25).]]></change>
+					<change><![CDATA[Аdjusted BBCODE parsing in the thanklist search.]]></change>
+					<change><![CDATA[Аdjusted thankslist.php is viewable if "Can view list of thanks" is set to NO.]]></change>
+					<change><![CDATA[Updated files for English language (thanks knmt).]]></change>
+					<change><![CDATA[Added files for French (thanks zach').]]></change>
+					<change><![CDATA[Added files for Brazilian Portuguese (thanks Paulo França Lacerda).]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Исправлены ошибки и оптимизирован код (спасибо tumba25).]]></change>
+					<change><![CDATA[Откорректирован парсинг BBCODE при выводе списка сообщений (thankslist.php).]]></change>
+					<change><![CDATA[Откорректирован доступ к просмотру списка сообщений (thankslist.php).]]></change>
+					<change><![CDATA[Обновлены английские языковые файлы (спасибо knmt).]]></change>
+					<change><![CDATA[Добавлены французские языковые файлы (спасибо zach').]]></change>
+					<change><![CDATA[Добавлены португальские языковые файлы (спасибо Paulo França Lacerda).]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-05-15</date>
+				<rev-version>1.2.2</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Fix minor bags and optimized code(thanks A_Jelly_Doughnut, A_O_C and DavidIQ).]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Исправлены ошибки и оптимизирован код (спасибо A_Jelly_Doughnut, A_O_C and DavidIQ).]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-03-12</date>
+				<rev-version>1.2.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Add option on/off remove thanks.]]></change>
+					<change><![CDATA[Add check permissions for postlist in thankslist.]]></change>
+					<change><![CDATA[Adjusted withdrawal of thanks in thankslist.]]></change>
+					<change><![CDATA[Fix code bags (thanks TerraFrost and A_O_C).]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Добавлена опция отключения возможности удаления благодарностей.]]></change>
+					<change><![CDATA[Добавлен учёт прав при выводе постов в списке благодарностей.]]></change>
+					<change><![CDATA[Откорректирован вывод числа благодарностей в листе.]]></change>
+					<change><![CDATA[Исправлены ошибки в коде (спасибо TerraFrost и A_O_C).]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-02-22</date>
+				<rev-version>1.2.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Standart MODX 1.2.2]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[МОД приведён в соответствие стандарту MODX 1.2.2]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-02-21</date>
+				<rev-version>1.1.4</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Add thankslist.]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Добавлен список благодарностей]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-02-05</date>
+				<rev-version>1.1.3</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Add module in ACP.]]></change>
+					<change><![CDATA[Optimazid refresh function.]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Добавлен модуль настроек в Административный раздел]]></change>
+					<change><![CDATA[Оптимизирована фукнкция обновления счётчиков]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-26</date>
+				<rev-version>1.1.2b</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Fix error in instruction install over Thank Post MOD by Geoffrey Craft (thanks Skinny777)]]></change>
+					<change><![CDATA[Fix error in install instruction for subsilver2 (thanks Skinny777)]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Исправлены ошибки в инструкции для стиля subsilver2 (спасибо Skinny777)]]></change>
+					<change><![CDATA[Исправлены ошибки в инструкции для установки поверх Thank Post MOD автора Geoffrey Craft (спасибо Skinny777)]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-25</date>
+				<rev-version>1.1.1b</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Add style subsilver2]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Добавлен стиль subsilver2]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-24</date>
+				<rev-version>1.1.0b</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[The main functions for loading lowering are changed]]></change>
+					<change><![CDATA[The choice of reception of notices on thanks in UCP is added]]></change>
+					<change><![CDATA[The option of upgrade of counters after mass removal of post/topic is added by that in MCP]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Изменены основные функции для снижения загрузки]]></change>
+					<change><![CDATA[Добавлен выбор получения уведомлений о благодарностях в личном разделе]]></change>
+					<change><![CDATA[Добавлена в модераторский раздел опция обновления счётчиков после массового удаления сообщений/тем]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-17</date>
+				<rev-version>1.0.3b</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Add PM to author post]]></change>
+					<change><![CDATA[Add option close/view list of thanks (thanks Gisher)]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Добавлено уведомление автора сообщения по ЛС]]></change>
+					<change><![CDATA[Добавлена функция скрыть/показать список благодарностей в профиле (спасибо Gisher)]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-12</date>
+				<rev-version>1.0.2b</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Output of the list of thanks at review of the profile of the user is added]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Добавлен вывод списка благодарностей при просмотре профиля пользователя]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-10</date>
+				<rev-version>1.0.1b</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Changed some functions for load lowering on a server]]></change>
+					<change><![CDATA[The place of mapping of the list of the thanking are changed is transferred to a message body]]></change>
+					<change><![CDATA[Gif-files of buttons are changed, buttons are localised]]></change>
+					<change><![CDATA[Language variables are changed]]></change>
+					<change><![CDATA[Fix the minor error in the instruction in section of copying of files]]></change>
+					<change><![CDATA[The instruction of carrying over of the data in base with Thank Post MOD, in a folder contrib is added]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Изменены некоторые функции для снижения нагрузки на сервер]]></change>
+					<change><![CDATA[Место отображения списка благодаривших перенесено в тело сообщения]]></change>
+					<change><![CDATA[Изменены gif-файлы кнопок, кнопки локализованы]]></change>
+					<change><![CDATA[Изменены языковые переменные]]></change>
+					<change><![CDATA[Устранена небольшая ошибка в инструкции в секции копирования файлов]]></change>
+					<change><![CDATA[Добавлена инструкция переноса данных в базе с Thank Post MOD, в папке contrib]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-08</date>
+				<rev-version>1.0.0b</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Start date]]></change>
+				</changelog>
+				<changelog lang="ru">
+					<change><![CDATA[Первая версия мода]]></change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="parent" href="../install_thanks_mod.xml" lang="en">Return in MOD</link>
+			<link type="parent" href="../install_thanks_mod.xml" lang="ru">Вернуться в основной мод</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/language/ru/email/user_thanks.txt" to="language/ru/email/user_thanks.txt"/>
+			<file from="root/language/ru/mods/thanks_mod.php" to="language/ru/mods/thanks_mod.php"/>
+			<file from="root/language/ru/mods/info_ucp_thanks.php" to="language/ru/mods/info_ucp_thanks.php"/>
+			<file from="root/language/ru/mods/info_acp_thanks.php" to="language/ru/mods/info_acp_thanks.php"/>
+		</copy>
+	</action-group>
+</mod>

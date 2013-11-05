@@ -1,0 +1,157 @@
+/*BORDERS*/
+.navbar, .forabg, .forumbg, #adsense, .post, .panel {
+-moz-border-radius: 5px 5px 5px 5px;
+-webkit-border-radius: 5px 5px 5px 5px;
+border-radius: 5px 5px 5px 5px;
+}
+
+#cp-main .pm-panel-header {
+-moz-border-radius: 5px 5px 0px 0px;
+-webkit-border-radius: 5px 5px 0px 0px;
+padding:10px;
+}
+
+#cp-main .pm-panel-message{
+-moz-border-radius: 0 0 5px 5px;
+-webkit-border-radius: 0px 0px 5px 5px;
+border-top:none;
+padding:10px;
+}
+
+#cp-main .pm-panel-message.pm {
+padding:0;
+}
+
+.corners-top, .corners-bottom {
+display:none !important;
+}
+
+/*GRADIENTS*/
+#social_media, .forabg, .forumbg {
+background: #12A3EB;
+background: -moz-linear-gradient(center top , #028AC9, #12A3EB) repeat scroll 0 0 transparent;
+background: -webkit-gradient(linear, left top, left bottom,  from(#028AC9), to(#12A3EB));
+}
+
+div.mChatBodyFix {
+    margin-left: 0;
+}
+#viewprofile .panel {
+width: 49%;
+padding:0;
+}
+#viewprofile .bg1 {
+float: left;
+}
+#viewprofile .bg2 {
+float: right;
+}
+#viewprofile .online {
+color: #000000;
+}
+
+#viewprofile dl.details dt {
+    font-weight: bold;
+}
+
+#viewprofile dl.details dd {
+    color: #000000;
+}
+#viewprofile .postbody {
+    margin:0;
+    border:none;
+    min-height:0;
+}
+#viewprofile .inner {
+   padding: 5px;
+}
+#viewprofile h3 {
+   border-bottom:1px solid #006699;
+}
+.pm .postprofile .profile-icons li a, .pm .postbody .profile-icons li a {
+   margin:0;
+}
+.pm .buttons div a {
+   margin:0;
+}
+.linklist.pm-return-to, .rightside.pagination {
+   padding:0;
+   margin:0;
+}
+.pm.post {
+  padding:0;
+}
+.pm.panel, #options-panel {
+    background-color: #E1EBF2 !important;
+}
+.pm .postcontent {
+    margin: 0 !important;
+    padding: 10px !important;
+}
+#postingbox #message-box {
+    width:80%;
+}
+.newpm-icon a {
+    margin:0;
+}
+.left-box.left {
+margin-top: 20px;
+}
+#report {
+   padding:0;
+}
+#report .postbody {
+   margin-left:0;
+   border:none;
+}
+#report .postbody .content {
+   padding:10px;
+}
+#report .postbody .author {
+   margin:0;
+   padding:0 10px 5px;
+   font-size:10px;
+   border-bottom:1px solid #006699;
+}
+.mcp-main .author {
+   font-size:10px;
+}
+.mcp-main .profile-icons li, .mcp-main .profile-icons li a {
+   margin:0;
+}
+.mcp-main .profile-icons {
+   margin:0 0 0 10px !important;
+}
+#topicreview .content {
+    border-top: 1px solid #006699;
+    padding: 10px;
+}
+#topicreview .right-box {
+    padding: 10px;
+}
+.title-link {
+    display: block;
+    float: left;
+    margin-top: 2px;
+}
+.title-link a, .title-link span a:hover {
+    color: #FFFFFF;
+}
+.show_if_online {
+    background-image: url("/styles/prosilver/imageset/es_ar/icon_user_online.gif");
+    height: 58px;
+    position: absolute;
+    right: 21px;
+    width: 58px;
+}
+#smiley-container {
+    max-height: 190px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+#ucp .panel .inner {
+    padding:10px;
+}
+div.mChatRowLimit {
+    height: 400px !important;
+}

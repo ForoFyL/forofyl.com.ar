@@ -1,0 +1,17 @@
+Subject: Yeni bir üye ortak IP adresiyle kayıt oldu
+
+"{SITENAME}" sitenize yeni bir üye kayıt oldu.
+Bu yeni üye başka üyelerle IP adresi paylaşmaktadır. 
+Lütfen ayrıntılar için üye profil sayfasını ziyaret ediniz.
+
+Kullanıcı ayrıntıları:
+
+Kullanıcı adı:			{USERNAME}
+Ortak IP kullanıcılar:	{DUPE_USERNAMES}
+Kullanıcı profili:		{U_USERNAME}
+Kullanıcı IP adresi:	{USER_IP}
+E-posta:				{USER_MAIL}
+Kayıt tarihi:			{USER_REGDATE}
+
+
+{EMAIL_SIG}

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="./xsl/modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator 1.0.1 by tumba25 (phpBB version) at phpbbmodders.net"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Clickable Rows]]></title>
+		<description lang="en"><![CDATA[Allows you to open a forum, topic, search result, member profile (in the memberlist) by clicking anywhere within that row.]]></description>
+		<author-notes lang="en"><![CDATA[These instructions apply changes to the subsilver2 style. Remember to do the memberlist.php edit in the main install file.]]></author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Jari Kanerva]]></realname>
+				<username><![CDATA[tumba25]]></username>
+				<homepage><![CDATA[http://testforum.vilden.se]]></homepage>
+				<email><![CDATA[tumba25@gmail.com]]></email>
+			</author>
+		</author-group>
+		<mod-version>1.0.9</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>1800</time>
+			<target-version>3.0.8</target-version>
+		</installation>
+		<link-group>
+			<link type="parent" href="../install_mod.xml" lang="en">Main install file</link>
+		</link-group>
+	</header>
+	<action-group>
+		<open src="styles/subsilver2/template/forumlist_body.html">
+			<edit>
+				<find><![CDATA[			<td class="row1">
+				<!-- IF forumrow.FORUM_IMAGE -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA["]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{forumrow.U_VIEWFORUM}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" width="100%">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[width="100%"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{forumrow.U_VIEWFORUM}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/mcp_forum.html">
+			<edit>
+				<find><![CDATA[<td class="row1">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA["]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{topicrow.U_VIEW_TOPIC}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/mcp_front.html">
+			<edit>
+				<find><![CDATA[<td class="row1" width="15%" valign="top"><span class="gen"><!-- IF unapproved.U_FORUM --><a href="{unapproved.U_FORUM}">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='<!-- IF unapproved.U_FORUM -->{unapproved.U_FORUM}<!-- ELSE IF unapproved.U_MCP_FORUM -->{unapproved.U_MCP_FORUM}<!-- ENDIF -->'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row2" valign="top"><span class="gen"><a href="{unapproved.U_TOPIC}">{unapproved.TOPIC_TITLE}]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row2]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{unapproved.U_MCP_TOPIC}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" valign="top"><span class="gen">{unapproved.SUBJECT}</span>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{unapproved.U_POST_DETAILS}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row2" align="center" width="15%" nowrap="nowrap" valign="top"><span class="gen">{unapproved.AUTHOR_FULL}</span></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row2]]></inline-find>
+					<inline-action type="after-add"><![CDATA[<!-- IF unapproved.U_AUTHOR --> clickable<!-- ENDIF -->]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[<!-- IF unapproved.U_AUTHOR --> onclick="window.location.href='{unapproved.U_AUTHOR}'"<!-- ENDIF -->]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" width="15%" valign="top"><span class="gen"><!-- IF report.U_FORUM --><a href="{report.U_FORUM}">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='<!-- IF report.U_FORUM -->{report.U_MCP_FORUM}<!-- ELSE IF report.U_MCP_FORUM -->{report.U_MCP_FORUM}<!-- ENDIF -->'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row2" valign="top"><span class="gen"><a href="{report.U_TOPIC}">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row2]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{report.U_MCP_TOPIC}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" valign="top"><span class="gen">{report.SUBJECT}</span>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{report.U_POST_DETAILS}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row2" align="center" width="15%" nowrap="nowrap" valign="top"><span class="gen">{report.REPORTER_FULL}</span></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row2]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{report.U_REPORTER}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/mcp_queue.html">
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;"><p class="topictitle"><a href="{postrow.U_VIEWPOST}">{postrow.POST_SUBJECT}</a></p>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{postrow.U_VIEWPOST}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;" align="{S_CONTENT_FLOW_BEGIN}" valign="top" nowrap="nowrap"><span class="gen">{postrow.POST_AUTHOR_FULL}</span><br />]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{postrow.U_POST_AUTHOR}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/mcp_reports.html">
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;"><p class="topictitle"><a href="{postrow.U_VIEWPOST}">{postrow.POST_SUBJECT}</a></p>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{postrow.U_VIEWPOST}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;" align="{S_CONTENT_FLOW_BEGIN}" valign="top" nowrap="nowrap"><span class="gen">{postrow.POST_AUTHOR_FULL}</span><br />]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{postrow.U_POST_AUTHOR}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;" align="{S_CONTENT_FLOW_BEGIN}" valign="top" nowrap="nowrap"><span class="gen">{postrow.REPORTER_FULL}</span></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{postrow.U_REPORTER}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;" align="{S_CONTENT_FLOW_BEGIN}" valign="top" nowrap="nowrap"><span class="gen">{postrow.REPORT_TIME}</span><br />]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{postrow.U_VIEW_DETAILS}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/mcp_warn_front.html">
+			<edit>
+				<find><![CDATA[<td class="row1" width="15%" valign="top"><span class="gen">{highest.USERNAME_FULL}</span></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{highest.U_USER}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" width="15%" valign="top"><span class="gen">{latest.USERNAME_FULL}</span></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{latest.U_USER}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/mcp_warn_list.html">
+			<edit>
+				<find><![CDATA[<td class="row1" width="15%" valign="top"><span class="gen">{user.USERNAME_FULL}</span></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{user.U_USER}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row2" width="15%" valign="top"><span class="gen"><a href="{user.U_NOTES}">{L_VIEW_NOTES}</a></span></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row2]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[valign="top"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{user.U_NOTES}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/memberlist_body.html">
+			<edit>
+				<find><![CDATA[<td class="genmed" align="{S_CONTENT_FLOW_BEGIN}">{memberrow.USERNAME_FULL}]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="genmed]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[S_CONTENT_FLOW_BEGIN}"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{memberrow.U_VIEW_PROFILE}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="gen" align="center">&nbsp;<!-- IF memberrow.U_PM -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="gen]]></inline-find>
+					<inline-action type="after-add"><![CDATA[<!-- IF memberrow.U_PM --> clickable<!-- ENDIF -->]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[align="center"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[<!-- IF memberrow.U_PM --> onclick="window.location.href='{memberrow.U_PM}'"<!-- ENDIF -->]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="gen" align="center">&nbsp;<!-- IF memberrow.U_EMAIL -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="gen]]></inline-find>
+					<inline-action type="after-add"><![CDATA[<!-- IF memberrow.U_EMAIL --> clickable<!-- ENDIF -->]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[align="center"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[<!-- IF memberrow.U_EMAIL --> onclick="window.location.href='{memberrow.U_EMAIL}'"<!-- ENDIF -->]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="gen" align="center">&nbsp;<!-- IF memberrow.U_WWW -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="gen]]></inline-find>
+					<inline-action type="after-add"><![CDATA[<!-- IF memberrow.U_WWW --> clickable<!-- ENDIF -->]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[align="center"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[<!-- IF memberrow.U_WWW --> onclick="window.location.href='{memberrow.U_WWW}'"<!-- ENDIF -->]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/memberlist_leaders.html">
+			<edit>
+				<find><![CDATA[<td class="gen" align="center"><strong>{admin.USERNAME_FULL}</strong></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="gen]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[align="center"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{admin.U_CLICK_LINK}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="gen" align="center"><strong>{mod.USERNAME_FULL}</strong></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="gen]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[align="center"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{mod.U_CLICK_LINK}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/posting_body.html">
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;"><b class="gen">{draftrow.DRAFT_SUBJECT}</b>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{draftrow.U_INSERT}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/search_results.html">
+			<edit>
+				<find><![CDATA[			<td class="row1">
+				<!-- IF searchresults.S_UNREAD_TOPIC --><a href="{searchresults.U_NEWEST_POST}">{NEWEST_POST_IMG}</a><!-- ENDIF -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[">]]></inline-find>
+					<inline-action type="replace-with"><![CDATA[" onclick="window.location.href='<!-- IF searchresults.S_UNREAD_TOPIC -->{searchresults.U_NEWEST_POST}<!-- ELSE -->{searchresults.U_LAST_POST}<!-- ENDIF -->'">]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/ucp_attachments.html">
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;"><a class="gen" href="{attachrow.U_VIEW_ATTACHMENT}">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{attachrow.U_VIEW_TOPIC}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/ucp_groups_membership.html">
+			<edit>
+				<find><![CDATA[<td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{leader.U_VIEW_GROUP}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{member.U_VIEW_GROUP}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{pending.U_VIEW_GROUP}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{nonmember.U_VIEW_GROUP}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/ucp_main_bookmarks.html">
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;" width="100%" valign="top">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{topicrow.U_VIEW_TOPIC}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/ucp_main_drafts.html">
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;" valign="top" width="100%">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{draftrow.U_INSERT}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/ucp_main_subscribed.html">
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;" width="100%"><p class="topictitle"><a href="{forumrow.U_VIEWFORUM}">{forumrow.FORUM_NAME}</a></p></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{forumrow.U_VIEWFORUM}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="gensmall" style="padding: 4px;" align="center" valign="middle" nowrap="nowrap"><!-- IF forumrow.LAST_POST_TIME -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="gensmall]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[nowrap="nowrap"]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{forumrow.U_LAST_POST}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;" width="100%" valign="top">
+				<p class="topictitle">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_LAST_POST}<!-- ENDIF -->'"]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[<td style="padding: 4px;" align="{S_CONTENT_FLOW_BEGIN}" valign="top" nowrap="nowrap">
+				<p class="topicdetails">{topicrow.LAST_POST_TIME}</p>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<td]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ class="clickable" onclick="window.location.href='{topicrow.U_LAST_POST}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/ucp_pm_viewfolder.html">
+			<edit>
+				<find><![CDATA[<!-- IF messagerow.S_PM_DELETED --><td class="row3"><!-- ELSE --><td class="row1"><!-- ENDIF -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA["]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ onclick="window.location.href='{messagerow.U_VIEW_PM}'"]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/viewforum_body.html">
+			<edit>
+				<find><![CDATA[				<td class="row1">
+					<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a><!-- ENDIF -->
+					{topicrow.ATTACH_ICON_IMG} <!-- IF topicrow.S_HAS_POLL or topicrow.S_TOPIC_MOVED --><b>{topicrow.TOPIC_TYPE}</b> <!-- ENDIF --><a title="{L_POSTED}: {topicrow.FIRST_POST_TIME}" href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[class="row1]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ clickable]]></inline-action>
+				</inline-edit>
+				<inline-edit>
+					<inline-find><![CDATA[">]]></inline-find>
+					<inline-action type="replace-with"><![CDATA[" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_LAST_POST}<!-- ENDIF -->'">]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/theme/stylesheet.css">
+			<edit>
+				<find><![CDATA[/* Tables
+ ------------ */]]></find>
+				<action type="after-add"><![CDATA[.clickable:hover{background-color: #F6F4D0}
+.clickableHover{background-color: #F6F4D0}]]></action>
+			</edit>
+		</open>
+		<diy-instructions lang="en"><![CDATA[Go to ACP > General and "Purge the cache".]]></diy-instructions>
+	</action-group>
+</mod>

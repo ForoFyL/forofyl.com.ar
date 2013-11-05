@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!-- $Id: de.xml 119 2010-04-18 14:37:22Z marc1706 $ -->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+  <header>
+    <license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+    <title lang="en-gb">phpBB Statistics - Update German language for 1.0.3</title>
+    <title lang="de">phpBB Statistics - Deutsche Sprache Update für 1.0.3</title>
+    <description lang="en">This modification displays many different statistics of your board. These can be controlled via the ACP.</description>
+		<description lang="de">Dieser Mod zeigt verschiedene Statistiken von deinem Forum an. Diese können im Admin-Bereich kontrolliert werden.</description>
+		
+		<author-notes lang="en">based on:
+		Forum Statistics Mod by Nayan Gosh (TheUniqueTiger)</author-notes>
+		<author-notes lang="de">basiert auf:
+		Forum Statistics Mod von Nayan Gosh (TheUniqueTiger)</author-notes>
+    <author-group>
+			<author>
+				<realname>Marc Alexander</realname>
+				<email>admin@m-a-styles.de</email>
+				<username>marc1706</username>
+				<homepage>http://www.m-a-styles.de</homepage>
+				<contributions-group>
+					<contributions status="current" position="Developer"/>
+				</contributions-group>
+			</author>
+    </author-group>
+ 	<mod-version>1.0.3</mod-version>
+    <installation>
+      <level>easy</level>
+      <time>300</time>
+	<target-version>3.0.8</target-version>
+    </installation>
+	 <link-group>
+		<link type="template" lang="de" href="subsilver2.xml">phpBB Statistics - Update für subsilver2 Style</link>
+		<link type="template" lang="en-gb" href="subsilver2.xml">phpBB Statistics - Update subsilver2 style</link>
+		<link type="template" lang="de" href="../subsilver2.xml">subsilver2</link>
+		<link type="template" lang="en-gb" href="../subsilver2.xml">subsilver2</link>
+		<link type="parent" lang="de" href="update_phpbbstatistics_1.0.2.xml">Aktualisiere 1.0.2 zu 1.0.3</link>
+		<link type="parent" lang="en" href="update_phpbbstatistics_1.0.2.xml">Update 1.0.2 to 1.0.3</link>
+		<link type="parent" lang="de" href="../../install.xml">Installations-Anleitung</link>
+		<link type="parent" lang="en" href="../../install.xml">Install instructions</link>
+		<link type="language" lang="de" href="../de.xml">Deutsch</link>
+		<link type="language" lang="en-gb" href="../de.xml">German</link>
+    </link-group>
+    <meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
+  </header>
+  <action-group>
+    <copy>
+      <file from="root/language/de/mods/*.*" to="language/de/mods/*.*" />
+    </copy>
+	<delete>
+		<file name="language/de/mods/addons/*.*" />
+		<file name="language/de/mods/addons" />
+	</delete>
+    <diy-instructions lang="en-gb">See general install.xml file</diy-instructions>
+    <diy-instructions lang="de">Siehe install.xml</diy-instructions>
+  </action-group>
+</mod>

@@ -1,0 +1,189 @@
+<!-- IF MCHAT_ARCHIVE_MODE or MCHAT_CUSTOM_PAGE -->
+<!-- INCLUDE overall_header.html -->
+<!-- ENDIF -->
+<!-- IF MCHAT_ARCHIVE_MODE -->
+<table width="100%" cellspacing="1">
+<tr>
+<td class="nav" valign="middle" nowrap="nowrap">&nbsp;<!-- IF MCHAT_PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{MCHAT_PAGE_NUMBER}</a><!-- ELSE -->{MCHAT_PAGE_NUMBER}<!-- ENDIF --><br /></td>
+<td class="gensmall" nowrap="nowrap">&nbsp;[ {MCHAT_TOTAL_MESSAGES} ]&nbsp;</td>
+<td class="gensmall" width="100%" align="right" nowrap="nowrap"><!-- IF MCHAT_PAGINATION --><b>{MCHAT_PAGINATION}</b><!-- ELSE -->&nbsp;<!-- ENDIF --></td>
+</tr>
+</table>
+<!-- ENDIF -->
+<!-- IF not MCHAT_READ_MODE -->
+<!-- IF not S_MCHAT_LOCATION --><br /><!-- ENDIF -->
+<table class="tablebg" width="100%" cellspacing="1" style="table-layout: fixed;">
+<tr>
+<td class="cat"><!-- IF MCHAT_ARCHIVE_MODE --><h4>{L_MCHAT_ARCHIVE_PAGE}</h4><!-- ELSE --><h4>{L_MCHAT_TITLE}</h4><!-- ENDIF --></td>
+</tr>
+<tr>
+<td class="row1" width="100%" valign="middle">
+<!-- ENDIF -->
+<!-- IF MCHAT_ENABLE -->
+<!-- IF not MCHAT_READ_MODE -->
+<script type="text/javascript">
+// <![CDATA[
+// Define mChat setting
+var mChatFile = '{MCHAT_FILE_NAME}';
+var mChatForumRoot = '{ROOT_PATH}';
+<!-- IF not MCHAT_ARCHIVE_MODE -->
+var mChatRefresh = '{MCHAT_REFRESH_JS}';
+<!-- ELSE -->
+var mChatRefresh = false;
+<!-- ENDIF -->
+var mChatNoMessageInput = '{LA_MCHAT_NOMESSAGEINPUT}';
+var mChatNoMessage = '{LA_MCHAT_NOMESSAGE}';
+var mChatEditInfo = '{LA_MCHAT_EDITINFO}';
+var mChatNoAccess = '{LA_MCHAT_NOACCESS}';
+var mChatFlood = '{LA_MCHAT_FLOOD}';
+var mChatDelConfirm = '{LA_MCHAT_DELCONFIRM}';
+<!-- IF MCHAT_CUSTOM_PAGE_WHOIS and MCHAT_CUSTOM_PAGE-->
+var mChatCustomWhois = true;
+var mChatWhoisRefresh = '{MCHAT_WHOIS_REFRESH}';
+<!-- ELSE -->
+var mChatCustomWhois = false;
+var mChatWhoisRefresh = false;
+<!-- ENDIF -->
+<!-- IF MCHAT_ARCHIVE_MODE -->
+var mChatArchiveMode = true;
+<!-- ELSE -->
+var mChatArchiveMode = false;
+// Define the bbCode tags
+var bbtags = new Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[quote]','[/quote]','[code]','[/code]','[list]','[/list]','[list=]','[/list]','[img]','[/img]','[url]','[/url]','[flash=]', '[/flash]','[size=]','[/size]');
+var form_name = 'mChatForm';
+var text_name = 'message';
+var mChatFocusFix = true;
+<!-- ENDIF -->
+// ]]>
+</script>
+<!-- IF not MCHAT_ARCHIVE_MODE -->
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
+<div <!-- IF MCHAT_CUSTOM_PAGE -->class="mChatRowLimitCustom"<!-- ELSE -->class="mChatRowLimit"<!-- ENDIF -->>
+<!-- ENDIF -->
+<div id="mChatData">
+<!-- ENDIF -->
+<!-- BEGIN mchatrow -->
+<div id="mess{mchatrow.MCHAT_MESSAGE_ID}" class="mChatBG{mchatrow.MCHAT_CLASS} mChatHover"><span style="float:left;">{mchatrow.MCHAT_USERNAME_FULL}<!-- IF not MCHAT_ARCHIVE_MODE and MCHAT_ADD_MESSAGE --><!-- IF MCHAT_ALLOW_BBCODES --><!-- IF mchatrow.MCHAT_USERNAME_COLOR --> <a href="javascript://" onclick="insert_text('[b][color={mchatrow.MCHAT_USERNAME_COLOR}]{mchatrow.MCHAT_USERNAME}[/color][/b], ', false);">|<b style="color: {mchatrow.MCHAT_USERNAME_COLOR}">X</b>|</a><!-- ELSE --> <a href="javascript://" onclick="insert_text('[b]{mchatrow.MCHAT_USERNAME}[/b], ', false);">|<b>X</b>|</a><!-- ENDIF --><!-- ELSE --> <a href="javascript://" onclick="insert_text('{mchatrow.MCHAT_USERNAME}, ', false);">|X|</a><!-- ENDIF --><!-- ENDIF --> - {mchatrow.MCHAT_TIME}</span><span style="float:right;"><!-- IF MCHAT_ALLOW_IP --><b>{L_MCHAT_IP}</b> <a href="{mchatrow.MCHAT_U_WHOIS}" onclick="popup(this.href, 750, 500); return false;">{mchatrow.MCHAT_USER_IP}</a><!-- ENDIF --><!-- IF mchatrow.MCHAT_ALLOW_BAN --> <a href="{mchatrow.MCHAT_U_BAN}"><img src="{ROOT_PATH}mchat/ban.gif" alt="{L_MCHAT_PERMISSIONS}" title="{L_MCHAT_PERMISSIONS}" style="vertical-align: middle;" /></a><!-- ENDIF --><!-- IF mchatrow.MCHAT_ALLOW_EDIT --> <a href="javascript://" onclick="mChat.edit('{mchatrow.MCHAT_MESSAGE_ID}');"><img src="{ROOT_PATH}mchat/edit.gif" alt="{L_MCHAT_EDIT}" title="{L_MCHAT_EDIT}" style="vertical-align: middle;" /></a><!-- ENDIF --><input type="hidden" id="edit{mchatrow.MCHAT_MESSAGE_ID}" value="{mchatrow.MCHAT_MESSAGE_EDIT}" /><!-- IF mchatrow.MCHAT_ALLOW_DEL --> <a href="javascript://" onclick="mChat.del('{mchatrow.MCHAT_MESSAGE_ID}');"><img src="{ROOT_PATH}mchat/del.gif" alt="{L_MCHAT_DELITE}" title="{L_MCHAT_DELITE}" style="vertical-align: middle;" /></a><!-- ENDIF --></span><br /><div style="padding: 3px; font-size:12px;">{mchatrow.MCHAT_MESSAGE}</div></div>
+<!-- END mchatrow -->
+<!-- IF not MCHAT_READ_MODE -->
+<div id="mChatNoMessage"<!-- IF not MCHAT_NOMESSAGE_MODE --> style="display: none;"<!-- ENDIF -->>{L_MCHAT_NOMESSAGE}</div>
+<!-- IF MCHAT_ARCHIVE_MODE and not MCHAT_NOMESSAGE_MODE -->
+<div id="mChatArchiveNoMessage" style="display: none;">{L_MCHAT_ARCHIVENOMESSAGE}</div>
+<!-- ENDIF -->
+</div>
+<!-- IF not MCHAT_ARCHIVE_MODE -->
+</div>
+
+<form method="post" action="javascript://" onsubmit="mChat.add();" id="mChatForm">
+<div class="mChatPanel">
+<noscript><div style="color: #FF0000;">{L_MCHAT_NOJAVASCRIPT}</div></noscript>
+<!-- IF MCHAT_ADD_MESSAGE -->
+<input type="hidden" name="mode" value="add" />
+<input type="text" tabindex="1" name="message" class="mChatText" id="mChatMessage" />
+<input type="button" tabindex="2" class="mChatButton" onclick="mChat.add();" value="{L_MCHAT_ADD}" />
+<!-- ENDIF -->
+<!-- IF MCHAT_ALLOW_SMILES -->
+<input type="button" tabindex="3" class="mChatButton" onclick="mChat.toggle('Smiles');" value="{L_MCHAT_SMILES}" />
+<!-- ENDIF -->
+<!-- IF MCHAT_ALLOW_BBCODES -->
+<input type="button" tabindex="4" class="mChatButton" onclick="mChat.toggle('BBCodes');" value="{L_MCHAT_BBCODES}" />
+<!-- ENDIF -->
+<!-- IF MCHAT_READ_ARCHIVE_BUTTON -->
+<input type="button" tabindex="5" class="mChatButton" onclick="window.location.href = '{MCHAT_ARCHIVE_URL}';" value="{L_MCHAT_ARCHIVE}" />
+<!-- ENDIF -->
+<!-- IF MCHAT_FOUNDER -->
+<input type="button" class="mChatButton" onclick="window.location.href = '{MCHAT_CLEAN_URL}';" value="{L_MCHAT_CLEAN}" />
+<!-- ENDIF -->
+<!-- IF MCHAT_ADD_MESSAGE -->
+<input type="button" class="mChatButton" onclick="alert('{L_MCHAT_HELP_INFO}');" value="{L_MCHAT_HELP}" />
+<!-- ENDIF -->
+<!-- IF MCHAT_ALLOW_BBCODES -->
+<div id="mChatBBCodes" style="padding: 5px; display: none;">
+<input type="button" class="btnbbcode" accesskey="b" value=" B " style="font-weight: bold; width: 30px;" onclick="bbstyle(0);" />
+<input type="button" class="btnbbcode" accesskey="i" value=" i " style="font-style: italic; width: 30px;" onclick="bbstyle(2);" />
+<input type="button" class="btnbbcode" accesskey="u" value=" u " style="text-decoration: underline; width: 30px;" onclick="bbstyle(4);" />
+<input type="button" class="btnbbcode" accesskey="q" value="Quote" style="width: 50px;" onclick="bbstyle(6);" />
+<input type="button" class="btnbbcode" accesskey="c" value="Code" style="width: 40px;" onclick="bbstyle(8);" />
+<input type="button" class="btnbbcode" accesskey="l" value="List" style="width: 40px;" onclick="bbstyle(10);" />
+<input type="button" class="btnbbcode" accesskey="o" value="List=" style="width: 40px;" onclick="bbstyle(12);" />
+<input type="button" class="btnbbcode" accesskey="t" value="[*]" style="width: 40px;" onclick="bbstyle(-1);" />				
+<input type="button" class="btnbbcode" accesskey="p" value="Img" style="width: 40px;" onclick="bbstyle(14);" />
+<input type="button" class="btnbbcode" accesskey="w" value="URL" style="text-decoration: underline; width: 40px;" onclick="bbstyle(16);" />
+<input type="button" class="btnbbcode" accesskey="d" value="Flash" onclick="bbstyle(18);" />
+<span class="genmed nowrap">{L_MCHAT_FONTSIZE} <select class="gensmall" onchange="bbfontstyle('[size=' + this.options[this.selectedIndex].value + ']', '[/size]'); this.selectedIndex = 2;">
+<option value="50">{L_MCHAT_FONTTINY}</option>
+<option value="85">{L_MCHAT_FONTSMALL}</option>
+<option value="100" selected="selected">{L_MCHAT_FONTNORMAL}</option>
+<option value="150">{L_MCHAT_FONTLARGE}</option>
+<option value="200">{L_MCHAT_FONTHUGE}</option>
+</select></span>
+</div>
+<!-- ENDIF -->
+<!-- IF MCHAT_ALLOW_SMILES -->
+<div id="mChatSmiles" style="padding: 5px; display: none;">
+<!-- IF MCHAT_NO_SMILE -->
+{L_MCHAT_NOSMILE}
+<!-- ENDIF -->
+<!-- BEGIN mchatsmilerow -->
+<a href="javascript://" onclick="insert_text('{mchatsmilerow.MCHAT_SMILE_CODE}', true);"><img src="{mchatsmilerow.MCHAT_SMILE_IMG}" width="{mchatsmilerow.MCHAT_SMILE_WIDTH}" height="{mchatsmilerow.MCHAT_SMILE_HEIGHT}" alt="{mchatsmilerow.MCHAT_SMILE_CODE}" title="{mchatsmilerow.MCHAT_SMILE_EMOTION}" /></a>
+<!-- END mchatsmilerow -->
+</div>
+<!-- ENDIF -->
+<div style="padding: 3px;">
+<img src="{ROOT_PATH}mchat/load.gif" alt="{L_MCHAT_LOAD}" title="{L_MCHAT_LOAD}" id="mChatLoadIMG" style="vertical-align: middle; cursor: wait; display: none;" />
+<img src="{ROOT_PATH}mchat/ok.gif" alt="{L_MCHAT_OK}" title="{L_MCHAT_OK}" id="mChatOkIMG" style="vertical-align: middle; cursor: help;" />
+<img src="{ROOT_PATH}mchat/error.gif" alt="{L_MCHAT_ERROR}" title="{L_MCHAT_ERROR}" id="mChatErrorIMG" style="vertical-align: middle; cursor: help; display: none;" />
+{MCHAT_REFRESH_HTML} &bull; <label for="mChatUseSound">{L_MCHAT_USESOUND} <input class="radio" style="vertical-align: middle;" type="checkbox" id="mChatUseSound" checked="checked" /></label>
+</div>
+</div>
+</form>
+<!-- ENDIF -->
+<div id="mChatSound" style="position: absolute; left: -1000px; top: -1000px;"></div>
+<script type="text/javascript" src="{ROOT_PATH}mchat/mchat_ajax_mini.js"></script>
+<!-- ENDIF -->
+<!-- ELSE -->
+<div style="color: #FF0000; padding: 10px;">{L_MCHAT_ENABLE}</div>
+<!-- ENDIF -->
+<!-- IF not MCHAT_READ_MODE -->
+<p align="center">{L_MCHAT_COPYRIGHT}</p>
+</td>
+</tr>
+</table>
+<br clear="all" />
+<!-- ENDIF -->
+<!-- IF MCHAT_ARCHIVE_MODE -->
+<table width="100%" cellspacing="1">
+<tr>
+<td class="nav" valign="middle" nowrap="nowrap">&nbsp;<!-- IF MCHAT_PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{MCHAT_PAGE_NUMBER}</a><!-- ELSE -->{MCHAT_PAGE_NUMBER}<!-- ENDIF --><br /></td>
+<td class="gensmall" nowrap="nowrap">&nbsp;[ {MCHAT_TOTAL_MESSAGES} ]&nbsp;</td>
+<td class="gensmall" width="100%" align="right" nowrap="nowrap"><!-- IF MCHAT_PAGINATION --><b>{MCHAT_PAGINATION}</b><!-- ELSE -->&nbsp;<!-- ENDIF --></td>
+</tr>
+</table>
+<!-- ENDIF -->
+
+
+<!-- IF MCHAT_CUSTOM_PAGE and MCHAT_CUSTOM_PAGE_WHOIS -->
+<br clear="all" />
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+<td class="cat" colspan="2"><h4>{L_WHO_IS_CHATTING}</h4></td>
+</tr>
+<tr>
+<!-- IF LEGEND -->
+<td class="row1" rowspan="2" align="center" valign="middle"><img src="{T_THEME_PATH}/images/whosonline.gif" alt="{L_WHO_IS_ONLINE}" /></td>
+<!-- ELSE -->
+<td class="row1"align="center" valign="middle"><img src="{T_THEME_PATH}/images/whosonline.gif" alt="{L_WHO_IS_ONLINE}" /></td>
+<!-- ENDIF -->
+<td class="row1" width="100%"><div id="mChatStats" style="display:block"><span class="genmed">{MCHAT_TOTAL_USERS_ONLINE}<br />{MCHAT_LOGGED_IN_USER_LIST}</span></div><br /><div id="mChatRefresh"><b class="gensmall">{MCHAT_WHOIS_REFRESH_EXPLAIN}</b></div><div id="mChatRefreshN" style="display: none;"><b class="gensmall">{L_WHO_IS_REFRESHING}</b></div></td>
+</tr>
+<!-- IF LEGEND -->
+<tr>
+<td class="row1"><b class="gensmall">{L_LEGEND} :: {LEGEND}</b></td>
+</tr>
+<!-- ENDIF -->
+</table>
+<!-- ENDIF -->
+
+<!-- IF MCHAT_ARCHIVE_MODE or MCHAT_CUSTOM_PAGE -->
+<!-- INCLUDE overall_footer.html -->
+<!-- ENDIF -->

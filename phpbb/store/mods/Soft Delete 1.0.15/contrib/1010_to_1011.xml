@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		<title lang="en">Soft Delete 1.0.10 to 1.0.11 upgrade</title>
+		<description lang="en"><![CDATA[Changes the current hard delete scheme to all soft deleting for posts and topics.
+Also includes the option to undelete posts and topics after they have been soft deleted.
+New permissions give the option to allow administrators and/or moderators to hard delete posts/topics after they have already been soft deleted.]]></description>
+		<author-notes lang="en"><![CDATA[Please ask for support at my website if you need any: http://www.lithiumstudios.org.  Soft deleting of Private Messages is not included in this modification]]>.</author-notes>
+		<author-group>
+			<author>
+				<realname>Nathan Guse</realname>
+				<email>exreaction@lithiumstudios.org</email>
+				<username>EXreaction</username>
+				<homepage>http://www.lithiumstudios.org</homepage>
+			</author>
+		</author-group>
+		<mod-version>1.0.11</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>60</time>
+			<target-version>3.0.4</target-version>
+		</installation>
+		<link-group>
+			<link type="parent" href="../install.xml" lang="en">Main installation instructions</link>
+		</link-group>
+	</header>
+  <action-group>
+    <open src="styles/prosilver/template/search_results.html">
+      <edit>
+        <find><![CDATA[<div class="search post]]></find>
+        <inline-edit>
+          <inline-find><![CDATA[">]]></inline-find>
+          <inline-action type="before-add"><![CDATA[<!-- IF searchresults.S_DELETED --> reported<!-- ENDIF -->]]></inline-action>
+        </inline-edit>
+      </edit>
+    </open>
+    <open src="search.php">
+      <edit>
+        <find><![CDATA[		foreach ($rowset as $row)
+		{
+			$forum_id = $row['forum_id'];
+			$result_topic_id = $row['topic_id'];
+			$topic_title = censor_text($row['topic_title']);
+]]></find>
+        <action type="after-add"><![CDATA[			if (!$auth->acl_get('m_harddelete', $forum_id) && ((isset($row['post_deleted']) && $row['post_deleted'] != 0 && $row['post_deleted'] != $user->data['user_id']) || (isset($row['topic_deleted']) && $row['topic_deleted'] != 0 && $row['topic_deleted'] != $user->data['user_id'])))
+			{
+				$total_match_count--;
+				continue;
+			}
+]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[$template->assign_block_vars('searchresults', array_merge($tpl_ary, array(]]></find>
+        <action type="after-add"><![CDATA[				'S_DELETED'			=> ((isset($row['topic_deleted']) && $row['topic_deleted'] != 0) || (isset($row['post_deleted']) && $row['post_deleted'] != 0)) ? true : false,
+]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[	}
+	unset($rowset);]]></find>
+        <action type="before-add"><![CDATA[
+		// This information must be re-outputted for the Soft Delete Mod.
+		$template->assign_vars(array(
+			'SEARCH_MATCHES'	=> ($search_id && ($total_match_count > 1000)) ? sprintf($user->lang['FOUND_MORE_SEARCH_MATCHES'], $total_match_count) : (($total_match_count == 1) ? sprintf($user->lang['FOUND_SEARCH_MATCH'], $total_match_count) : sprintf($user->lang['FOUND_SEARCH_MATCHES'], $total_match_count)),
+			'PAGINATION'		=> generate_pagination($u_search, $total_match_count, $per_page, $start),
+			'PAGE_NUMBER'		=> on_page($total_match_count, $per_page, $start),
+			'TOTAL_MATCHES'		=> $total_match_count,
+		));]]></action>
+      </edit>
+    </open>
+  </action-group>
+</mod>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		<title lang="en">Upgrade ACP Announcement Centre from version 1.2.0a to version 1.2.1</title>
+		<description lang="en">Adds an Announcement Box to the Index Page. Features: 
+- Enable/Disable Announcement 
+- (Guest) Announcement Preview 
+- BBCode/Smilie enabled Announcements 
+- Possibility to show different Announcements to Guest users 
+- Possibility to show birthdays as announcements (display of avatars possible) 
+- Option to show Announcements to Guests only, group(s) only or everyone 
+- (Guest) Announcement Title configurable 
+- Option to show pages on all pages or on index page only ...  and more :) </description>
+		<author-notes lang="en">Many thanks to Frost for the cool birthday images! </author-notes>
+		<author-group>
+			<author>
+				<realname>Heiko Carstens</realname>
+				<email>lefty@lefty74.com</email>
+				<username>lefty74</username>
+				<homepage>http://www.lefty74.com</homepage>
+			</author>
+		</author-group>
+		<mod-version>1.2.1</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.5</target-version>
+		</installation>
+    <history>
+      <entry>
+        <date>2007-07-18</date>
+        <rev-version>0.0.1</rev-version>
+        <changelog lang="en">
+		<change>First Beta</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-07-19</date>
+        <rev-version>0.0.1a</rev-version>
+        <changelog lang="en">
+ 		<change>(small bugfix in index.php) and put add on on the index page to put the announcement box in the page header instead of the index page</change>
+        </changelog>
+		</entry>
+      <entry>
+        <date>2007-09-03</date>
+         <rev-version>0.1.0</rev-version>
+        <changelog lang="en">
+		<change>rewritten most of the code</change>
+         </changelog>
+     </entry>
+      <entry>
+        <date>2007-10-16</date>
+         <rev-version>0.1.0a</rev-version>
+        <changelog lang="en">
+		<change>include the form check</change>
+		</changelog>
+     </entry>
+			<entry>
+				<date>2008-01-06</date>
+				<rev-version>0.2.0</rev-version>
+				<changelog lang="en">
+					<change>rewritten most of the code, added bbcodes, smilies and ability to show announcement to group(s)</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-02-16</date>
+				<rev-version>0.3.0</rev-version>
+				<changelog lang="en">
+					<change>added the possibility to show announcements on all pages or on index only</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-02-24</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>repackaged for RC and getting it XHTML strict valid for submission to ModsDB</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-02-24</date>
+				<rev-version>1.0.0a</rev-version>
+				<changelog lang="en">
+					<change>fixed bug in language files</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-03-09</date>
+				<rev-version>1.0.0b</rev-version>
+				<changelog lang="en">
+					<change>corrected code after MODDB rejection</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-04-27</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>added bbcode_uid, bbcode_bitfields, bbcode_options to table, corrected some code after MODDB rejection</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-06-30</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change>fixed bug that broke smilies when posting PMs</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-11</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change>forgot to change strings to ints</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-06-30</date>
+				<rev-version>1.0.3a</rev-version>
+				<changelog lang="en">
+					<change>minor bugfix took out $birthday_list out of the conditional statement</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-10-15</date>
+				<rev-version>1.1.0</rev-version>
+				<changelog lang="en">
+					<change>released Alpha version, added permissions, possibility to show birthday announcements when announcement centre is switched off, added installation file, added possibility for mods to change announcements, added possibility to choose posts as announcements, and some more...</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-11-03</date>
+				<rev-version>1.1.1</rev-version>
+				<changelog lang="en">
+					<change>raised to BETA and included upgrade instructions</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-12-06</date>
+				<rev-version>1.1.2</rev-version>
+				<changelog lang="en">
+					<change>added the possibility to show a single post and also add a possibility to go directly to that post</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-04</date>
+				<rev-version>1.1.3</rev-version>
+				<changelog lang="en">
+					<change>fixed little bug in mcp_announce.php (edits were still possible when announcement was based on single post)</change>
+					<change>fixed little bug in prosilver announcement_centre.html (birthday avatars now centered)</change>
+					<change>made some of the language vars more unique</change>
+					<change>Changed install file so that database stored templates will not get the Admin install_ files added to the db</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-17</date>
+				<rev-version>1.1.4</rev-version>
+				<changelog lang="en">
+					<change>made some vars more unique so they won't clash with other mods</change>
+					<change>changed install files some more</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-03-28</date>
+				<rev-version>1.2.0</rev-version>
+				<changelog lang="en">
+					<change>minor corrections in the install file and mcp_announce.php</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-05-03</date>
+				<rev-version>1.2.0a</rev-version>
+				<changelog lang="en">
+					<change>fixed little bug in includes/functions_announcements.php - $user->setup becomes $user-add_lang(thanks to Erik Frèrejean)</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-07-12</date>
+				<rev-version>1.2.1</rev-version>
+				<changelog lang="en">
+					<change>fixed bug in prosilver when the list bbcode is used - (thanks to leviatan21)</change>
+				</changelog>
+			</entry>
+		</history>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/includes/acp/info/acp_announcements_centre.php" to="includes/acp/info/acp_announcements_centre.php"/>
+			<file from="root/includes/mcp/info/mcp_announce.php" to="includes/mcp/info/mcp_announce.php"/>
+			<file from="root/install/*.*" to="install/*.*"/>
+			<file from="root/styles/prosilver/template/announcement_centre.html" to="styles/prosilver/template/announcement_centre.html"/>
+		</copy>
+		<diy-instructions lang="en">Go to http://yourlinktoyourboard.com/install/index.php in your browser and delete that folder after installation. If you have a SEO mod installed, this should be turned off during installation as otherwise the install file may not work.
+Don't forget to refresh your templates/themes/imagesets.</diy-instructions>
+	</action-group>
+</mod>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Duplicate User IPs</title>
+		<title lang="tr">Aynı IP adresli kayıtlar</title>
+
+		<description lang="en">If a new registered user shares a common IP address logged in database, adds user common user IPs to user profile and ACP user overview. Only affects new registrations, and notifies admin about duplicate IP registrations with e-mail.</description>
+		<description lang="tr">Yeni kayıt IP adresi ile sitede aktif olmuş üye adlarını yönetim paneli ve profilde yöneticiye gösterir. Yöneticiye e-posta iletir, sadece yeni kayıtları etkiler ve aynı IP adresinden kayıtlar olması halinde yöneticiye e-posta gönderir.</description>
+
+		<author-notes lang="en">Notify admin on registration modification code by ameeck is used in part of this modification to send mail.Thank you ameeck.</author-notes>
+		<author-notes lang="tr">Yönetici üye kayıtı hatırlatma eklentisi (ameeck) kodları bu eklentide faydalı olmuştur. ameeck'e teşekkürler.</author-notes>
+		
+		<author-group>
+			<author>
+				<realname></realname>
+				<username>mtrs</username>
+				<email>trst2007@gmail.com</email>
+			</author>
+		</author-group>
+		
+		<mod-version>1.0.0</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>360</time>
+			<target-version>3.0.5</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2009-02-17</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+					<change>Initial release</change>
+				</changelog>
+				<changelog lang="tr">
+					<change>Başlangıç sürümü</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-06-29</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Template file fix</change>
+				</changelog>
+				<changelog lang="tr">
+					<change>Tema dosya düzeltmesi</change>
+				</changelog>
+			</entry>			
+		</history>
+		<link-group>		
+			<link type="language" href="./tr.xml" lang="en">Turkish</link>
+			<link type="language" href="./tr.xml" lang="tr">Türkçe</link>
+		</link-group>		
+	</header>	
+	<action-group>
+<sql><![CDATA[INSERT INTO phpbb_config (config_name, config_value) VALUES ('require_ip_check', '0');
+ALTER TABLE phpbb_users ADD user_dupe_ip varchar(255) NOT NULL DEFAULT '';]]></sql>
+		<copy>			
+			<file from="root/includes/functions_dupe_ip_check.php" to="includes/functions_dupe_ip_check.php" />
+			<file from="root/language/en/mods/dupe_ip.php" to="language/en/mods/dupe_ip.php" />
+			<file from="root/language/en/mods/info_acp_dupe_ip.php" to="language/en/mods/info_acp_dupe_ip.php" />
+			<file from="root/language/en/email/admin_notify_duplicates.txt" to="language/en/email/admin_notify_duplicates.txt" />
+		</copy>
+		<open src="includes/ucp/ucp_register.php">
+			<edit>
+				<find><![CDATA[				// Register user...]]></find>
+				<action type="before-add"><![CDATA[				//Begin: Duplicate User IPs
+				if($config['require_ip_check'] > CHECK_NONE)
+				{
+					include($phpbb_root_path . 'includes/functions_dupe_ip_check.' . $phpEx); 
+					$dupe_user_ids = duplicate_ip_check($user->ip);
+					$dupe_ip = array (
+									'user_dupe_ip'			=> $dupe_user_ids,
+								);	
+					$user_row = array_merge($user_row, $dupe_ip);
+				}
+				//End: Duplicate User IPs]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[				$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '">', '</a>');
+				trigger_error($message);]]></find>
+				<action type="before-add"><![CDATA[				//Begin: Duplicate User IPs
+				if (!empty($dupe_user_ids) && $config['require_ip_check'] > CHECK_NONE)
+				{
+					notify_admin_dupe_ips($data['username'], $data['email'], $user_row['user_regdate'], $user_id, $dupe_user_ids);
+				}
+				//End: Duplicate User IPs]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/acp_board.php">
+			<edit>
+				<find><![CDATA[						'require_activation'	=> array('lang' => 'ACC_ACTIVATION',	'validate' => 'int',	'type' => 'custom', 'method' => 'select_acc_activation', 'explain' => true),]]></find>
+				<action type="after-add"><![CDATA[						//Begin: Duplicate User IPs
+						'require_ip_check'		=> array('lang' => 'IP_CHECK_REGISTRATION',	'validate' => 'int',	'type' => 'custom', 'method' => 'select_ip_check_registration', 'explain' => true),
+						//End: Duplicate User IPs]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[	/**
+	* Maximum/Minimum username length]]></find>
+				<action type="before-add"><![CDATA[	//Begin: Duplicate User IPs
+	function select_ip_check_registration($value, $key = '')
+	{
+		global $user, $config;
+
+		$radio_ary = array(CHECK_DISABLE => 'IP_CHECK_DISABLE', CHECK_NONE => 'IP_CHECK_NONE', CHECK_LIGHT => 'IP_CHECK_LIGHT', CHECK_FULL => 'IP_CHECK_FULL');	
+
+		return h_radio('config[require_ip_check]', $radio_ary, $value, $key);
+	}				
+	//End: Duplicate User IPs]]></action>
+			</edit>
+		</open>		
+		<open src="includes/acp/acp_users.php">
+			<edit>
+				<find><![CDATA[				// Posts in Queue]]></find>
+				<action type="before-add"><![CDATA[				//Begin: Duplicate User IPs
+				if($config['require_ip_check'])
+				{
+					include($phpbb_root_path . 'includes/functions_dupe_ip_check.' . $phpEx);				
+					dupe_usernames($user_row['user_dupe_ip']);					
+				}
+				//End: Duplicate User IPs]]></action>
+			</edit>
+		</open>			
+
+		<open src="adm/style/acp_users_overview.html">
+			<edit>
+				<find><![CDATA[<!-- ENDIF -->
+<dl>
+	<dt><label>{L_LAST_ACTIVE}:</label></dt>]]></find>
+				<action type="before-add"><![CDATA[<!-- IF DUPLICATE_IP_EXISTS -->
+<dl>
+	<dt><label>{L_USERNAMES_DUPE_IP}:</label><br /><span>{L_USERNAMES_DUPE_IP_EXPLAIN}</span></dt>
+	<dd><!-- BEGIN dupe_ip -->{dupe_ip.DUPE_USERNAME}<!-- IF not dupe_ip.S_LAST_ROW -->, <!-- ENDIF --><!-- END dupe_ip --></dd>
+</dl>
+<!-- ENDIF -->]]></action>
+			</edit> 
+		</open>
+		<open src="memberlist.php">
+			<edit>
+				<find><![CDATA[	// Dump it out to the template]]></find>
+				<action type="before-add"><![CDATA[	//Begin: Duplicate User IPs
+	if (isset($data['user_dupe_ip']) && $auth->acl_gets('a_') && $config['require_ip_check'])	
+	{
+		include_once($phpbb_root_path . 'includes/functions_dupe_ip_check.' . $phpEx);
+		dupe_usernames($data['user_dupe_ip']);
+	}
+	//End: Duplicate User IPs]]></action>
+			</edit>
+		</open>
+	<open src="includes/constants.php">
+      <edit>
+        <find><![CDATA[?>]]></find>
+        <action type="before-add"><![CDATA[// Begin: Duplicate User IPs
+define('CHECK_DISABLE', 0);
+define('CHECK_NONE', 1);
+define('CHECK_LIGHT', 2);
+define('CHECK_FULL', 3);
+//End: Duplicate User IPs]]></action>
+      </edit>
+    </open>			
+
+		<open src="styles/prosilver/template/memberlist_view.html">
+			<edit>
+				<find><![CDATA[		<!-- IF S_USER_INACTIVE --><dt>{L_USER_IS_INACTIVE}:</dt> <dd>{USER_INACTIVE_REASON}</dd><!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[		<!-- IF U_USER_ADMIN and DUPLICATE_IP_EXISTS --><dt>{L_USERNAMES_DUPE_IP}:</dt> <dd><!-- BEGIN dupe_ip -->{dupe_ip.DUPE_USERNAME}<!-- IF not dupe_ip.S_LAST_ROW -->, <!-- ENDIF --><!-- END dupe_ip --></dd><!-- ENDIF -->]]></action>
+			</edit> 
+		</open>
+		
+		<diy-instructions lang="en">Purge cache after installation. Enable the mod at ACP/BOARD CONFIGURATION/User Registration Setting</diy-instructions>		
+		<diy-instructions lang="tr">Eklenti kurulumu sonrası önbelleği temizleyin. Yönetim Paneli/Pano Konfigürasyonu/Kullanıcı Kayıt Ayarları yolu ile eklentiyi etkinleştirin</diy-instructions>	
+	</action-group>
+</mod>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!--
+	For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this
+	MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee
+	that there are no security problems within the MOD. No support will be given for MODs not found
+	within the MODs Database which can be found at http://www.phpbb.com/mods/
+-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Anti Double Posts</title>
+		<title lang="fr">Anti Double Posts</title>
+		<description lang="en"><![CDATA[This MOD allows you to disable double posts.]]></description>
+		<description lang="fr"><![CDATA[Ce MOD permet d'interdire les double posts.]]></description>
+		<author-notes lang="en">Several options are available for each specific forum:
+* Enable or not the MOD.
+* Allow/disallow administrators to make double posts.
+* Allow/disallow moderators to make double posts.
+* Two possibilities when a double post attempt is detected:
+- Merge automatically with the previous message (it is possible to define a separator).
+- Send an error message.
+* Set a time during which it is not possible to do the double post. After that, the member can post, even if he is the author of the latest message of the topic.
+
+Next, it's possible to give the permissions to users and groups to double post in a forum where double posts are disallowed.
+
+NOTICE : In order to configure this MOD, you need to edit the forum where you want to install it.
+</author-notes>
+		<author-notes lang="fr">Plusieurs options sont disponibles pour chaque forum spécifique :
+* Activer ou non le MOD.
+* Autoriser ou non les administrateurs à faire des doubles posts.
+* Autoriser ou non les modérateurs à faire des doubles posts.
+* Deux possibilités lorsqu'une tentative de double post est détectée : 
+	- Fusionner automatiquement avec le message précédent (il est possible de définir un séparateur).
+	- Envoyer un message d'erreur.
+* Définir un temps durant lequel il n'est pas possible de faire de double post. Au delà, le membre pourra poster, même s'il est l'auteur du dernier message du sujet.
+
+De plus, il est possible de donner la permission de double poster à certains membres ou groupes, même si un forum est configuré pour ne pas admettre les doubles posts.
+
+ATTENTION : L'installation de ce MOD se fait dans la page "Édition d'un forum".
+</author-notes>
+    		
+		
+		<author-group>
+			<author>
+				<realname>Romain Kowalski</realname>
+				<email></email>
+				<username>Théonaute</username>
+				<homepage>http://forums.nosce-te-ipsum.net</homepage>
+			</author>
+		</author-group>
+		
+		<mod-version>2.0.4</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.6</target-version>
+		</installation>
+		
+		<history>
+			<entry>
+				<date>2009-11-23</date>
+				<rev-version>2.0.4</rev-version>
+				<changelog lang="en">
+					<change>MODx 1.2.3</change>
+					<change>phpBB3.0.6</change>
+					<change>[FIX]%D is parsed with phpBB's date function</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>MODx 1.2.3</change>
+					<change>phpBB3.0.6</change>
+					<change>[FIX]%D est maintenant traduit avec les fonctions de date de phpBB</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2009-05-24</date>
+				<rev-version>2.0.3</rev-version>
+				<changelog lang="en">
+					<change>[Feature] Add a "Apply to all forums" checkbox in order to edit all forums once.</change>
+					<change>[Feature] Mask ADP settings when forum_type is a category or a link.</change>
+					<change>[Fix] Specials chars are now supported in the separator text.</change>
+					<change>[Fix] Fix an error with poll.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>[Ajout] Ajout d'une case à cocher "Appliquer à tous les forums", afin de pouvoir paramètrer tous les forums en une seule fois.</change>
+					<change>[Ajout] Les options d'ADP sont masquées lorsque le type de forum est une catégorie ou un lien</change>
+					<change>[Correction] Les caractères spéciaux sont maintenant supportés dans le texte de séparation.</change>
+					<change>[Correction] Correction d'une erreur avec les sondages.</change>
+				</changelog>				
+			</entry>		
+			<entry>
+				<date>2008-09-28</date>
+				<rev-version>2.0.2</rev-version>
+				<changelog lang="en">
+					<change>[Feature] Add an install.php file for installing the new permission.</change>
+					<change>[Fix] Fix some errors in the install file.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>[Ajout] Ajout d'un fichier install.php pour installer la nouvelle permission.</change>
+					<change>[Correction] Correction de quelques erreurs dans le fichier d'installation.</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2008-09-14</date>
+				<rev-version>2.0.1</rev-version>
+				<changelog lang="en">
+					<change>[Feature] Add a link to edit page in the error message.</change>
+					<change>[Fix] Delete bbcode in the default separator text.</change>
+					<change>[Fix] Verify if some vars exists.</change>
+					<change>[Fix] Fix the SQL query.</change>
+					<change>[Fix] Fix some errors in the install file.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>[Ajout] Ajout d'un lien vers la page d'édition dans le message d'erreur.</change>
+					<change>[Correction] Suppression du bbcode dans le texte de séparation par défaut.</change>
+					<change>[Correction] Vérification de l'existence des variables.</change>
+					<change>[Correction] Correction de la requête SQL.</change>
+					<change>[Correction] Correction de quelques erreurs dans le fichier d'installation.</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2008-08-26</date>
+				<rev-version>2.0.0</rev-version>
+				<changelog lang="en">
+					<change>[Feature] ADP parameters are now configured per forum.</change>
+					<change>[Feature] Display the double post time (by using "%D").</change>
+					<change>[Feature] Add permissions to users and groups in order to be allowed to double post, even if double posts are disallowed in the forum.</change>
+					<change>[Fix] Fix a bug with surveys.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>[Ajout] Gestion des paramètres du MOD par forum.</change>
+					<change>[Ajout] Possibilité d'afficher la date du double post, grâce à la variable %D.</change>
+					<change>[Ajout] Permissions pour les utilisateurs et groupes de pouvoir double poster malgrè les restrictions d'un forum à ce sujet.</change>
+					<change>[Correction] Correction du bug avec les sondages.</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2008-07-11</date>
+				<rev-version>1.0.7</rev-version>
+				<changelog lang="en">
+					<change>Welcome phpBB 3.0.2.</change>
+					<change>[Fix] Fix a bug with attach files.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Bienvenue à phpBB 3.0.2.</change>
+					<change>[Correction] Correction du bug avec les fichiers attachés.</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2008-07-09</date>
+				<rev-version>1.0.6</rev-version>
+				<changelog lang="en">
+					<change>[Fix] Fix a bug when previsualing the double post.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>[Correction] Correction du bug lors de l'apercu du double post.</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2008-06-15</date>
+				<rev-version>1.0.5</rev-version>
+				<changelog lang="en">
+					<change>[Fix] Fix a bug with img and url bbcodes</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>[Correction] Correction du bug avec les bbcodes img et url</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2008-06-14</date>
+				<rev-version>1.0.4</rev-version>
+				<changelog lang="en">
+					<change>Welcome MODX 1.2.0</change>
+					<change>[Fix] Fix a bug with img and url bbcodes</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Passage du fichier d'installation à la version MODX 1.2.0</change>
+					<change>[Correction] Correction du bug avec les bbcodes img et url</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2008-05-25</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change>[Fix] Fix a bug when quoting a post.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>[Correction] Correction d'un bug lorsque le double post était fait en citant.</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2008-05-01</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change>[Fix] Double post could be made by quoting a post.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>[Correction] Les membres pouvaient passer par la fonction "citer" et d'un bug avec les bbcodes.</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2008-04-17</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>[Feature] Error message appears when clicking the "answer" button, instead of after submitting post.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>[Fonction] Le message d'erreur apparaît lors de l'appui sur le bouton "répondre" et non plus après avoir soumis le message.</change>
+				</changelog>				
+			</entry>
+			<entry>
+				<date>2008-04-13</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>First version - hello world !</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Première version</change>
+				</changelog>				
+			</entry>
+		</history>
+	
+		<link-group>
+			<link type="parent" href="install.xml" lang="fr">Fichier d'installation principal</link>
+			<link type="parent" href="install.xml" lang="en">Main install file</link>
+		</link-group>	
+	</header>
+	
+	<action-group>
+		<copy>
+			<file from="root/language/fr/mods/anti_double_post.php" to="language/fr/mods/anti_double_post.php" />
+			<file from="root/language/fr/mods/permissions_anti_double_post.php" to="language/fr/mods/permissions_anti_double_post.php" />
+		</copy>
+	
+	<diy-instructions lang="en">Open your web browser, execute and delete install/install_adp.php.
+Purge your cache.</diy-instructions>	
+	<diy-instructions lang="fr">Ouvrez votre navigateur Internet, exécuter et supprimez le fichier install/install_adp.php
+Videz le cache du forum.</diy-instructions>
+	</action-group>
+</mod>

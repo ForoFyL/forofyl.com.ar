@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+<header>
+	<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+	<title lang="en">Soft Delete</title>
+
+	<description lang="en"><![CDATA[Changes the current hard delete scheme to all soft deleting for posts and topics.
+Also includes the option to undelete posts and topics after they have been soft deleted.
+New permissions give the option to allow administrators and/or moderators to hard delete posts/topics after they have already been soft deleted.]]></description>
+
+	<author-notes lang="en"><![CDATA[Please ask for support at my website if you need any: http://www.lithiumstudios.org.  Soft deleting of Private Messages is not included in this modification]]>.</author-notes>
+
+	<author-group>
+		<author>
+			<username>EXreaction</username>
+			<realname>Nathan Guse</realname>
+			<homepage>http://www.lithiumstudios.org/</homepage>
+			<email>exreaction@lithiumstidos.org</email>
+		</author>
+	</author-group>
+
+	<mod-version>1.0.15</mod-version>
+
+	<installation>
+		<level>intermediate</level>
+		<time>1320</time>
+		<target-version>3.0.4</target-version>
+	</installation>
+
+	<history>
+		<entry>
+			<date>2007-11-01</date>
+			<rev-version>1.0.0</rev-version>
+			<changelog lang="en">
+				<change>Release</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2007-12-23</date>
+			<rev-version>1.0.1</rev-version>
+			<changelog lang="en">
+				<change>Fixes for Mod Validation.  To update from 1.0.0, please upload the new files, remove the changes made by 1.0.0 in language/en/common.php and add the changes made to language/en/viewforum.php and add the changes made to language/en/viewtopic.php.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-01-06</date>
+			<rev-version>1.0.2</rev-version>
+			<changelog lang="en">
+				<change>Some bug fixes for global announcements.  Also some SQL query fixes to (hopefully) fix compatiblity issues. To update from 1.0.1, you just have to upload the new files.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-01-09</date>
+			<rev-version>1.0.3</rev-version>
+			<changelog lang="en">
+				<change>Okay, it appears as though the install.xml file has been wrong for quite a while now.  I don't know how it got so messed up, but it is fixed now.  Also, I've removed a_harddelete permissions.  To upgrade from 1.0.2, follow the instructions in contrib/102_to_103.xml.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-01-10</date>
+			<rev-version>1.0.4</rev-version>
+			<changelog lang="en">
+				<change>Fixing the Log language entries that were missing.  To update from 1.0.3 just copy the new language/en/mods/info_mcp_soft_delete.php file over.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-01-13</date>
+			<rev-version>1.0.5</rev-version>
+			<changelog lang="en">
+				<change>Ok, some big bugs...how come nobody has reported these?  To upgrade from 1.0.4, follow the instructions in contrib/104_to_105.xml.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-01-13</date>
+			<rev-version>1.0.6</rev-version>
+			<changelog lang="en">
+				<change>And 2008-1-06 isn't a valid date?  Well, let's try 2008-01-06.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-03-01</date>
+			<rev-version>1.0.7</rev-version>
+			<changelog lang="en">
+				<change>Bug fixing.  I added the option to immediately hard delete a post on the delete page.  The soft deleted post color has changed from the bright green to the post reported color.  To upgrade from 1.0.6/1.0.5 follow the instructions in contrib/106_to_107.xml file.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-03-02</date>
+			<rev-version>1.0.8</rev-version>
+			<changelog lang="en">
+				<change>1 more bug fixed.  To update from 1.0.7 simply upload the files, except the install.php file, from the root/ directory to your phpBB3 root directory.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-03-04</date>
+			<rev-version>1.0.9</rev-version>
+			<changelog lang="en">
+				<change>Fixing the bug where deleted posts are shown in posting->topic review. To upgrade from 1.0.8 follow the instructions in contrib/108_to_109.xml file.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-03-18</date>
+			<rev-version>1.0.10</rev-version>
+			<changelog lang="en">
+				<change>subSilver2 can't be included with the main install file as per ModX rules.  No need for upgrades.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-04-03</date>
+			<rev-version>1.0.11</rev-version>
+			<changelog lang="en">
+				<change>Changes to be installable on phpBB 3.0.1, for phpBB 3.0.0 boards use contrib/install_phpBB300.xml.  Fixing a bug that showed deleted posts to non-authorized users when viewing posts made by a user. To upgrade from 1.0.10 follow the instructions in contrib/1010_to_1011.xml file.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-04-06</date>
+			<rev-version>1.0.12</rev-version>
+			<changelog lang="en">
+				<change>Fixing another bug on viewtopic which did not correctly display the posts in a topic with multiple pages to users without soft deleteing moderator permissions. To upgrade from 1.0.11 follow the instructions in contrib/1011_to_1012.xml file.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-06-25</date>
+			<rev-version>1.0.13</rev-version>
+			<changelog lang="en">
+				<change>Do not include a file within a loop.</change>
+				<change>ModX 1.2.0</change>
+				<change>To upgrade from 1.0.12 follow the instructions in contrib/1012_to_1013.xml file.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2009-01-27</date>
+			<rev-version>1.0.14</rev-version>
+			<changelog lang="en">
+				<change>Appears that one of the newer versions of phpBB3 changed something which broke the display of topics when the first post is deleted.  Now fixed.</change>
+				<change>ModX 1.2.2</change>
+				<change>To upgrade from 1.0.13 follow the instructions in contrib/1013_to_1014.xml file.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2009-00-00</date>
+			<rev-version>1.0.15</rev-version>
+			<changelog lang="en">
+				<change>phpBB 3.0.6 support</change>
+				<change>ModX 1.2.3</change>
+				<change>No updates required for 1.0.14.</change>
+			</changelog>
+		</entry>
+	</history>
+	<link-group>
+		<link type="template" href="subsilver2.xml" lang="en">subsilver2</link>
+		<link type="contrib" href="contrib/102_to_103.xml" lang="en">Upgrade instructions from 1.0.2 to 1.0.3</link>
+		<link type="contrib" href="contrib/104_to_105.xml" lang="en">Upgrade instructions from 1.0.4 to 1.0.5</link>
+		<link type="contrib" href="contrib/106_to_108.xml" lang="en">Upgrade instructions from 1.0.6 to 1.0.8</link>
+		<link type="contrib" href="contrib/1010_to_1011.xml" lang="en">Upgrade instructions from 1.0.10 to 1.0.11</link>
+		<link type="contrib" href="contrib/1011_to_1012.xml" lang="en">Upgrade instructions from 1.0.11 to 1.0.12</link>
+		<link type="contrib" href="contrib/1012_to_1013.xml" lang="en">Upgrade instructions from 1.0.12 to 1.0.13</link>
+		<link type="contrib" href="contrib/1013_to_1014.xml" lang="en">Upgrade instructions from 1.0.13 to 1.0.14</link>
+		<link type="contrib" href="contrib/1014_to_1015.xml" lang="en">Upgrade instructions from 1.0.14 to 1.0.15</link>
+		<link type="contrib" href="contrib/install_phpBB300.xml" lang="en">Instructions to install on phpBB 3.0.0 only</link>
+	</link-group>
+</header>
+<action-group>
+    <copy>
+      <file from="root/includes/mods/index.htm" to="includes/mods/index.htm" />
+      <file from="root/includes/mods/soft_delete.php" to="includes/mods/soft_delete.php" />
+      <file from="root/includes/mods/soft_delete_class.php" to="includes/mods/soft_delete_class.php" />
+      <file from="root/language/en/mods/soft_delete.php" to="language/en/mods/soft_delete.php" />
+      <file from="root/language/en/mods/info_mcp_soft_delete.php" to="language/en/mods/info_mcp_soft_delete.php" />
+      <file from="root/install.php" to="install.php" />
+    </copy>
+    <open src="includes/mcp/mcp_forum.php">
+      <edit>
+        <find><![CDATA[	foreach ($topic_list as $topic_id)
+	{
+		$topic_title = '';
+
+		$row = &$topic_rows[$topic_id];]]></find>
+        <action type="before-add"><![CDATA[	include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");]]></action>
+        <action type="after-add"><![CDATA[		soft_delete_update_reply_count($row);]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA['S_UNREAD_TOPIC']]></find>
+        <action type="after-add"><![CDATA[			'S_TOPIC_DELETED'		=> $row['topic_deleted'],]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[		move_posts($post_id_list, $to_topic_id);
+		add_log('mod', $to_forum_id, $to_topic_id, 'LOG_MERGE', $topic_data['topic_title']);]]></find>
+        <action type="before-add"><![CDATA[		include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+		mcp_merge_topics($topic_ids, $to_topic_id, $to_forum_id);]]></action>
+      </edit>
+    </open>
+    <open src="includes/mcp/mcp_main.php">
+      <edit>
+        <find><![CDATA[	// Here we limit the operation to one forum only
+	$forum_id = check_ids($topic_ids, TOPICS_TABLE, 'topic_id', array('m_move'), true);]]></find>
+        <action type="before-add"><![CDATA[	include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+	mcp_move_topics($topic_ids);]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[	if (!check_ids($topic_ids, TOPICS_TABLE, 'topic_id', array('m_delete')))
+	{
+		return;
+	}]]></find>
+        <action type="after-add"><![CDATA[	include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+	mcp_delete_topics($topic_ids);]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[	if (!check_ids($post_ids, POSTS_TABLE, 'post_id', array('m_delete')))
+	{
+		return;
+	}]]></find>
+        <action type="after-add"><![CDATA[	include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+	mcp_delete_posts($post_ids);]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[	if (!check_ids($topic_ids, TOPICS_TABLE, 'topic_id', array('m_')))
+	{
+		return;
+	}]]></find>
+        <action type="after-add"><![CDATA[	include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+	mcp_fork_topics($topic_ids);]]></action>
+      </edit>
+    </open>
+    <open src="includes/mcp/mcp_topic.php">
+      <edit>
+        <find><![CDATA[	$topic_info = $topic_info[$topic_id];]]></find>
+        <action type="after-add"><![CDATA[	include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+	soft_delete_update_reply_count($topic_info);]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA['S_HAS_ATTACHMENTS']]></find>
+        <action type="after-add"><![CDATA[			'S_POST_DELETED'	=> ($row['post_deleted'] == 0) ? false : true,]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[		$success_msg = 'TOPIC_SPLIT_SUCCESS';]]></find>
+        <action type="before-add"><![CDATA[		include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+		mcp_split_merge_posts_helper($topic_id, $to_topic_id);]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[		// Message and return links
+		$success_msg = 'POSTS_MERGED_SUCCESS';]]></find>
+        <action type="before-add"><![CDATA[		include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+		mcp_split_merge_posts_helper($topic_id, $to_topic_id);]]></action>
+      </edit>
+    </open>
+    <open src="includes/functions_display.php">
+      <edit>
+        <find><![CDATA[	while ($row = $db->sql_fetchrow($result))
+	{
+		$forum_id = $row['forum_id'];]]></find>
+        <action type="before-add"><![CDATA[	include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");]]></action>
+        <action type="after-add"><![CDATA[		soft_delete_update_topic_post_count($row);]]></action>
+      </edit>
+    </open>
+    <open src="includes/functions_posting.php">
+      <edit>
+        <find><![CDATA[' . (($mode == 'post_review') ? " AND p.post_id > $cur_post_id" : '') . ']]></find>
+        <inline-edit>
+          <inline-find><![CDATA[. ']]></inline-find>
+          <inline-action type="replace-with"><![CDATA[.]]></inline-action>
+        </inline-edit>
+        <action type="after-add"><![CDATA[			(($auth->acl_get('m_harddelete', $forum_id) || $auth->acl_get('m_delete', $forum_id)) ? '' : (($auth->acl_get('f_delete', $forum_id)) ? " AND (p.post_deleted = 0 OR p.post_deleted = {$user->data['user_id']})" : ' AND p.post_deleted = 0')) . ']]></action>
+      </edit>
+    </open>
+    <open src="language/en/acp/permissions_phpbb.php">
+      <edit>
+        <find><![CDATA['acl_f_delete']]></find>
+        <inline-edit>
+          <inline-find><![CDATA['Can delete own posts']]></inline-find>
+          <inline-action type="replace-with"><![CDATA['Can soft delete own posts']]></inline-action>
+        </inline-edit>
+      </edit>
+      <edit>
+        <find><![CDATA['acl_m_delete']]></find>
+        <inline-edit>
+          <inline-find><![CDATA['Can delete posts']]></inline-find>
+          <inline-action type="replace-with"><![CDATA['Can soft delete posts']]></inline-action>
+        </inline-edit>
+        <action type="after-add"><![CDATA[	'acl_m_harddelete'	=> array('lang' => 'Can hard delete posts', 'cat' => 'post_actions'),]]></action>
+      </edit>
+    </open>
+    <open src="language/en/posting.php">
+      <edit>
+        <find><![CDATA['DELETE_POST_WARN'			=> 'Once deleted the post cannot be recovered',]]></find>
+        <inline-edit>
+          <inline-find><![CDATA['Once deleted the post cannot be recovered']]></inline-find>
+          <inline-action type="replace-with"><![CDATA['Selecting this option will bring you to the delete page.  No changes to the post will be saved.']]></inline-action>
+        </inline-edit>
+      </edit>
+    </open>
+    <open src="language/en/viewforum.php">
+      <edit>
+        <find><![CDATA[?>]]></find>
+        <action type="before-add"><![CDATA[$lang = array_merge($lang, array(
+	'DELETED_POST_SHOW'				=> 'This post has been soft deleted.  Click here to show the post.',
+	'SOFT_DELETED'					=> 'Soft Deleted',
+	'TOPIC_SOFT_DELETED'			=> 'This topic has been deleted.',
+));]]></action>
+      </edit>
+    </open>
+    <open src="language/en/viewtopic.php">
+      <edit>
+        <find><![CDATA[?>]]></find>
+        <action type="before-add"><![CDATA[$lang = array_merge($lang, array(
+	'DELETED_POST_SHOW'				=> 'This post has been soft deleted.  Click here to show the post.',
+	'POST_IS_DELETED'				=> 'This post was soft deleted by %1$s on %2$s. Click %3$shere%4$s to un-delete this post.',
+	'POST_SHOW_NO_JS'				=> 'You must have Javascript enabled to display this message.',
+));]]></action>
+      </edit>
+    </open>
+    <open src="styles/prosilver/template/mcp_forum.html">
+      <edit>
+        <find><![CDATA[<li class="row<!-- IF topicrow.S_ROW_COUNT is odd -->]]></find>
+        <inline-edit>
+          <inline-find><![CDATA[">]]></inline-find>
+          <inline-action type="before-add"><![CDATA[<!-- IF topicrow.S_TOPIC_DELETED --> reported<!-- ENDIF -->]]></inline-action>
+        </inline-edit>
+      </edit>
+    </open>
+    <open src="styles/prosilver/template/mcp_topic.html">
+      <edit>
+        <find><![CDATA[<div class="post <!-- IF postrow.S_ROW_COUNT is odd -->]]></find>
+        <inline-edit>
+          <inline-find><![CDATA[">]]></inline-find>
+          <inline-action type="before-add"><![CDATA[<!-- IF postrow.S_POST_DELETED --> reported<!-- ENDIF -->]]></inline-action>
+        </inline-edit>
+      </edit>
+    </open>
+    <open src="styles/prosilver/template/search_results.html">
+      <edit>
+        <find><![CDATA[<div class="search post]]></find>
+        <inline-edit>
+          <inline-find><![CDATA[">]]></inline-find>
+          <inline-action type="before-add"><![CDATA[<!-- IF searchresults.S_DELETED --> reported<!-- ENDIF -->]]></inline-action>
+        </inline-edit>
+      </edit>
+    </open>
+    <open src="styles/prosilver/template/viewforum_body.html">
+      <edit>
+        <find><![CDATA[<li class="row]]></find>
+        <inline-edit>
+          <inline-find><![CDATA[">]]></inline-find>
+          <inline-action type="before-add"><![CDATA[<!-- IF topicrow.S_TOPIC_DELETED --> reported<!-- ENDIF -->]]></inline-action>
+        </inline-edit>
+      </edit>
+    </open>
+    <open src="styles/prosilver/template/viewtopic_body.html">
+      <edit>
+        <find><![CDATA[<div id="p{postrow.POST_ID}"]]></find>
+        <inline-edit>
+          <inline-find><![CDATA[">]]></inline-find>
+          <inline-action type="before-add"><![CDATA[<!-- IF postrow.S_POST_DELETED --> reported<!-- ENDIF -->]]></inline-action>
+        </inline-edit>
+      </edit>
+	  <edit>
+        <find><![CDATA[<!-- IF postrow.BUMPED_MESSAGE -->]]></find>
+        <action type="before-add"><![CDATA[			<!-- IF postrow.S_POST_DELETED --><div class="notice">{postrow.DELETED_MESSAGE}<br/></div><!-- ENDIF -->]]></action>
+      </edit>
+    </open>
+    <open src="posting.php">
+      <edit>
+        <find><![CDATA[// We need to know some basic information in all cases before we do anything.]]></find>
+        <action type="before-add"><![CDATA[include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+if ($mode == 'undelete')
+{
+	handle_undelete($post_id);
+}
+else if ($mode == 'delete')
+{
+	handle_delete($post_id);
+}]]></action>
+      </edit>
+    </open>
+    <open src="search.php">
+      <edit>
+        <find><![CDATA[		foreach ($rowset as $row)
+		{
+			$forum_id = $row['forum_id'];
+			$result_topic_id = $row['topic_id'];
+			$topic_title = censor_text($row['topic_title']);
+]]></find>
+        <action type="after-add"><![CDATA[			if (!$auth->acl_get('m_harddelete', $forum_id) && ((isset($row['post_deleted']) && $row['post_deleted'] != 0 && $row['post_deleted'] != $user->data['user_id']) || (isset($row['topic_deleted']) && $row['topic_deleted'] != 0 && $row['topic_deleted'] != $user->data['user_id'])))
+			{
+				$total_match_count--;
+				continue;
+			}
+]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[$template->assign_block_vars('searchresults', array_merge($tpl_ary, array(]]></find>
+        <action type="after-add"><![CDATA[				'S_DELETED'			=> ((isset($row['topic_deleted']) && $row['topic_deleted'] != 0) || (isset($row['post_deleted']) && $row['post_deleted'] != 0)) ? true : false,
+]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[	}
+	unset($rowset);]]></find>
+        <action type="before-add"><![CDATA[
+		// This information must be re-outputted for the Soft Delete Mod.
+		$template->assign_vars(array(
+			'SEARCH_MATCHES'	=> ($search_id && ($total_match_count > 1000)) ? sprintf($user->lang['FOUND_MORE_SEARCH_MATCHES'], $total_match_count) : (($total_match_count == 1) ? sprintf($user->lang['FOUND_SEARCH_MATCH'], $total_match_count) : sprintf($user->lang['FOUND_SEARCH_MATCHES'], $total_match_count)),
+			'PAGINATION'		=> generate_pagination($u_search, $total_match_count, $per_page, $start),
+			'PAGE_NUMBER'		=> on_page($total_match_count, $per_page, $start),
+			'TOTAL_MATCHES'		=> $total_match_count,
+		));]]></action>
+      </edit>
+    </open>
+    <open src="viewforum.php">
+      <edit>
+        <find><![CDATA[		" . (($auth->acl_get('m_approve', $forum_id)) ? '' : 'AND topic_approved = 1');]]></find>
+        <action type="replace-with"><![CDATA[		" . (($auth->acl_get('m_approve', $forum_id)) ? '' : 'AND topic_approved = 1') .
+			($auth->acl_get('m_harddelete', $topic_data['forum_id']) || $auth->acl_get('m_delete', $topic_data['forum_id'])) ? '' : (($auth->acl_get('f_delete', $topic_data['forum_id'])) ? " AND (topic_deleted = '0' OR topic_deleted = '{$user->data['user_id']}')" : " AND topic_deleted = '0'");]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[$topics_count = ($auth->acl_get('m_approve', $forum_id)) ? $forum_data['forum_topics_real'] : $forum_data['forum_topics'];]]></find>
+        <action type="before-add"><![CDATA[	include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+	soft_delete_update_topic_count($forum_data);]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[		// Replies
+		$replies = ($auth->acl_get('m_approve', $forum_id)) ? $row['topic_replies_real'] : $row['topic_replies'];]]></find>
+        <action type="before-add"><![CDATA[		if ($sort_days) // if not, the file is already included
+		{
+			include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+		}
+		soft_delete_update_reply_count($row, false);
+		if (isset($row['soft_deleted_error']))
+		{
+			continue;
+		}]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA['S_TOPIC_TYPE_SWITCH']]></find>
+        <action type="before-add"><![CDATA[			'S_TOPIC_DELETED'		=> (($row['topic_deleted'] != 0) ? true : false),]]></action>
+      </edit>
+    </open>
+    <open src="viewtopic.php">
+      <edit>
+        <find><![CDATA[// This is for determining where we are (page)]]></find>
+        <action type="before-add"><![CDATA[include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
+soft_delete_update_reply_count($topic_data);]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[		" . (($auth->acl_get('m_approve', $forum_id)) ? '' : 'AND post_approved = 1');]]></find>
+        <action type="replace-with"><![CDATA[		" . (($auth->acl_get('m_approve', $forum_id)) ? '' : 'AND post_approved = 1') .
+				($auth->acl_get('m_harddelete', $forum_id) || $auth->acl_get('m_delete', $forum_id)) ? '' : (($auth->acl_get('f_delete', $forum_id)) ? " AND (post_deleted = '0' OR post_deleted = '{$user->data['user_id']}')" : " AND post_deleted = '0'");]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[$topic_mod .= ($auth->acl_get('m_delete', $forum_id))]]></find>
+        <inline-edit>
+          <inline-find><![CDATA[$auth->acl_get('m_delete', $forum_id)]]></inline-find>
+          <inline-action type="replace-with"><![CDATA[$auth->acl_get('m_harddelete', $forum_id) || $auth->acl_get('m_delete', $forum_id)]]></inline-action>
+        </inline-edit>
+      </edit>
+      <edit>
+        <find><![CDATA[		$limit_posts_time
+	ORDER BY $sql_sort_order";]]></find>
+        <action type="replace-with"><![CDATA[		$limit_posts_time" . 
+		(($auth->acl_get('m_harddelete', $forum_id) || $auth->acl_get('m_delete', $forum_id)) ? '' : (($auth->acl_get('f_delete', $forum_id)) ? " AND (p.post_deleted = 0 OR p.post_deleted = {$user->data['user_id']})" : " AND p.post_deleted = 0")) . "
+	ORDER BY $sql_sort_order";]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[		'post_edit_user'	=> $row['post_edit_user'],]]></find>
+        <action type="after-add"><![CDATA[		'post_deleted'		=> $row['post_deleted'],
+		'post_deleted_time'	=> $row['post_deleted_time'],]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[// Load custom profile fields]]></find>
+        <action type="before-add"><![CDATA[get_soft_delete_users($rowset, $user_cache);]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA['U_DELETE']]></find>
+        <inline-edit>
+          <inline-find><![CDATA[((($user->data['user_id']]]></inline-find>
+          <inline-action type="before-add"><![CDATA[(]]></inline-action>
+        </inline-edit>
+        <inline-edit>
+          <inline-find><![CDATA[? append_sid("{$phpbb_root_path}]]></inline-find>
+          <inline-action type="before-add"><![CDATA[&& ($row['post_deleted'] == 0 || $auth->acl_get('m_harddelete', $forum_id))) ]]></inline-action>
+        </inline-edit>
+	  </edit>
+      <edit>
+        <find><![CDATA['L_IGNORE_POST']]></find>
+        <action type="after-add"><![CDATA[		'S_POST_DELETED'	=> ($row['post_deleted'] == 0) ? false : true,
+		'DELETED_MESSAGE'	=> ($row['post_deleted'] == 0) ? '' : sprintf($user->lang['POST_IS_DELETED'], get_username_string('full', $row['post_deleted'], $user_cache[$row['post_deleted']]['username'], $user_cache[$row['post_deleted']]['user_colour']), $user->format_date($row['post_deleted_time']), '<a href="' . append_sid("{$phpbb_root_path}posting.$phpEx", "mode=undelete&amp;p={$row['post_id']}") . '">', '</a>'),]]></action>
+      </edit>
+    </open>
+    <diy-instructions lang="en"><![CDATA[Go to install.php with your web browser to install the database changes, then delete the install.php file from your server.  Then set the new Administrative permission (to allow hard deleting of posts for administrators and moderators).]]></diy-instructions>
+</action-group>
+</mod>

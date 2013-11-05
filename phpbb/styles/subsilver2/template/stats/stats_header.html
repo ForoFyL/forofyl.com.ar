@@ -1,0 +1,59 @@
+<!-- INCLUDE overall_header.html -->
+<!--version $Id: stats_header.html 162 2010-12-11 13:29:18Z marc1706 $ //-->
+<!-- copyright (c) 2009 - 2010 Marc Alexander(marc1706) www.m-a-styles.de, (c) TheUniqueTiger - Nayan Ghosh //-->
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+	<td width="20%" valign="top">
+
+
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<th>{L_OPTIONS}</th>
+</tr>
+
+<!-- BEGIN l_block1 -->
+	<tr>
+	<!-- IF l_block1.L_TITLE neq STATS_ADDONS_LANG -->
+	<!-- DEFINE $RUN_T_BLOCK2 = 0 -->
+	<!-- ELSEIF l_block1.L_TITLE eq STATS_ADDONS_LANG and not l_block1.S_SELECTED -->
+	<!-- DEFINE $RUN_T_BLOCK2 = 0 -->
+	<!-- ELSE -->
+	<!-- DEFINE $RUN_T_BLOCK2 = 1 -->
+	<!-- ENDIF -->
+		<!-- IF l_block1.S_SELECTED -->
+			<td class="row1"><b class="nav">{l_block1.L_TITLE}</b>
+
+			<ul class="nav" style="margin: 0; padding: 0; list-style-type: none; line-height: 175%;">
+			<!-- BEGIN l_block2 -->
+				<!-- IF l_block1.l_block2.L_TITLE neq STATS_ADDON_DONT_LOAD -->
+					<li>&#187; <!-- IF l_block1.l_block2.S_SELECTED --><b>{l_block1.l_block2.L_TITLE}</b><!-- ELSE --><a href="{l_block1.l_block2.U_TITLE}">{l_block1.l_block2.L_TITLE}</a><!-- ENDIF --></li>
+				<!-- ENDIF -->
+			<!-- END l_block2 -->
+			<!-- IF not $RUN_T_BLOCK2 -->
+			</ul>
+			<!-- ENDIF -->
+		<!-- ELSE -->
+			<td class="row2" nowrap="nowrap" onmouseover="this.className='row1'" onmouseout="this.className='row2'" onclick="location.href=this.firstChild.href;"><a class="nav" href="{l_block1.U_TITLE}">{l_block1.L_TITLE}</a>
+		<!-- ENDIF -->
+	<!-- IF not $RUN_T_BLOCK2 -->
+		</td>
+	</tr>
+	<!-- ENDIF -->
+<!-- END l_block1 -->
+<!-- IF $RUN_T_BLOCK2 -->
+	<!-- BEGIN t_block2 -->
+		<!-- IF t_block2.L_TITLE neq STATS_ADDON_DONT_LOAD -->
+			<li>&#187; <!-- IF t_block2.S_SELECTED --><b>{t_block2.L_TITLE}</b><!-- ELSE --><a href="{t_block2.U_TITLE}">{t_block2.L_TITLE}</a><!-- ENDIF --></li>
+		<!-- ENDIF -->
+	<!-- END t_block2 -->
+	</ul>
+	</td>
+</tr>
+<!-- ENDIF -->
+</table>
+
+<div style="padding: 2px;"></div>
+
+</td>
+<td><img src="images/spacer.gif" width="4" alt="" /></td>
+<td width="80%" valign="top">

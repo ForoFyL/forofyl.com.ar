@@ -1,0 +1,142 @@
+<!-- IF ANNOUNCEMENT_SHOW_BIRTHDAYS_ALWAYS and not ANNOUNCEMENT_ENABLE and ANNOUNCEMENT_BIRTHDAYS-->
+	<div style="margin: 10px 25px 0 25px;">
+		<table width="100%" class="tablebg" cellspacing="1" >
+			<tr>
+				<th>
+					<!-- IF ANNOUNCEMENT_TITLE --> {ANNOUNCEMENT_TITLE} <!-- ELSE --> {L_ANNOUNCEMENT_TITLE}<!-- ENDIF -->
+				</th>
+			</tr>
+			<tr>
+				<td class="row1" align="center">
+				{ANNOUNCEMENT_BIRTHDAY_IMG}<br />
+					<center>
+						<table>
+							<tr align="center">
+								<!-- IF ANNOUNCEMENT_BIRTHDAY_AVATAR -->
+									<!-- BEGIN bdannounce -->
+									<td>
+										<table>
+											<tr align="center">
+												<td>{bdannounce.ANNOUNCEMENT_AVATAR}</td>
+											</tr>
+											<tr align="center" valign="bottom">
+												<td><b>{bdannounce.ANNOUNCEMENT_USERNAME}</b></td>
+											</tr>
+										</table>
+									</td>
+									<!-- END bdannounce -->
+								<!-- ELSE -->
+									<!-- BEGIN bdannounce -->
+									<td><b>{bdannounce.ANNOUNCEMENT_USERNAME}</b></td>
+									<!-- END bdannounce -->
+								<!-- ENDIF -->
+							</tr>
+						</table>
+					</center>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- ENDIF -->
+
+<!-- IF ANNOUNCEMENT_ENABLE-->
+	<!-- IF ANNOUNCEMENT_ENABLE_GUESTS and not S_USER_LOGGED_IN and not ANNOUNCEMENT_SHOW_EVERYONE and not ANNOUNCEMENT_SHOW or ANNOUNCEMENT_SHOW-->
+	<div style="margin: 10px 25px 0 25px;">
+		<table width="100%" class="tablebg" cellspacing="1" >
+			<tr>
+				<th>
+				<!-- IF ANNOUNCEMENT_ENABLE_GUESTS and not S_USER_LOGGED_IN and not ANNOUNCEMENT_SHOW_EVERYONE and not ANNOUNCEMENT_SHOW-->
+					<!-- IF ANNOUNCEMENT_TITLE_GUESTS -->{ANNOUNCEMENT_TITLE_GUESTS} <!-- ELSE --> {L_ANNOUNCEMENT_TITLE_GUESTS}<!-- ENDIF -->
+					<!-- ELSEIF ANNOUNCEMENT_SHOW-->
+					<!-- IF ANNOUNCEMENT_TITLE --> {ANNOUNCEMENT_TITLE} <!-- ELSE --> {L_ANNOUNCEMENT_TITLE}<!-- ENDIF -->
+				<!-- ENDIF -->
+				</th>
+			</tr>
+			<tr>
+				<td class="row1">
+					<!-- IF ANNOUNCEMENT_ENABLE_GUESTS and not S_USER_LOGGED_IN and not ANNOUNCEMENT_SHOW_EVERYONE and not ANNOUNCEMENT_SHOW-->
+					<div style="text-align:{ANNOUNCEMENT_GUESTS_ALIGN};"><br />{ANNOUNCEMENT_TEXT_GUESTS}<br /><br /></div>
+					<!-- ELSEIF ANNOUNCEMENT_SHOW-->
+						<!-- IF ANNOUNCEMENT_SHOW_BIRTHDAY-->
+						<center>
+							{ANNOUNCEMENT_BIRTHDAY_IMG}<br />
+								<table>
+									<tr align="center">
+										<!-- IF ANNOUNCEMENT_BIRTHDAY_AVATAR -->
+											<!-- BEGIN bdannounce -->
+											<td>
+												<table>
+													<tr align="center">
+														<td>{bdannounce.ANNOUNCEMENT_AVATAR}</td>
+													</tr>
+													<tr align="center" valign="bottom">
+														<td><b>{bdannounce.ANNOUNCEMENT_USERNAME}</b></td>
+													</tr>
+												</table>
+											</td>
+											<!-- END bdannounce -->
+										<!-- ELSE -->
+											<!-- BEGIN bdannounce -->
+											<td><b>{bdannounce.ANNOUNCEMENT_USERNAME}</b></td>
+											<!-- END bdannounce -->
+										<!-- ENDIF -->
+									</tr>
+								</table>
+							</center>
+							<!-- IF ANNOUNCEMENT_SHOW_BIRTHDAYS_AND_ANNOUNCE -->
+							<div style="text-align:{ANNOUNCEMENT_ALIGN};">
+							<hr/><br />{ANNOUNCEMENT_TEXT}
+						<!-- IF S_HASATTACHMENTS -->
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">{L_ATTACHMENTS}: </b></td>
+						</tr>
+						<!-- BEGIN announcement_attachments -->
+							<tr>
+								<!-- IF announcement_attachments.S_ROW_COUNT is even --><td class="row2"><!-- ELSE --><td class="row1"><!-- ENDIF -->{announcement_attachments.DISPLAY_ATTACHMENTS}</td>
+							</tr>
+						<!-- END announcement_attachments -->
+						</table>
+					<!-- ENDIF -->
+										<!-- IF U_ANNOUNCEMENT_GOTOPOST -->
+						<br /><br />
+						<a href="{U_ANNOUNCEMENT_GOTOPOST}">{L_ANNOUNCEMENT_GOTOPOST}</a>
+															
+					<!-- ENDIF -->
+
+<br /><br />
+							</div>
+							<!-- ENDIF -->
+							<!-- ELSE -->
+							<div style="text-align:{ANNOUNCEMENT_ALIGN};"><br />{ANNOUNCEMENT_TEXT}
+						<!-- IF S_HASATTACHMENTS -->
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">{L_ATTACHMENTS}: </b></td>
+						</tr>
+						<!-- BEGIN announcement_attachments -->
+							<tr>
+								<!-- IF announcement_attachments.S_ROW_COUNT is even --><td class="row2"><!-- ELSE --><td class="row1"><!-- ENDIF -->{announcement_attachments.DISPLAY_ATTACHMENTS}</td>
+							</tr>
+						<!-- END announcement_attachments -->
+						</table>
+					<!-- ENDIF -->
+															<!-- IF U_ANNOUNCEMENT_GOTOPOST -->
+						<br /><br />
+						<a href="{U_ANNOUNCEMENT_GOTOPOST}">{L_ANNOUNCEMENT_GOTOPOST}</a>
+															
+					<!-- ENDIF -->
+
+					<br /><br /></div>
+							<!-- ENDIF -->
+					<!-- ENDIF -->
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- ENDIF -->
+<!-- ENDIF -->

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+	<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+		<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+		<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+<header>
+	<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+	<title lang="en">Contact Admin</title>
+	<description lang="en">Allows guests and/or registered users to either send an email to admins or to either send a PM or make a Post in a designated forum.</description>
+	<author-group>
+		<author>
+			<username>RMcGirr83</username>
+			<realname>Rich McGirr</realname>
+			<homepage>http://www.rmcgirr83.org/</homepage>
+			<email><![CDATA[rmcgirr83@rmcgirr83.org]]></email>
+		</author>
+		<author>
+		    <username>eviL&lt;3</username>
+			<realname>Igor Wiedler</realname>
+			<homepage>http://phpbbmodders.net</homepage>
+			<email><![CDATA[evil@phpbbmodders.net]]></email>
+		</author>
+	</author-group>
+	<mod-version>1.0.8</mod-version>
+	<installation>
+		<level>easy</level>
+		<time>600</time>
+		<target-version>3.0.6</target-version>
+	</installation>
+		<history>
+				<entry>
+						<date>2007-03-27</date>
+						<rev-version>0.1.0
+						</rev-version>
+						<changelog lang="en">
+							<change>Initial Release</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2007-03-28</date>
+						<rev-version>0.1.1
+						</rev-version>
+						<changelog lang="en">
+							<change>Added captcha</change>
+							<change>Added configuration (pseudo)</change>
+							<change>Added pm / new post support</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2007-04-03</date>
+						<rev-version>0.1.2
+						</rev-version>
+						<changelog lang="en">
+							<change>Fixed template with captcha</change>
+							<change>Updated for prosilver</change>
+						</changelog>
+				</entry>				
+				<entry>
+						<date>2007-04-10</date>
+						<rev-version>0.1.3
+						</rev-version>
+						<changelog lang="en">
+							<change>Real configuration</change>
+							<change>Added a link to the header</change>
+							<change>Log entry on error</change>
+							<change>Prosilver xsl</change>
+							<change>Cleaned up a bit :)</change>
+							<change>Images from prince of phpbb and sniper_e and mickroz (thanks a lot)</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2007-04-10</date>
+						<rev-version>0.1.4
+						</rev-version>
+						<changelog lang="en">
+							<change>Redirect to index instead of contact page after submit (thanks idiotnesia)</change>
+							<change>New feature: Contact reason (thanks idiotnesia)</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-03-06</date>
+						<rev-version>0.1.5
+						</rev-version>
+						<changelog lang="en">
+							<change>MOD taken over by RMcGirr83, updated to MODx 1.2.2</change>
+							<change>Changes to contact.php (multibyte error).</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-05-03</date>
+						<rev-version>1.0.0
+						</rev-version>
+						<changelog lang="en">
+							<change>RC many bugs fixed added error notification if forum or user is incorrect.  User is now dropdown select box.  Ability to have notification to just Board Founder.</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-05-04</date>
+						<rev-version>1.0.0a
+						</rev-version>
+						<changelog lang="en">
+							<change>Moved checks into includes/functions_contact and added checking and adjustments for bot chosen post count.</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-05-05</date>
+						<rev-version>1.0.0b
+						</rev-version>
+						<changelog lang="en">
+							<change>Added contrib for Anti-Bot Mod by CoC.  If configuration in ACP is wrong, mod will be set to disabled and email sent to board founder.  Gave credit where credit is due in functions_contact.php (thanks to poppertom69)</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-05-08</date>
+						<rev-version>1.0.1
+						</rev-version>
+						<changelog lang="en">
+							<change>Added checks and error messaging to code</change>
+						</changelog>
+				</entry>	
+				<entry>
+						<date>2009-05-11</date>
+						<rev-version>1.0.1a
+						</rev-version>
+						<changelog lang="en">
+							<change>Fixed missing subject for PM's..thanks Hippie459MN for the bug report</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-05-18</date>
+						<rev-version>1.0.2
+						</rev-version>
+						<changelog lang="en">
+							<change>Added bbcode and smilie checks.  Displays if set in ACP</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-05-21</date>
+						<rev-version>1.0.3
+						</rev-version>
+						<changelog lang="en">
+							<change>Final code changes, hopefully, to includes/functions_contact.php, contact.php and language/en/mods/contact.php.</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-05-22</date>
+						<rev-version>1.0.4
+						</rev-version>
+						<changelog lang="en">
+							<change>Allows admin to choose how the user that is making contact is displayed.  As the bot, as themselves, etc.</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-06-01</date>
+						<rev-version>1.0.4a
+						</rev-version>
+						<changelog lang="en">
+							<change>Updated to 3.0.5 (captcha refresh)</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-06-02</date>
+						<rev-version>1.0.5
+						</rev-version>
+						<changelog lang="en">
+							<change>Added Preview and fixed issue with contact.php as well as language file.  Also, corrected errors with in the subsilver2 contrib file.</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-06-04</date>
+						<rev-version>1.0.5.a
+						</rev-version>
+						<changelog lang="en">
+							<change>Fixed subsilver2 template file</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-11-24</date>
+						<rev-version>1.0.6
+						</rev-version>
+						<changelog lang="en">
+							<change>Updated for phpBB 3.0.6.</change>
+							<change>Now has own table in database</change>
+							<change>Module added to .MODs Tab</change>
+							<change>Allows uploading of attachments if so set in ACP</change>
+							<change>Bug fixes for 3.0.6</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-12-02</date>
+						<rev-version>1.0.7
+						</rev-version>
+						<changelog lang="en">
+							<change>Fix for missing reason</change>
+							<change>Remove bbcode from message if bbcode set to no in ACP</change>
+							<change>Added switch for allowing urls per initial validation report (thanks SyntaxError)</change>
+							<change>Change to installer removed double code</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-12-22</date>
+						<rev-version>1.0.8
+						</rev-version>
+						<changelog lang="en">
+							<change>Fix MODx</change>
+							<change>Moved Log entries into info_acp_contact</change>
+						</changelog>
+				</entry>				
+		</history>
+		<link-group>
+			<link type="parent" href="../install.xml" lang="en">Main install file</link>
+		</link-group>
+			</header>
+			<action-group>
+			<copy>
+				<file from="root/styles/subsilver2/template/contact_body.html" to="styles/subsilver2/template/contact_body.html" />
+				<file from="root/styles/subsilver2/theme/images/icon_mini_contact.gif" to="styles/subsilver2/theme/images/icon_mini_contact.gif" />
+			</copy>
+		<open src="styles/subsilver2/template/overall_header.html">
+			<edit>
+				<find><![CDATA[				<a href="{U_FAQ}">]]></find>
+				<action type="before-add"><![CDATA[				<!-- IF S_CONTACT_ENABLED --><a href="{U_CONTACT}"><img src="{T_THEME_PATH}/images/icon_mini_contact.gif" width="12" height="13" alt="{L_CONTACT_BOARD_ADMIN_SHORT}" /> {L_CONTACT_BOARD_ADMIN_SHORT}</a>&nbsp; &nbsp;<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+      <diy-instructions lang="en"><![CDATA[Purge the cache and regenerate the template files!!]]></diy-instructions>
+			</action-group>
+		</mod>

@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">phpBB Statistics</title>
+		<title lang="de">phpBB Statistics</title>
+		
+		<description lang="en">This modification displays many different statistics of your board. These can be controlled via the ACP.</description>
+		<description lang="de"><![CDATA[Dieser Mod zeigt verschiedene Statistiken von deinem Forum an. Diese können im Admin-Bereich kontrolliert werden.]]></description>
+		
+		<author-notes lang="en">based on:
+		Forum Statistics Mod by Nayan Gosh (TheUniqueTiger)</author-notes>
+		<author-notes lang="de">basiert auf:
+		Forum Statistics Mod von Nayan Gosh (TheUniqueTiger)</author-notes>
+		
+		<author-group>
+			<author>
+				<realname>Marc Alexander</realname>
+				<email>admin@m-a-styles.de</email>
+				<username>marc1706</username>
+				<homepage>http://www.m-a-styles.de</homepage>
+				<contributions-group>
+					<contributions status="current" position="Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname>Nayan Ghosh</realname>
+				<email>theuniquetiger@yahoo.co.in</email>
+				<username>TheUniqueTiger</username>
+				<contributions-group>
+					<contributions status="past" position="Former Developer"/>
+				</contributions-group>		
+			</author>
+		</author-group>
+		
+		<mod-version>1.0.3</mod-version>
+		<installation>
+		  <level>easy</level>
+		  <time>300</time>
+		<target-version>3.0.8</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2011-02-09</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change>[New] Added new feature "resync smilies and bbcodes after timeframe"</change>
+					<change>[New] Function get_total_members</change>
+					<change>[New] Added resync function for the cached data</change>
+					<change>[Fixed] Incorrect folder for German language files of add-ons</change>
+					<change>[Fixed] Added missing $cache->unload() in installer</change>
+					<change>[Fixed] Removed duplicate language variables from language files</change>
+					<change>[Fixed] PHP errors in includes/stats/stats_basic.php</change>
+					<change>[Fixed] Bug metioned by Passat: https://www.phpbb.de/community/viewtopic.php?f=88&amp;t=187398&amp;p=1186861#p1186682 </change>
+					<change>[Fixed] Replaced \' with ’ in language/en/mods/stats.php</change>
+					<change>[Fixed] Prevent duplicate inclusion of functions_admin.php in includes/stats/stats_basic.php</change>
+					<change>[Fixed] Incorrect if instructions when comparing current date to the board start time in includes/stats/stats_periodic.php</change>
+					<change>[Fixed] Removed not GPL compatible copyright notices &amp; added 2 needed comments</change>
+					<change>[Fixed] Bug that caused an incorrect redirect after changing selected days, months, etc.</change>
+					<change>[Fixed] Reported bug with mb_strtoupper: http://www.phpbb.com/customise/db/mod/phpbb_statistics/support/good_install_1_error-t_89737</change>
+					<change>[Changed] Function get_total_members renamed to get_group_members</change>
+					<change>[Changed] Function get_group_members now ignores inactive users</change>
+					<change>[Changed] Reduced number of decimals to 2</change>
+				</changelog>
+				<changelog lang="de">
+					<change>[Neu] Smilies und BBCodes werden nach angegebener Zeit neu gezählt</change>
+					<change>[Neu] Funktion get_total_members</change>
+					<change>[Neu] Resynchronisierung für die gecacheten Daten</change>
+					<change>[Gelöst] Falscher Ordner für die deutschen Sprachdateien für Add-Ons</change>
+					<change>[Gelöst] Fehlendes $cache->unload() zum Installer hinzugefügt</change>
+					<change>[Gelöst] Doppelte Sprachvariablen von den Sprachdateien entfernt</change>
+					<change>[Gelöst] PHP Fehler in includes/stats/stats_basic.php</change>
+					<change>[Gelöst] Fehler gemeldet von Passat: https://www.phpbb.de/community/viewtopic.php?f=88&amp;t=187398&amp;p=1186861#p1186682 </change>
+					<change>[Gelöst] \' mit ’ ersetzt in language/en/mods/stats.php</change>
+					<change>[Gelöst] Doppelter include von functions_admin.php in includes/stats/stats_basic.php unterbunden</change>
+					<change>[Gelöst] Falsches if-statement beim Vergleichen des aktuellen Datums mit dem Forum Start Datum in includes/stats/stats_periodic.php</change>
+					<change>[Gelöst] Nicht GPL compatible Copyright Bemerkungen entfernt &amp; added 2 needed comments</change>
+					<change>[Gelöst] Fehler der eine falsche Weiterleitung beim verändern der Tage etc. verursacht hat</change>
+					<change>[Gelöst] Gemeldeter Fehler mit mb_strtoupper: http://www.phpbb.com/customise/db/mod/phpbb_statistics/support/good_install_1_error-t_89737</change>
+					<change>[Geändert] Funktion get_total_members zu get_group_members umbenannt</change>
+					<change>[Geändert] Funktion get_group_members ignoriert jetzt inaktive Benutzer</change>
+					<change>[Geändert] Anzahl an Dezimalstellen auf 2 reduziert</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-04-25</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change>[New] New Add-On system -- No Edits needed in order to add Add-ons</change>
+					<change>[New] Add-Ons can be moved and administered in the ACP</change>
+					<change>[Fixed] Function save_bbcode_smiley_count updates database even if the count is 0</change>
+					<change>[Fixed] Invalid argument supplied for foreach() in save_bbcode_smiley_count</change>
+					<change>[Fixed] Function overall_bbcode_smiley_count inserts same bbcode multiple times</change>
+					<change>[Fixed] Wrong parameter count for array_slice() in function get_profile_field_data</change>
+					<change>[Fixed] Excessive treatment of user's location causing UTF8 errors</change>
+					<change>[Fixed] Database errors with PostgreSQL</change>
+					<change>[Fixed] Users with invalid birthdays get added to birthday count</change>
+					<change>[Fixed] Database errors with MSSQL</change>
+					<change>[Fixed] Similar BBCodes get added</change>
+					<change>[Fixed] Shadow Topics are being shown in Top Topics</change>
+					<change>[Fixed] Incredibly small UNIX timestamp for cutoff time in function get_user_count_data</change>
+					<change>[Fixed] Wrong percentage of "Users, who have set their birthday"</change>
+					<change>[Fixed] Shadow topics with polls were being pulled as polls from database</change>
+					<change>[Fixed] Fixed some XHTML 1.0 strict validation errors</change>
+					<change>[Fixed] Incorrect count of registrations per day in stats_basic.php</change>
+					<change>[Fixed] Incorrect way number of users in groups are being counted</change>
+					<change>[Fixed] XHTML 1.0 strict validation error in topics activity statistic</change>
+					<change>[Fixed] XHTML 1.0 strict validation error if no add-on is installed</change>
+					<change>[Fixed] A few minor errors in installer</change>
+					<change>[Fixed] Not working removal of database tables</change>
+					<change>[Fixed] Incorrect db_schema handling in installer</change>
+					<change>[Fixed] Uncomplete deletion of stats modules in Uninstaller</change>
+					<change>[Fixed] PHP-error in Updater</change>
+					<change>[Fixed] Bots and Guests were counted in registrations per days</change>
+					<change>[Fixed] A bug where redirect of function overall_bbcode_smiley_count() causes a browser error once you have processed more than 100000 posts</change>
+					<change>[Changed] Updated XML files to MODX 1.2.5</change>
+					<change>[Changed] Merged the acp settings into one tab</change>
+					<change>[Changed] User with group privileges now see all groups</change>
+					<change>[Changed] Edited overall_bbcode_smiley_count() in order to prevent timeouts</change>
+					<change>[Changed] Changed Function overall_bbcode_smiley_count() in order to prevent duplicate entry errors caused by duplicate BBCodes in database</change>
+					<change>[Changed] Added deleted users count for a more accurate "average registrations per day"</change>
+					<change>[Changed] Removed duplicate language variables</change>
+					<change>[Changed] Monthly statistics showing all months, although Show all was not chosen</change>
+					<change>[Changed] Removed unnecessary edits from install instructions</change>
+					<change>[Changed] Added ability to handle arrays to function stats_create_table</change>
+					<change>[Support] phpBB Statistics 0.1.0, 0.1.0, 0.2.0, and Forum Statistics 0.3.0 will not be supported anymore</change>
+				</changelog>
+				<changelog lang="de">
+					<change>[Neu] Neues Add-On System -- Keine Dateien müssen mehr bearbeitet werden um Add-Ons hinzuzufügen</change>
+					<change>[Neu] Add-Ons können im Admin-Bereich verschoben und verwaltet werden</change>
+					<change>[Gelöst] Funktion save_bbcode_smiley_count führt eine Datenbank-Update durch, auch wenn die Zahl nicht verändert wird</change>
+					<change>[Gelöst] Incorrectes Argument für foreach() in save_bbcode_smiley_count</change>
+					<change>[Gelöst] Funktion overall_bbcode_smiley_count fügt den selben BBCode mehrmals hinzu</change>
+					<change>[Gelöst] Falsche Anzahl an Parametern für  array_slice() in Funktion get_profile_field_data</change>
+					<change>[Gelöst] Übermäßige Behandlung des Benutzer Wohnorts sorgt für Fehler mit Umlauten</change>
+					<change>[Gelöst] Datenbank Fehler mit PostgreSQL</change>
+					<change>[Gelöst] Benutzer mit inkorrektem Geburtstag werden zu Geburtstags-Anzahl hinzugefügt</change>
+					<change>[Gelöst] Datenbank Fehler mit MSSQL</change>
+					<change>[Gelöst] Ähnliche BBCodes werden addiert</change>
+					<change>[Gelöst] Schattenthemen werden in Top Themen angezeigt</change>
+					<change>[Gelöst] Extrem kleiner UNIX Zeitstempel für cutoff_time in Funktion get_user_count_data</change>
+					<change>[Gelöst] Falsche Prozentangabe für "Benutzer, welche ihren Geburtstag eingetragen haben"</change>
+					<change>[Gelöst] Schattenthemen mit Umfragen wurden als Umfragen von der Datenbank herangezogen</change>
+					<change>[Gelöst] Einge XHTML 1.0 strict Validations Fehler</change>
+					<change>[Gelöst] Inkorrekte Zahl für "Durchschnitt Registrierungen Tag" in stats_basic.php</change>
+					<change>[Gelöst] Anzahl der Benutzer in Benutzergruppen werden falsch abgefragt</change>
+					<change>[Gelöst] XHTML 1.0 strict Validations Fehler in Themen Aktivitäts Statistiken</change>
+					<change>[Gelöst] XHTML 1.0 strict Validations Fehler falls kein Add-On installiert ist</change>
+					<change>[Gelöst] Ein paar kleine Fehler im Installer</change>
+					<change>[Gelöst] Löschen von Datenbank Tabellen funktioniert nicht</change>
+					<change>[Gelöst] Falsche Unterscheidung des Datenbank Schemas im  Installer</change>
+					<change>[Gelöst] Statistik Module werden nicht komplett gelöscht</change>
+					<change>[Gelöst] PHP-Fehler in Updater</change>
+					<change>[Gelöst] Bots und Gäste wurden in "Durchschnitt Registrierungen Tag" mitgezählt</change>
+					<change>[Gelöst] Fehlermeldung im Browser nach zu vielen Redirects in Funktion overall_bbcode_smiley_count()</change>
+					<change>[Geändert] XML Dateien auf MODX 1.2.5 aktualisiert</change>
+					<change>[Geändert] Einstellmöglichkeiten im Admin-Bereich zusammengefügt</change>
+					<change>[Geändert] Benutzer mit Gruppen-Privilegien sehen jetzt alle Gruppen</change>
+					<change>[Geändert] Funktion overall_bbcode_smiley_count() verändert um Zeitüberschreitungen zu verhindern</change>
+					<change>[Geändert] Funktion overall_bbcode_smiley_count() verändert um Fehler durch doppelte BBCodes in der Datenbank zu verhindern</change>
+					<change>[Geändert] Anzahl an gelöschten Benutzern hinzugefügt um eine genauere Angabe zu dem "Durchschnitt Registrierungen Tag" machen zu können</change>
+					<change>[Geändert] Doppelte Sprachvariablen entfernt</change>
+					<change>[Geändert] Monatliche Statistiken zeigen alle Monate nur noch an wenn das auch wirklich ausgewählt wurde</change>
+					<change>[Geändert] Unnötige Anpassungen in Installations Anleitung entfernt</change>
+					<change>[Geändert] Funktion stats_create_table kann jetzt auch mit arrays umgehen</change>
+					<change>[Support] phpBB Statistics 0.1.0, 0.1.0, 0.2.0, und Forum Statistics 0.3.0 werden nicht mehr unterstützt</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-09-01</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>[New] Added BBCode parsing to poll options</change>
+					<change>[New] Added complete new functions for BBCode and Smiley Statistics that hook into posting.php and are supposed to result in a better performance of the Miscellaneous Statistics</change>
+					<change>[New] Introduced new function for timezone offsets</change>
+					<change>[New] Stats-Link will not show anymore if you are not authorized to view them</change>
+					<change>[Fixed] A parse error in functions.php (Bug #41)</change>
+					<change>[Fixed] Bug in stats_activity.php that caused the topics to have the same title</change>
+					<change>[Fixed] Wrong .row-naming in stats_contributions_attachments.html</change>
+					<change>[Fixed] Several bugs and coding issues mentioned in the phpBB.com MOD Validation</change>
+					<change>[Fixed] Removed backticks in update_forum_statistics_0.3.0.xml</change>
+					<change>[Fixed] Small bug when a board has no attachments</change>
+					<change>[Changed] "Resync BBCodes" has been changed to "Recount BBCodes and Smilies"</change>
+					<change>[Changed] Several minor performance tweaks suggested by wiki.phpBB.com</change>
+					<change>[Changed] Reworked the installer to work with boards updated from phpBB2</change>
+					<change>[Changed] Added phpBB3's permission system instead of own one</change>
+				</changelog>
+				<changelog lang="de">
+					<change>[Neu] BBCodes werden in Umfrage-Optionen angezeigt</change>
+					<change>[Neu] Komplett neue Funktionen für Smiley- und BBCode-Statistiken hinzugefügt. Das Ganze wird in die posting.php eingefügt und sollte die Verschiedenen Statistiken um einiges schneller machen</change>
+					<change>[Neu] Neue Funktion zur Festellung der Zeitversetzung</change>
+					<change>[Neu] Der Statistik-Link wird nicht mehr angzeigt wenn man keine Berechtigungen für die Statistiken hat</change>
+					<change>[Gelöst] Parse Error in der statistics/includes/functions.php (Bug #41)</change>
+					<change>[Gelöst] Bug in der includes/stats/stats_activity.php, der dafür sorgte, dass für jedes Thema der gleiche Titel angzeigt wird</change>
+					<change>[Gelöst] Falscher .row-Name in der stats_contributions_attachments.html</change>
+					<change>[Gelöst] Mehrere Bugs und Programmierungsfehler die durch phpBB.com MOD Validation aufgefallen sind</change>
+					<change>[Gelöst] Gravis in update_forum_statistics_0.3.0.xml entfernt</change>
+					<change>[Gelöst] Bug wenn es keine Dateianhänge gibt</change>
+					<change>[Geändert] "Resynchronisiere BBCodes" wurde zu "Resynchronisiere BBCode- und Smiley-Statistiken" geändert</change>
+					<change>[Geändert] Mehrere, durch wiki.phpBB.com vorgeschlagene, Performance-Verbesserungen</change>
+					<change>[Geändert] Installer wurde überarbeitet, um auch in Foren die von phpBB2 konvertiert wurden zu funktionieren</change>
+					<change>[Geändert] Eigenes Berechtigungsystem durch das phpBB3-eigene ersetzt</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-05-10</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>[New]BBCode and custom BBCode count</change>
+					<change>[New]Added custom BBCodes to the Top XX BBCodes</change>
+					<change>[New]Top topics by bookmarks</change>
+					<change>[New]Top topics by subscriptions</change>
+					<change>[New]Top forums by subscriptions</change>
+					<change>[Fixed]Location count is wrong</change>
+					<change>[Fixed]Months are always in English</change>
+					<change>[Fixed]CPF error</change>
+					<change>[Fixed]small subsilver2 error</change>
+					<change>[Fixed]a little installer error</change>
+					<change>[Changed]Some minor fixes and changes</change>
+					<change>[Changed]Several performance tweaks, i.e. Top Smilies and Top BBCodes</change>
+				</changelog>
+				<changelog lang="de">
+					<change>[Neu]Anzahl BBCodes und benutzerdefinierter BBCodes</change>
+					<change>[Neu]benutzerdefinierte BBCodes  zu den Top XX BBCodes hinzugefügt</change>
+					<change>[Neu]Top XX Themen (Lesezeichen)</change>
+					<change>[Neu]Top XX Themen (Beobachten)</change>
+					<change>[Neu]Top XX Foren (Beobachten)</change>
+					<change>[Gelöst]Anzahl der Wohnorte falsch</change>
+					<change>[Gelöst]Monatsnamen immer auf Englisch</change>
+					<change>[Gelöst]CPF Fehler</change>
+					<change>[Gelöst]kleiner Subsilver2 Fehler</change>
+					<change>[Gelöst]ein Installer error</change>
+					<change>[Geändert]Einige kleine Veränderungen und Fehlerbehebungen</change>
+					<change>[Geändert]Einige Leistungsverbesserungen, z.B. Top Smilies und Top BBCodes</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-03-30</date>
+				<rev-version>0.2.0</rev-version>
+				<changelog lang="en">
+					<change>[New]Deleted Users count</change>
+					<change>[New]Top XX topic icons</change>
+					<change>[New]Added installer (based on board3 Portal installer)</change>
+					<change>[New]Add-ons can be added</change>
+					<change>[Fixed]a few undefined offset errors when no topic exists</change>
+					<change>[Fixed]Top XX Smilies showing wrong count</change>
+					<change>[Fixed]Top XX BBCodes showing wrong count</change>
+					<change>[Fixed]Guests are not hidden from Users Activity statistics</change>
+					<change>[Changed]Some minor fixes and changes</change>
+				</changelog>
+				<changelog lang="de">
+					<change>[Neu]Anzahl gelöschter Benutzer</change>
+					<change>[Neu]Top XX Beitragssymbole</change>
+					<change>[Neu]Installer hinzugefügt (basiert auf Board3 Portal Installer)</change>
+					<change>[New]Add-ons können hinzugefügt werden</change>
+					<change>[Gelöst]ein Paar "undefined offset" Fehler wenn keine Themen vorhanden sind</change>
+					<change>[Gelöst]Top XX Smilies zeigt falsche Anzahl an</change>
+					<change>[Gelöst]Top XX BBCodes zeigt falsche Anzahl an</change>
+					<change>[Gelöst]Gäste werden in den Statistiken der Benutzeraktivität nicht verborgen</change>
+					<change>[Geändert]Einige kleine Veränderungen und Fehlerbehebungen</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-03-08</date>
+				<rev-version>0.1.1</rev-version>
+				<changelog lang="en">
+					<change>[New]Total topic views</change>
+					<change>[New]Top XX forums by views</change>
+					<change>[New]Top XX friends</change>
+					<change>[New]Top XX ignored users (foes)</change>
+					<change>[Solved]Bug 014</change>
+					<change>[Solved]Bug 015</change>
+					<change>[Solved]Bug 016</change>
+					<change>[Changed]A few minor changes and fixes</change>
+				</changelog>
+				<changelog lang="de">
+					<change>[Neu]Gesamt Zugriffe auf Themen</change>
+					<change>[Neu]Top XX Themen (Zugriffe)</change>
+					<change>[Neu]Top XX Freunde</change>
+					<change>[Neu]Top XX ignorierte Benutzer</change>
+					<change>[Gelöst]Bug 014</change>
+					<change>[Gelöst]Bug 015</change>
+					<change>[Gelöst]Bug 016</change>
+					<change>[Geändert]Einige kleine Veränderungen und Fehlerbehebungen</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-02-28</date>
+				<rev-version>0.1.0</rev-version>
+				<changelog lang="en">
+					<change>first beta</change>
+					<change>[New]phpBB Statistics Control Panel in the ACP</change>
+					<change>[New]Any group can be permitted to access the phpBB Statistics</change>
+					<change>[New]phpBB Statistics can be disabled and a message is being displayed</change>
+					<change>[New]each part can be turned on and off via the Control Panel in the ACP (message will be displayed; e.g. "Forums Statistics are currently disabled")</change>
+					<change>[New]pretend to have newest version of phpBB3 installed (only works if the version check in the ACP works)</change>
+					<change>[New]Hide database info and display phpBB3 version like the following: 3.x.x</change>
+					<change>[New]Sort installed components by Name, ID, and Author/Copyright</change>
+					<change>[New]Miscellaneous Statistics page (e.g. Smilies information)</change>
+					<change>[New]Top XX BBCodes used on board (currently only standard BBCodes)</change>
+					<change>[New]Warnings Stats (are turned off by default; can be turned on/off via the ACP)</change>
+					<change>[New]Total Accessible Polls</change>
+					<change>[New]Several different stats being cached</change>
+					<change>[New]subsilver2 edits and template files provided</change>
+					<change>[New]subsilver2 template files are XHTML 1.0 Transitional valid</change>
+					<change>[Changed]prosilver template files are XHTML 1.0 Strict valid</change>
+					<change>[Changed]Moved phpBB Statistics link to overall_header.html</change>
+					<change>[Changed]Moved language files to language/xx/mods</change>
+					<change>[Changed]Moved template files to styles/xx/template/stats</change>
+					<change>[Changed]Updated everything for phpBB 3.0.4</change>
+					<change>[Solved]Bug 001</change>
+					<change>[Solved]Bug 002</change>
+					<change>[Solved]Bug 003</change>
+					<change>[Solved]Bug 004</change>
+					<change>[Changed]Numerous small changes and minor fixes</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Erste Beta</change>
+					<change>[Neu]phpBB Statistics Bedienfeld im Admin-Bereich</change>
+					<change>[Neu]Jeder Gruppe kann der Zugriff zum phpBB Statistics MOD erlaubt werden</change>
+					<change>[Neu]Der phpBB Statistics MOD kann deaktiviert werden und eine passende Nachricht wird angezeigt</change>
+					<change>[Neu]Alle einzelnen Statistiken können im Admin-Bereich deaktiviert werden, eine passende Nachricht wird angezeigt</change>
+					<change>[Neu]Neueste phpBB Version vortäuschen(funktioniert nur, wenn auch der Versions Check im Admin-Bereich funktioniert)</change>
+					<change>[Neu]Verstecke Datenbank Information und zeige die phpBB Version wie folgt an: 3.x.x</change>
+					<change>[Neu]Sortiere installierte Komponenten anhand von Name, ID, und Autor/Copyright</change>
+					<change>[Neu]Diverse Statistiken Seite, z.B. Smiley Statistiken</change>
+					<change>[Neu]Top XX BBCodes die auf dem Board genutzt werden (z.Z. nur standard BBCodes)</change>
+					<change>[Neu]Verwarnungs Statistiken (sind standardmäßig ausgeschaltet, können aber im Admin-Bereich wieder eingeschaltet werden)</change>
+					<change>[Neu]Anzahl der Umfragen, auf die man Zugriff hat</change>
+					<change>[Neu]Mehrere Statistiken werden gecachet</change>
+					<change>[Neu]subsilver2 Template Dateien und Anpassungen</change>
+					<change>[Neu]subsilver2 Template Dateien sind XHTML 1.0 Transitional valid</change>
+					<change>[Geändert]prosilver Template Dateien sind XHTML 1.0 Strict valid</change>
+					<change>[Geändert]phpBB Statistics Link in die overall_header.html verschoben</change>
+					<change>[Geändert]Sprachdateien in language/xx/mods verschoben</change>
+					<change>[Geändert]Template Dateien in styles/xx/template/stats verschoben</change>
+					<change>[Geändert]Alles für phpBB 3.0.4 geupdatet</change>
+					<change>[Gelöst]Bug 001</change>
+					<change>[Gelöst]Bug 002</change>
+					<change>[Gelöst]Bug 003</change>
+					<change>[Gelöst]Bug 004</change>
+					<change>[Geändert]Numerous small changes and minor fixes</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-09</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+				    <change>first alpha (online demo)</change>
+				</changelog>
+				<changelog lang="de">
+				    <change>erste alpha (online demo)</change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="template" lang="de" href="contrib/subsilver2.xml">subsilver2</link>
+			<link type="template" lang="en-gb" href="contrib/subsilver2.xml">subsilver2</link>
+			<link type="contrib" lang="en" href="contrib/update_phpbbstatistics_1.0.2/update_phpbbstatistics_1.0.2.xml">Update instructions for phpBB Statistics Version 1.0.2</link>
+			<link type="contrib" lang="de" href="contrib/update_phpbbstatistics_1.0.2/update_phpbbstatistics_1.0.2.xml">Updateanleitung für phpBB Statistics Version 1.0.2</link>
+			<link type="language" lang="de" href="contrib/de.xml">Deutsch</link>
+			<link type="language" lang="en-gb" href="contrib/de.xml">German</link>
+		</link-group>
+	</header>
+	<action-group>
+	<copy>
+			<file from="root/adm/*.*" to="adm/*.*" />
+			<file from="root/includes/acp/*.*" to="includes/acp/*.*" />
+			<file from="root/includes/stats/*.*" to="includes/stats/*.*" />
+			<file from="root/install/*.*" to="install/*.*" />
+			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*" />
+			<file from="root/statistics/*.*" to="statistics/*.*" />
+			<file from="root/styles/prosilver/template/stats/*.*" to="styles/prosilver/template/stats/*.*" />
+			<file from="root/styles/prosilver/theme/statistics.css" to="styles/prosilver/theme/statistics.css" />
+			<file from="root/stats.php" to="stats.php" />
+		</copy>
+	<open src="adm/style/acp_profile.html">
+			<edit>
+				<find><![CDATA[		<!-- IF S_EDIT_MODE -->
+			<fieldset class="quick">
+				<input class="button1" type="submit" name="save" value="{L_SAVE}" />
+			</fieldset>
+		<!-- ENDIF -->]]></find>
+				<action type="before-add"><![CDATA[		<!-- IF S_DISPLAY_FIELD_STATS_SHOW -->
+		<fieldset>
+			<legend>{L_STATS}</legend>
+		<dl>
+			<dt><label for="field_stats_show">{L_FIELD_STATS_SHOW}:</label><br /><span>{L_FIELD_STATS_SHOW_EXPLAIN}</span></dt>
+			<dd><label><input type="radio" class="radio" id="field_stats_show" name="field_stats_show" value="1"<!-- IF S_FIELD_STATS_SHOW --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+				<label><input type="radio" class="radio" name="field_stats_show" value="0"<!-- IF not S_FIELD_STATS_SHOW --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+		</fieldset>
+		<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/info/acp_modules.php">
+			<edit>
+				<find><![CDATA[				'mcp'		=> array('title' => 'MCP', 'auth' => 'acl_a_modules', 'cat' => array('ACP_MODULE_MANAGEMENT')),]]></find>
+				<action type="after-add"><![CDATA[// phpBB Statistics MOD
+				'stats'		=> array('title' => 'STATS', 'auth' => 'acl_a_modules', 'cat' => array('ACP_MODULE_MANAGEMENT')),]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/acp_profile.php">
+			<edit>
+				<find><![CDATA[						'lang_explain'		=> '',]]></find>
+				<action type="after-add"><![CDATA[						// phpBB Statistics MOD
+						'field_stats_show'		=> request_var('field_stats_show', 0),
+						// END MOD]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[1	=> array('field_ident', 'lang_name', 'lang_explain', 'field_option_none', 'field_show_on_reg', 'field_show_on_vt', 'field_required', 'field_hide', 'field_show_profile', 'field_no_view'),]]></find>
+				<inline-edit>
+					<inline-find><![CDATA['field_no_view']]></inline-find>
+					<inline-action type="after-add"><![CDATA[, 'field_stats_show']]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[				$cp->vars['lang_default_value']	= utf8_normalize_nfc(request_var('lang_default_value', $field_row['lang_default_value'], true));]]></find>
+				<action type="after-add"><![CDATA[				// phpBB Statistics MOD
+				$cp->vars['field_stats_show']		= request_var('field_stats_show', $field_row['field_stats_show']);
+				//END MOD]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[							'LANG_NAME'			=> $cp->vars['lang_name'],]]></find>
+				<action type="after-add"><![CDATA[							// phpBB Statistics MOD
+							'S_FIELD_STATS_SHOW'	=> $cp->vars['field_stats_show'],
+							'S_DISPLAY_FIELD_STATS_SHOW'	=> in_array($field_type, array(FIELD_STRING, FIELD_BOOL, FIELD_DROPDOWN)),
+							//END MOD]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			'field_show_profile'	=> $cp->vars['field_show_profile'],]]></find>
+				<action type="after-add"><![CDATA[			// phpBB Statistics MOD
+			'field_stats_show'			=> $cp->vars['field_stats_show'],
+			//END MOD]]></action>
+			</edit>
+		</open>
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[// The following assigns all _common_ variables that may be used at any point in a template.]]></find>
+				<action type="before-add"><![CDATA[	$user->add_lang('mods/stats');
+	if ($auth->acl_get('u_view_stats'))
+	{
+		$template->assign_var('S_VIEW_STATS', true);
+	}]]></action>
+			</edit>	
+			<edit>
+				<find><![CDATA['U_PRIVATEMSGS'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;folder=inbox'),]]></find>
+				<action type="before-add"><![CDATA[		'U_STATS'				=> ($auth->acl_get('u_view_stats')) ? append_sid("{$phpbb_root_path}stats.$phpEx") : '',]]></action>
+			</edit>			
+		</open>
+		<open src="includes/constants.php">
+			<edit>
+				<find><![CDATA[// Additional tables]]></find>
+				<action type="after-add"><![CDATA[define('STATS_ADDONS_TABLE',		$table_prefix . 'stats_addons');
+define('STATS_CONFIG_TABLE',		$table_prefix . 'stats_config');
+define('STATS_SMILIES_TABLE',		$table_prefix . 'stats_smilies');
+define('STATS_BBCODES_TABLE',		$table_prefix . 'stats_bbcodes');]]></action>
+			</edit>
+		</open>
+		<open src="language/en/acp/common.php">
+			<edit>
+				<find><![CDATA[?>]]></find>
+				<action type="before-add"><![CDATA[// phpBB Statistics MOD
+$lang = array_merge($lang, array(
+	'STATS'							=> 'phpBB Statistics',	
+	'STATS_BASIC'						=> 'Basic statistics',
+	'STATS_BASIC_BASIC'				=> 'Basic',
+	'STATS_BASIC_ADVANCED'				=> 'Advanced',
+	'STATS_BASIC_MISCELLANEOUS'		=> 'Miscellaneous',
+	'STATS_ACTIVITY'					=> 'Forum Activity',
+	'STATS_ACTIVITY_FORUMS'			=> 'Forums',
+	'STATS_ACTIVITY_TOPICS'			=> 'Topics',
+	'STATS_ACTIVITY_USERS'				=> 'Users',
+	'STATS_CONTRIBUTIONS'				=> 'Forum Contributions',
+	'STATS_CONTRIBUTIONS_ATTACHMENTS'	=> 'Attachments',
+	'STATS_CONTRIBUTIONS_POLLS'		=> 'Polls',
+	'STATS_PERIODIC'					=> 'Periodic Statistics',
+	'STATS_PERIODIC_DAILY'				=> 'Daily Statistics',
+	'STATS_PERIODIC_MONTHLY'			=> 'Monthly Statistics',
+	'STATS_PERIODIC_HOURLY'			=> 'Hourly Statistics',
+	'STATS_SETTINGS'					=> 'Settings Statistics',
+	'STATS_SETTINGS_BOARD'				=> 'Board Settings',
+	'STATS_SETTINGS_PROFILE'			=> 'Profile Settings',
+	'STATS_ADDONS'					=> 'Add-Ons',
+	'STATS_ADDONS_MISCELLANEOUS'		=> 'scapegoat', // do not change
+	
+	'LOG_STATS_CONFIG_SETTINGS'				=> '<strong>phpBB Statistics: Altered General settings</strong>',
+	'LOG_STATS_CONFIG_ADDONS'				=> '<strong>phpBB Statistics: Altered Add-ons Settings</strong>',
+	'LOG_STATS_ADDON_REMOVED'				=> '<strong>phpBB Statistics: Removed %1$s add-on</strong>',
+	'LOG_STATS_ADDON_ENABLED'				=> '<strong>phpBB Statistics: Enabled %1$s add-on</strong>',
+	'LOG_STATS_ADDON_DISABLED'				=> '<strong>phpBB Statistics: Disabled %1$s add-on</strong>',
+	
+	'FIELD_STATS_SHOW'					=> 'Show this custom profile field on the Forum Statistics page',
+	'FIELD_STATS_SHOW_EXPLAIN'					=> 'Enabling this will make this custom profile field to be shown as a statistic under the Profile Settings statistics on the Forum Statistics page. Note that deactivated or hidden custom profile fields are not shown on the Forum Statistics page even if this option is enabled.<br />The display of this statistic will depend on the type of data that this field stores.',
+	
+	'acl_u_view_stats'		=> array('lang' => 'Can view Statistics', 'cat' => 'misc'),
+
+));
+//END MOD]]></action>
+			</edit>
+		</open>	
+		<open src="posting.php">
+			<edit>
+				<find><![CDATA[			// The last parameter tells submit_post if search indexer has to be run
+			$redirect_url = submit_post($mode, $post_data['post_subject'], $post_data['username'], $post_data['topic_type'], $poll, $data, $update_message, ($update_message || $update_subject) ? true : false);]]></find>
+				<action type="before-add"><![CDATA[			/** Start phpBB Statistics
+			*	send BBCode and smiley count to the DB
+			*/
+			if(!function_exists('save_bbcode_smiley_count'))
+			{
+				include($phpbb_root_path . 'statistics/includes/functions.' . $phpEx);
+			}
+			save_bbcode_smiley_count($data, $mode);
+			//	End phpBB Statistics]]></action>
+			</edit>
+		</open>
+		<open src="viewonline.php">
+			<edit>
+				<find><![CDATA[		case 'report':
+			$location = $user->lang['REPORTING_POST'];
+			$location_url = append_sid("{$phpbb_root_path}index.$phpEx");
+		break;]]></find>
+				<action type="after-add"><![CDATA[		case 'stats':
+			$user->add_lang('mods/stats');
+			$location = $user->lang['VIEWING_STATS'];
+			$location_url = append_sid("{$phpbb_root_path}stats.$phpEx");
+		break;]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>]]></find>
+				<action type="after-add"><![CDATA[				<!-- IF S_VIEW_STATS --><li class="icon-faq"><a href="{U_STATS}" title="{L_STATS_EXPLAIN}">{L_STATISTICS}</a></li><!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/theme/stylesheet.css">
+			<edit>
+				<find><![CDATA[@import url("colours.css");]]></find>
+				<action type="after-add"><![CDATA[@import url("statistics.css");]]></action>
+			</edit>
+		</open>
+		<php-installer>install/index.php</php-installer>
+		<diy-instructions lang="en">
+Remember to purge the cache and refresh the theme and template cache after running the installer. Now you are ready to enjoy your new phpBB Statistics.  ;)
+
+		</diy-instructions>
+		<diy-instructions lang="de">
+Bitte danach nicht vergessen den Forum Cache, Template Cache und Theme Cache zu leeren. ;)</diy-instructions>
+	</action-group>
+</mod>

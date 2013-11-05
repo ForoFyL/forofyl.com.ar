@@ -1,0 +1,92 @@
+Thanks for the message
+PHP Version: 5.2.6
+DBMS: MySQL 5.0.51-log
+phpBB3 Version: 3.0.6
+
+Adding new config variable: remove_thanks
+ERROR: Config variable remove_thanks already exists.
+
+Adding new config variable: thanks_postlist_view
+ERROR: Config variable thanks_postlist_view already exists.
+
+Adding new config variable: thanks_profilelist_view
+ERROR: Config variable thanks_profilelist_view already exists.
+
+Adding new config variable: thanks_counters_view
+ERROR: Config variable thanks_counters_view already exists.
+
+Adding new config variable: thanks_number
+ERROR: Config variable thanks_number already exists.
+
+Adding new config variable: thanks_info_page
+ERROR: Config variable thanks_info_page already exists.
+
+Adding new config variable: thanks_only_first_post
+ERROR: Config variable thanks_only_first_post already exists.
+
+Adding new permission option: f_thanks
+ERROR: Permission option f_thanks already exists.
+
+Adding new permission option: u_viewthanks
+ERROR: Permission option u_viewthanks already exists.
+
+Adding a new database table: phpbb_thanks
+ERROR: Database table phpbb_thanks already exists.
+
+Adding a new column named user_allow_thanks_pm to table phpbb_users
+ERROR: The column user_allow_thanks_pm already exists on table phpbb_users.
+
+Adding new config variable: thanks_number_post
+ERROR: Config variable thanks_number_post already exists.
+
+Adding new config variable: thanks_post_reput_view
+ERROR: Config variable thanks_post_reput_view already exists.
+
+Adding new config variable: thanks_topic_reput_view
+ERROR: Config variable thanks_topic_reput_view already exists.
+
+Adding new config variable: thanks_forum_reput_view
+ERROR: Config variable thanks_forum_reput_view already exists.
+
+Adding new config variable: thanks_reput_height
+ERROR: Config variable thanks_reput_height already exists.
+
+Adding new config variable: thanks_reput_level
+ERROR: Config variable thanks_reput_level already exists.
+
+Adding new config variable: thanks_number_digits
+ERROR: Config variable thanks_number_digits already exists.
+
+Adding new config variable: thanks_number_row_reput
+ERROR: Config variable thanks_number_row_reput already exists.
+
+Adding new config variable: thanks_reput_graphic
+ERROR: Config variable thanks_reput_graphic already exists.
+
+Adding new config variable: thanks_reput_image
+ERROR: Config variable thanks_reput_image already exists.
+
+Adding new config variable: thanks_reput_image_back
+ERROR: Config variable thanks_reput_image_back already exists.
+
+Adding new config variable: thanks_time_view
+ERROR: Config variable thanks_time_view already exists.
+
+Adding new config variable: thanks_top_number
+ERROR: Config variable thanks_top_number already exists.
+
+Adding new permission option: u_viewtoplist
+ERROR: Permission option u_viewtoplist already exists.
+
+Adding a new column named topic_id to table phpbb_thanks
+ERROR: The column topic_id already exists on table phpbb_thanks.
+
+Adding a new column named forum_id to table phpbb_thanks
+ERROR: The column forum_id already exists on table phpbb_thanks.
+
+Adding a new column named thanks_time to table phpbb_thanks
+ERROR: The column thanks_time already exists on table phpbb_thanks.
+
+Adding a new column named user_allow_thanks_email to table phpbb_users
+ERROR: The column user_allow_thanks_email already exists on table phpbb_users.
+

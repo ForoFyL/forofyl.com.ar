@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+
+		<title lang="en"> MSSTI RSS Feed 2.0 with ACP - Update : from version 1.2.0 to 1.2.1</title>
+
+		<description lang="en">This file provides instructions for upgrading the MOD from version 1.2.0 to 1.2.1
+		See the main install file for any additional information about the MOD.</description>
+
+		<author-notes lang="en"><![CDATA[See the main install file for any additional information about the MOD.
+		-------------------------------------------------------------------
+		Need extra support ?
+		--------------------
+		You can contact me at http://www.mssti.com/phpbb3/]]></author-notes>
+
+		<author-group>
+			<author>
+				<realname>Gabriel</realname>
+				<username>leviatan21</username>
+				<email>info@mssti.com</email>
+				<homepage>http://www.mssti.com/phpbb3/</homepage>
+				<contributions-group>
+					<contributions status="current" from="2008-08-27" position="Developer"/>
+	      		</contributions-group>			 				
+			</author>
+		</author-group>
+
+		<mod-version>1.2.1</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>100</time>
+			<target-version>3.0.5</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2009-06-10</date>
+				<rev-version>1.2.1</rev-version>
+				<changelog lang="en">
+					<change> See the main install file for full history information about the MOD.</change>
+				</changelog>
+			</entry>
+		</history>
+
+	</header>
+
+	<action-group>
+
+		<copy>
+			<file from="root/rss.php" to="rss.php" />
+			<file from="root/includes/acp/acp_rss.php" to="includes/acp/acp_rss.php" />
+			<file from="root/includes/acp/info/acp_rss.php" to="includes/acp/info/acp_rss.php" />
+			<file from="root/language/en/mods/rss.php" to="language/en/mods/rss.php" />
+			<file from="root/styles/rss_template.xml" to="styles/rss_template.xml" />
+		</copy>
+
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[
+// MOD : MSSTI RSS Feeds (V1.2.0) - Start
+		$f_rss = request_var('f', 0);
+		$t_rss = request_var('t', 0);
+// MOD : MSSTI RSS Feeds (V1.2.0) - End
+]]></find>
+				<action type="replace-with"><![CDATA[
+// MOD : MSSTI RSS Feeds (V1.2.1) - Start
+	// Safety check
+	if ( $config['rss_enable'] = ( isset($config['rss_enable']) ? $config['rss_enable'] : false) )
+	{
+		$u_rss = generate_board_url() . "/rss.$phpEx";
+		$f_rss = request_var('f', 0);
+		$t_rss = request_var('t', 0);
+		$rss_excluded_forums_ary = rss_filters();
+	}
+// MOD : MSSTI RSS Feeds (V1.2.1) - End
+]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[
+// MOD : MSSTI RSS Feeds (V1.2.0) - Start
+		'U_RSS'						=> generate_board_url() . "/rss.$phpEx",
+		'S_FORUM_ID'				=> $f_rss, 
+		'S_TOPIC_ID'				=> $t_rss,
+		'S_ENABLE_FEEDS'			=> ( $config['rss_enable'] ) ? true : false,
+		'S_ENABLE_FEEDS_NEWS'		=> ( $config['rss_news_id'] != '' ) ? true : false,
+		'S_ENABLE_FEEDS_NEWPOST'	=> ( $config['rss_newposts'] != '' ) ? true : false,
+		'S_ENABLE_FEEDS_FORUMS'		=> ( $config['rss_overall_forums'] ) ? true : false,
+		'S_ENABLE_FEEDS_THREADS'	=> ( $config['rss_overall_threads'] ) ? true : false,
+		'S_ENABLE_FEEDS_POSTS'		=> ( $config['rss_overall_posts'] ) ? true : false,
+		'S_ENABLE_FEEDS_ATTACH'		=> ( $config['rss_attach'] ) ? true : false,
+		'S_ENABLE_FEEDS_EGOSEARCH'	=> ( $config['rss_egosearch'] && $user->data['user_id'] != ANONYMOUS ) ? true : false,
+		'S_ENABLE_FEEDS_FORUM'		=> ( $config['rss_forum'] && $f_rss ) ? true : false,
+		'S_ENABLE_FEEDS_THREAD'		=> ( $config['rss_thread'] && $t_rss ) ? true : false,
+// MOD : MSSTI RSS Feeds (V1.2.0) - End
+]]></find>
+				<action type="replace-with"><![CDATA[
+// MOD : MSSTI RSS Feeds (V1.2.1) - Start
+		'S_FEEDS'				=> ( $config['rss_enable'] ) ? true : false,
+		'U_FEEDS_NEWS'			=> ( $config['rss_enable'] && $config['rss_news_id'] != '' ) ? $u_rss . '?mode=news' : '',
+		'U_FEEDS_NEWPOST'		=> ( $config['rss_enable'] && $config['rss_newposts'] != '' ) ? $u_rss . '?mode=newposts' : '',
+		'U_FEEDS_FORUMS'		=> ( $config['rss_enable'] && $config['rss_overall_forums'] ) ? $u_rss . '?mode=forums' : '',
+		'U_FEEDS_THREADS'		=> ( $config['rss_enable'] && $config['rss_overall_threads'] ) ? $u_rss . '?mode=topics' : '',
+		'U_FEEDS_POSTS'			=> ( $config['rss_enable'] && $config['rss_overall_posts'] ) ? $u_rss . '?mode=posts' : '',
+		'U_FEEDS_ATTACH'		=> ( $config['rss_enable'] && $config['rss_attach'] )? $u_rss . '?mode=attachments' : '',
+		'U_FEEDS_EGOSEARCH' 	=> ( $config['rss_enable'] && $config['rss_egosearch'] && $user->data['user_id'] != ANONYMOUS ) ? $u_rss . '?mode=egosearch&amp;uid=' . $user->data['user_id'] : '',
+		'U_FEEDS_FORUM'			=> ( $config['rss_enable'] && $config['rss_forum'] && $f_rss && !in_array( $f_rss, $rss_excluded_forums_ary )) ? $u_rss . '?f=' . $f_rss : '',
+		'U_FEEDS_THREAD'		=> ( $config['rss_enable'] && $config['rss_thread'] && $t_rss && !in_array( $f_rss, $rss_excluded_forums_ary )) ? $u_rss . '?f=' . $f_rss . '&amp;t=' . $t_rss : '',
+// MOD : MSSTI RSS Feeds (V1.2.1) - End
+]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[?>]]></find>
+				<action type="before-add"><![CDATA[
+
+// MOD : MSSTI RSS Feeds (V1.2.1) - Start
+/**
+* Find out in which forums ( and all it's child's ) the user is not allowed to view
+* 
+* @return array 	$rss_excluded_forums_ary with forum id to exclude
+**/
+function rss_filters()
+{
+	global $auth, $db, $config, $phpbb_root_path, $phpEx, $rss_excluded_forums_ary;
+
+	// Do not run twice if it has already been executed earlier.
+	if ( isset($rss_excluded_forums_ary) && is_array($rss_excluded_forums_ary) )
+	{
+		return $rss_excluded_forums_ary;
+	}
+
+	$rss_excluded_forums_ary = array();
+
+	// Which forums should be directly excluded ?
+	if ( $config['rss_exclude_id'] != '' )
+	{
+		if (!is_array( $config['rss_exclude_id'] ))
+		{
+			$forums_id	= explode(",", $config['rss_exclude_id'] );
+		}
+		foreach ( $forums_id as $fid )
+		{
+			if ( $fid )
+			{
+				$rss_excluded_forums_ary[] = (int) $fid;
+			}
+		}
+	}
+
+	// Start with a list of forums without initial exclusions id's
+	$not_in_fid = ( sizeof($rss_excluded_forums_ary) ) ? 'WHERE (' . $db->sql_in_set('forum_id', $rss_excluded_forums_ary, true) . ") OR (forum_password <> '' )" : '';
+
+	$sql = "SELECT forum_id, parent_id, forum_password, forum_parents, left_id, right_id 
+			FROM " . FORUMS_TABLE . "  
+			$not_in_fid
+			ORDER BY forum_id";
+	$rss_filters_result = $db->sql_query($sql);
+
+	while ( $forum_data = $db->sql_fetchrow($rss_filters_result) )
+	{
+		// Exclude passworded forum completely ( for some reason the (forum_password <> '' ) in SQL query doesn't work ;) )
+		if ( $forum_data['forum_password'] != '' )
+		{
+			$rss_excluded_forums_ary[] = (int) $forum_data['forum_id'];
+			continue;
+		}
+
+		// Exclude forums the user is not able to read
+		if ( !$auth->acl_get('f_list', $forum_data['forum_id']) )
+		{
+			$rss_excluded_forums_ary[] = (int) $forum_data['forum_id'];
+			continue;
+		}
+
+		// Skip direct child of a excluded forum
+		if ( in_array($forum_data['parent_id'], $rss_excluded_forums_ary) )
+		{
+			$rss_excluded_forums_ary[] = (int) $forum_data['forum_id'];
+			continue;
+		}
+
+		if ( $forum_data['parent_id'] > 0 )
+		{
+			// Needed for some pages, like login ;)
+			require_once( $phpbb_root_path . 'includes/functions_display.' . $phpEx );
+
+			// Get forum parents
+			$forum_parents = get_forum_parents( $forum_data );
+
+			// Search for subforums
+			if ( !empty( $forum_parents ) )
+			{
+				foreach ( $forum_parents as $parent_forum_id => $parent_data )
+				{
+					// Skip this parent if the user does not have the permission to view it
+					if ( !$auth->acl_get('f_list', $parent_forum_id) )
+					{
+						$rss_excluded_forums_ary[] = $parent_forum_id;
+						continue;
+					}
+
+					// Skip this forum if it's the child of a excluded forum
+					if ( in_array($parent_forum_id, $rss_excluded_forums_ary) )
+					{
+						$rss_excluded_forums_ary[] = (int) $forum_data['forum_id'];
+						continue;
+					}
+				}
+			}
+		}
+	}
+	$db->sql_freeresult($rss_filters_result);
+
+	return $rss_excluded_forums_ary;
+}
+// MOD : MSSTI RSS Feeds (V1.2.1) - End
+]]></action>
+			</edit>
+		</open>
+
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[
+<!-- // MOD : MSSTI RSS Feeds (V1.2.0) - Start-->
+<!-- IF S_ENABLE_FEEDS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {SITENAME}" href="{U_RSS}" />
+<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_NEWS}" href="{U_RSS}?mode=news" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_NEWPOST --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_NEWPOST}" href="{U_RSS}?mode=newposts" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_FORUMS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_FORUMS}" href="{U_RSS}?mode=forums" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREADS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_TOPICS}" href="{U_RSS}?mode=topics" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_POSTS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_POSTS}" href="{U_RSS}?mode=posts" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_ATTACH --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_ATTACH}" href="{U_RSS}?mode=attachments" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_EGOSEARCH && S_USER_LOGGED_IN --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_YOUR_POSTS}" href="{U_RSS}?mode=egosearch" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_FORUM && S_FORUM_ID --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_FORUM} {FORUM_NAME}" href="{U_RSS}?f={S_FORUM_ID}" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREAD && S_TOPIC_ID --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_TOPIC} {TOPIC_TITLE}" href="{U_RSS}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" /><!-- ENDIF -->
+<!-- ENDIF -->
+<!-- // MOD : MSSTI RSS Feeds (V1.2.0) - End -->
+]]></find>
+				<action type="replace-with"><![CDATA[
+<!-- MOD : MSSTI RSS Feeds (V1.2.1) - Start //-->
+<!-- IF S_FEEDS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {SITENAME}" href="{U_RSS}" />
+<!-- IF U_FEEDS_NEWS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_NEWS}" href="{U_FEEDS_NEWS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_NEWPOST --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_NEWPOST}" href="{U_FEEDS_NEWPOST}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_FORUMS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_FORUMS}" href="{U_FEEDS_FORUMS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_THREADS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_TOPICS}" href="{U_FEEDS_THREADS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_POSTS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_POSTS}" href="{U_FEEDS_POSTS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_ATTACH --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_ATTACH}" href="{U_FEEDS_ATTACH}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_EGOSEARCH --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_YOUR_POSTS}" href="{U_FEEDS_EGOSEARCH}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_FORUM --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_FORUM} {FORUM_NAME}" href="{U_FEEDS_FORUM}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_THREAD --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_TOPIC} {TOPIC_TITLE}" href="{U_FEEDS_THREAD}" /><!-- ENDIF -->
+<!-- ENDIF -->
+<!-- MOD : MSSTI RSS Feeds (V1.2.1) - End //-->
+]]></action>
+				<comment lang="en">NOTE: You will have to make this change to ALL themes based of prosilver you have installed. I use "prosilver" as an example.</comment>
+			</edit>
+		</open>
+
+		<open src="styles/subsilver2/template/overall_header.html">
+			<edit>
+				<find><![CDATA[
+<!-- // MOD : MSSTI RSS Feeds (V1.2.0) - Start-->
+<!-- IF S_ENABLE_FEEDS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {SITENAME}" href="{U_RSS}" />
+<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_NEWS}" href="{U_RSS}?mode=news" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_NEWPOST --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_NEWPOST}" href="{U_RSS}?mode=newposts" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_FORUMS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_FORUMS}" href="{U_RSS}?mode=forums" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREADS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_TOPICS}" href="{U_RSS}?mode=topics" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_POSTS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_POSTS}" href="{U_RSS}?mode=posts" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_ATTACH --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_ATTACH}" href="{U_RSS}?mode=attachments" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_EGOSEARCH && S_USER_LOGGED_IN --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_YOUR_POSTS}" href="{U_RSS}?mode=egosearch" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_FORUM && S_FORUM_ID --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_FORUM} {FORUM_NAME}" href="{U_RSS}?f={S_FORUM_ID}" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_THREAD && S_TOPIC_ID --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_TOPIC} {TOPIC_TITLE}" href="{U_RSS}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" /><!-- ENDIF -->
+<!-- ENDIF -->
+<!-- // MOD : MSSTI RSS Feeds (V1.2.0) - End -->
+]]></find>
+				<action type="replace-with"><![CDATA[
+<!-- MOD : MSSTI RSS Feeds (V1.2.1) - Start //-->
+<!-- IF S_FEEDS -->
+<link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {SITENAME}" href="{U_RSS}" />
+<!-- IF U_FEEDS_NEWS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_NEWS}" href="{U_FEEDS_NEWS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_NEWPOST --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_NEWPOST}" href="{U_FEEDS_NEWPOST}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_FORUMS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_FORUMS}" href="{U_FEEDS_FORUMS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_THREADS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_TOPICS}" href="{U_FEEDS_THREADS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_POSTS --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_ALL_POSTS}" href="{U_FEEDS_POSTS}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_ATTACH --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_RSS_ATTACH}" href="{U_FEEDS_ATTACH}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_EGOSEARCH --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_YOUR_POSTS}" href="{U_FEEDS_EGOSEARCH}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_FORUM --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_FORUM} {FORUM_NAME}" href="{U_FEEDS_FORUM}" /><!-- ENDIF -->
+<!-- IF U_FEEDS_THREAD --><link rel="alternate" type="application/rss+xml" title="{L_RSS_FEEDS} - {L_TOPIC} {TOPIC_TITLE}" href="{U_FEEDS_THREAD}" /><!-- ENDIF -->
+<!-- ENDIF -->
+<!-- MOD : MSSTI RSS Feeds (V1.2.1) - End //-->
+]]></action>
+				<comment lang="en">NOTE: You will have to make this change to ALL themes based of prosilver you have installed. I use "prosilver" as an example.</comment>
+			</edit>
+		</open>
+
+		<diy-instructions lang="en"><![CDATA[IMPORTANT !
+		
+Follow the DIY Instructions from the main install : install_RSSFeed20_v121.xml
+
+		]]></diy-instructions>
+
+	</action-group>
+
+</mod>

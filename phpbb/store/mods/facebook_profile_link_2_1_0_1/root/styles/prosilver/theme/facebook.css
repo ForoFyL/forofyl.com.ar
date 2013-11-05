@@ -1,0 +1,6 @@
+/* Facebook Profile Link
+---------------------------------------- */
+
+.facebook-icon, .facebook-icon a		{ background: none top left no-repeat; }
+ul.profile-icons li.facebook-icon	{ width: {IMG_ICON_CONTACT_FACEBOOK_WIDTH}px; height: {IMG_ICON_CONTACT_FACEBOOK_HEIGHT}px; }
+.facebook-icon, .facebook-icon a		{ background-image: url("{IMG_ICON_CONTACT_FACEBOOK_SRC}"); }

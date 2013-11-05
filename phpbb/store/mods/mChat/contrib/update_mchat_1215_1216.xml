@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+	<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+		<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+		<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+			<title lang="en">mChat Upgrade 1.2.15 to 1.2.16</title>
+				<description lang="en">Adds ACP entry for displaying on index page or not.  Removed max word length. Fixed mod validation errors.</description>
+		<author-group>
+			<author>
+				<realname>Rich McGirr</realname>
+				<username>RMcGirr83</username>
+				<homepage>http://rmcgirr83.org</homepage>
+			</author>
+			<author>
+				<realname>Shaun</realname>
+				<username>djs596</username>
+				<homepage>http://djs596.com</homepage>
+			</author>
+			<author>
+				<realname>Stoker</realname>
+				<username>Stokerpiller</username>
+				<homepage>http://www.phpbb3bcodes.com</homepage>
+			</author>			
+		</author-group>
+		<mod-version>1.2.16</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.5</target-version>
+		</installation>
+		<link-group>
+			<link type="template" href="../install.xml" lang="en">Main Install File</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/mchat.php" to="mchat.php" />
+			<file from="root/mchat_install.php" to="mchat_install.php" />
+			<file from="root/adm/style/acp_mchat.html" to="adm/style/acp_mchat.html" />
+			<file from="root/includes/*.*" to="includes/*.*" />
+			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*" />
+			<file from="root/mchat/*.*" to="mchat/*.*" />			
+			<file from="root/styles/prosilver/template/mchat_body.html" to="styles/prosilver/template/mchat_body.html" />
+			<file from="root/styles/subsilver2/template/mchat_body.html" to="styles/subsilver2/template/mchat_body.html" />
+		</copy>
+		<open src="index.php">
+			<edit>
+				<find><![CDATA[// BEGIN mChat Mod
+if(!defined('MCHAT_INCLUDE'))
+{
+	define('MCHAT_INCLUDE', true);
+	$mchat_include_index = true;
+	include($phpbb_root_path.'mchat.'.$phpEx);
+}
+// END mChat Mod]]></find>
+				<action type="replace-with"><![CDATA[// BEGIN mChat Mod
+if(!defined('MCHAT_INCLUDE') && $config['mchat_on_index'] && $config['mchat_enable'] && $auth->acl_get('u_mchat_view'))
+{
+	define('MCHAT_INCLUDE', true);
+	$mchat_include_index = true;
+	include($phpbb_root_path.'mchat.'.$phpEx);
+}
+// END mChat Mod]]></action>
+			</edit>
+		</open>
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[// BEGIN mChat Mod
+		'U_MCHAT'			=> $auth->acl_get('u_mchat_view') ? append_sid("{$phpbb_root_path}mchat.$phpEx") : '',
+// END mChat Mod]]></find>
+				<action type="replace-with"><![CDATA[// BEGIN mChat Mod
+		'U_MCHAT'			=> $auth->acl_get('u_mchat_view') ? append_sid("{$phpbb_root_path}mchat.$phpEx") : '',
+		'S_MCHAT_ON_INDEX'		=> isset($config['mchat_on_index']) ? $config['mchat_on_index'] : false,
+		'S_MCHAT_ENABLE'		=> (isset($config['mchat_enable']) && $auth->acl_get('u_mchat_view')) ? true : false,
+// END mChat Mod]]></action>
+			</edit>			
+		</open>
+		<open src="root/styles/subsilver2/template/index_body.html">
+			<edit>
+				<find><![CDATA[<!-- IF U_MCHAT and S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<!-- IF U_MCHAT and not S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and not S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->]]></action>
+			</edit>			
+		</open>
+		<open src="root/styles/subsilver2/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<script type="text/javascript" src="{ROOT_PATH}jquery_core_mini.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}jquery_cookie_mini.js"></script>
+<link rel="stylesheet" href="{ROOT_PATH}mchat/mchat_subsilver2.css" type="text/css" />
+]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF S_MCHAT_ENABLE -->
+<script type="text/javascript" src="{ROOT_PATH}mchat/jquery_core_mini.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}mchat/jquery_cookie_mini.js"></script>
+<link rel="stylesheet" href="{ROOT_PATH}mchat/mchat_subsilver2.css" type="text/css" />
+<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="root/styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<script type="text/javascript" src="{ROOT_PATH}jquery_core_mini.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}jquery_cookie_mini.js"></script>
+<link rel="stylesheet" href="{ROOT_PATH}mchat/mchat_prosilver.css" type="text/css" />
+]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF S_MCHAT_ENABLE -->
+<script type="text/javascript" src="{ROOT_PATH}mchat/jquery_core_mini.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}mchat/jquery_cookie_mini.js"></script>
+<link rel="stylesheet" href="{ROOT_PATH}mchat/mchat_prosilver.css" type="text/css" />
+<!-- ENDIF -->]]></action>
+			</edit>
+		</open>		
+		<open src="root/styles/prosilver/template/index_body.html">
+			<edit>
+				<find><![CDATA[<!-- IF U_MCHAT and S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<!-- IF U_MCHAT and not S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and not S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->]]></action>
+			</edit>			
+		</open>
+<diy-instructions lang="en"><![CDATA[1. Browse to the mchat_install.php file, this will update your database.
+2. Delete the mchat_install.php file from the root of your forum.
+3. Upload files to your forum.
+4. delete the jquery_cookie_mini.js and jquery_core_mini.js from the root of your forum.
+5. Purge the cache in the ACP      
+6. Enjoy the Mod!!
+]]></diy-instructions>
+</action-group>
+</mod>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="../../modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">MSSTI RSS Feed 2.0 with ACP</title>
+
+		<description lang="en">This file provides instructions for upgrading the MOD from version 1.0.5 to 1.0.6.
+		See the main install file for any additional information about the MOD.</description>
+
+		<author-notes lang="en"><![CDATA[]]></author-notes>
+	
+		<author-group>
+			<author>
+				<realname>Gabriel</realname>
+				<username>leviatan21</username>
+				<email>info@mssti.com</email>
+				<homepage>http://www.mssti.com/phpbb3/</homepage>
+			</author>
+		</author-group>
+		
+		<mod-version>1.0.6</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>100</time>
+			<target-version>3.0.4</target-version>
+		</installation>
+
+		<history>
+			<entry>
+			<date>2009-01-10</date>
+				<rev-version>1.0.6</rev-version>
+				<changelog lang="en">
+					<change> [Fix] Date/time in RFC2822 format</change>
+					<change> [Fix] disabled sid in links, to avoid duplicated items</change>
+					<change> [Feature] Enhaced RSS ACP, now is more customizable</change>
+					<change> [Feature] Added image resize</change>
+				</changelog>
+			</entry>
+
+			<entry>
+				<date>2009-01-03</date>
+				<rev-version>1.0.5</rev-version>
+				<changelog lang="en">
+					<change> [Fix] Date/time in RFC2822 format</change>
+					<change> [Fix] parse and display post content</change>
+					<change> [Fix] author links ( in every posible place )</change>
+					<change> [Fix] main sql query</change>
+					<change> [Fix] Skip Paswored forums</change>
+				</changelog>
+			</entry>
+
+			<entry>
+				<date>2008-08-25</date>
+				<rev-version>1.0.4</rev-version>
+				<changelog lang="en">
+					<change> [Fix] severals issues reported by MOD Team</change>
+				</changelog>
+			</entry>
+
+			<entry>
+				<date>2008-07-23</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change> [Fix] pagination problems</change>
+					<change> [Feature] Display forum stats only in the first page</change>
+				</changelog>
+			</entry>
+
+			<entry>
+				<date>2008-01-30</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change> [Fix] some IE problems</change>
+					<change> [Fix] display post content if is allowed</change>
+				</changelog>
+			</entry>
+
+			<entry>
+				<date>2008-01-10</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>First release to phpbb 3.0.1 Gold</change>
+				</changelog>
+			</entry>
+		</history>
+	
+	</header>
+
+	<action-group>
+		
+		<copy>
+			<file from="root/rss.php" to="rss.php" />
+			<file from="root/includes/acp/acp_rss.php" to="includes/acp/acp_rss.php" />
+			<file from="root/includes/acp/info/acp_rss.php" to="includes/acp/info/acp_rss.php" />
+			<file from="root/language/en/mods/rss.php" to="language/en/mods/rss.php" />
+			<file from="root/styles/rss_template.xml" to="styles/rss_template.xml" />
+		</copy>
+		
+		<diy-instructions lang="en"><![CDATA[IMPORTANT !
+
+Log on to Administration Control Panel
+
+#####################################################################
+A) Purge the cache :
+
+	A.1) Navigate to "GENERAL" Tab.
+	A.2) Next to "Purge the cache" click on "Run now".
+	A.3) in the next screen, click on "Yes".
+
+#####################################################################
+B) RSS Settings
+
+	B.1) Navigate to "SYSTEM" Tab. ( This is the default location for the feed module )
+	B.2) Al left menu click on "RSS".
+	B.3) Adjust the feed value that best suits your needs.
+	B.4) Submit, even if you don't change anything, this will update your database to fit the new version.
+
+#####################################################################
+C) Enjoy it !.
+
+		]]></diy-instructions>
+	</action-group>
+</mod>

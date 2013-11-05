@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Google Search - SubSilver2 template]]></title>
+		<description lang="en"><![CDATA[Google Search template installation.]]></description>
+		<author-group>
+			<author>
+				<realname><![CDATA[Shapoval Andrey Vladimirovich]]></realname>
+				<username><![CDATA[AllCity]]></username>
+				<homepage><![CDATA[http://allcity.net.ru/]]></homepage>
+			</author>
+		</author-group>
+		<mod-version>1.0.1</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>120</time>
+			<target-version>3.0.8</target-version>
+		</installation>
+		<link-group>
+			<link type="parent" href="install.xml" lang="en">Main Install File</link>
+		</link-group>
+	</header>
+	<action-group>
+		<open src="styles/subsilver2/template/overall_header.html">
+			<edit>
+				<find><![CDATA[			<td width="100%" align="center"><h1>{SITENAME}</h1><span class="gen">{SITE_DESCRIPTION}</span></td>]]></find>
+				<action type="replace-with"><![CDATA[			<td width="<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->75%<!-- ELSE -->100%<!-- ENDIF -->" align="center"><h1>{SITENAME}</h1><span class="gen">{SITE_DESCRIPTION}</span></td>
+			<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
+			<td width="25%" align="right">
+				<form action="{U_SEARCH}" method="post">
+				<input name="keywords" type="text" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search" value="<!-- IF SEARCH_WORDS-->{SEARCH_WORDS}<!-- ELSE -->{L_SEARCH_MINI}<!-- ENDIF -->" onclick="if(this.value=='{LA_SEARCH_MINI}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_MINI}';" /> 
+				<input value="{L_SEARCH}" type="submit" /><br />
+				<label for="gSearch">{L_SEARCH_GOOGLE} <input class="radio" style="vertical-align: middle;" name="gsearch" type="checkbox" id="gSearch" /></label><br />
+				<a href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}">{L_SEARCH_ADV}</a> {S_SEARCH_HIDDEN_FIELDS}
+				</form>
+			</td>
+			<!-- ENDIF -->
+		</tr>
+]]></action>
+			</edit>
+		</open>
+		<diy-instructions lang="en"><![CDATA[Go to Administration Control Panel (ACP) then purge the cache.]]></diy-instructions>
+	</action-group>
+</mod>

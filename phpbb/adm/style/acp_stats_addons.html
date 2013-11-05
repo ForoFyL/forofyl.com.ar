@@ -1,0 +1,63 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
+
+<h1>{L_TITLE}</h1>
+
+<table cellspacing="1">
+	<col class="row1" /><col class="row2" />
+<thead>
+<tr>
+	<th>{L_STATS_ADDONS}</th>
+	<th>{L_ACTIONS}</th>
+	<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td class="row3" colspan="3"><strong>{L_INSTALLED_ADDONS}</strong></td>
+</tr>
+<!-- BEGIN addons_row -->
+<tr>
+	<td><strong>{addons_row.NAME}</strong></td>
+	<td style="text-align: center;">{addons_row.S_ACTIONS}</td>
+	<td style="vertical-align: top; width: 100px; text-align: right; white-space: nowrap;">
+		<!-- IF addons_row.S_FIRST_ROW && not addons_row.S_LAST_ROW -->
+			{ICON_MOVE_UP_DISABLED}
+			<a href="{addons_row.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
+		<!-- ELSEIF not addons_row.S_FIRST_ROW && not addons_row.S_LAST_ROW -->
+			<a href="{addons_row.U_MOVE_UP}">{ICON_MOVE_UP}</a>
+			<a href="{addons_row.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
+		<!-- ELSEIF addons_row.S_LAST_ROW && not addons_row.S_FIRST_ROW -->
+			<a href="{addons_row.U_MOVE_UP}">{ICON_MOVE_UP}</a>
+			{ICON_MOVE_DOWN_DISABLED}
+		<!-- ELSE -->
+			{ICON_MOVE_UP_DISABLED}
+			{ICON_MOVE_DOWN_DISABLED}
+		<!-- ENDIF -->
+		<!-- IF addons_row.S_EDIT --><a href="{addons_row.U_EDIT}">{ICON_EDIT}</a><!-- ELSE -->&nbsp;&nbsp;&nbsp;&nbsp;<!-- ENDIF -->
+	</td>
+</tr>
+<!-- BEGINELSE -->
+<tr>
+	<td><strong>{L_NO_ADDONS}</strong></td>
+	<td style="text-align: center;">&nbsp;</td>
+</tr>
+<!-- END addons_row -->
+<!-- IF S_UNINSTALLED_ADDONS -->
+<tr>
+	<td class="row3" colspan="2"><strong>{L_UNINSTALLED_ADDONS}</strong></td>
+</tr>
+<!-- ENDIF -->
+<!-- BEGIN addons_urow -->
+<tr>
+	<td><strong>{addons_urow.NAME}</strong></td>
+	<td style="text-align: center;">{addons_urow.U_INSTALL}</td>
+</tr>
+<!-- END addons_urow -->
+</tbody>
+</table>
+
+<!-- INCLUDE overall_footer.html -->

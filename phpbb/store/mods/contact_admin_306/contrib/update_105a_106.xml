@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+			<title lang="en">Contact Board Admin Update 1.0.5a - 1.0.6</title>
+				<description lang="en">Upgrades previous 1.0.5a contact board admin mod to 1.0.6</description>
+		<author-group>
+			<author>
+				<realname>Rich McGirr</realname>
+				<username>RMcGirr83</username>
+				<homepage>http://rmcgirr83.org</homepage>
+			</author>		
+		</author-group>
+		<mod-version>1.0.6</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.6</target-version>
+		</installation>
+		<link-group>
+			<link type="parent" href="../install.xml" lang="en">Main Install File</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/*.*" to="*.*" />
+		</copy>
+		<open src="includes/acp/acp_board.php">
+			<edit>
+				<find><![CDATA[//-- mod : Contact board administration ------------------------------------------------------------
+//-- add
+			case 'contact_admin':
+				include($phpbb_root_path . 'includes/constants_contact.' . $phpEx);
+				$user->add_lang('mods/contact');
+				$display_vars = array(
+					'title'	=> 'ACP_CONTACT_ADMIN_SETTINGS',
+					'vars'	=> array(
+						'legend1'					=> 'CONTACT_GENERAL_SETTINGS',
+						'contact_enable'			=> array('lang' => 'CONTACT_ENABLE',			'validate' => 'bool',			'type' => 'radio:yes_no', 'explain' => true),
+						'contact_confirm'			=> array('lang' => 'CONTACT_ACP_CONFIRM',		'validate' => 'bool',			'type' => 'radio:yes_no', 'explain' => true),
+						'contact_confirm_guests'	=> array('lang' => 'CONTACT_CONFIRM_GUESTS',	'validate' => 'bool',			'type' => 'radio:yes_no', 'explain' => true),
+						'contact_bbcodes_allowed'	=> array('lang' => 'CONTACT_BBCODES',			'validate' => 'bool',			'type' => 'radio:yes_no', 'explain' => true),
+						'contact_smilies_allowed'	=> array('lang' => 'CONTACT_SMILIES',			'validate' => 'bool',			'type' => 'radio:yes_no', 'explain' => true),						
+						'contact_max_attempts'		=> array('lang' => 'CONTACT_MAX_ATTEMPTS',		'validate' => 'int',			'type' => 'text:3:3', 'explain' => true),
+						'contact_method'			=> array('lang' => 'CONTACT_METHOD',			'validate' => 'int',			'type' => 'custom', 'method' => 'contact_method_select', 'explain' => true),
+						'contact_reasons'			=> array('lang' => 'CONTACT_REASONS',			'validate' => 'string',			'type' => 'textarea:5:40', 'explain' => true),
+						'contact_founder_only'		=> array('lang' => 'CONTACT_FOUNDER',			'validate' => 'bool',			'type' => 'radio:yes_no', 'explain' => true),
+
+						'legend2'					=> 'CONTACT_BOT_SETTINGS',
+						'contact_bot_user'			=> array('lang' => 'CONTACT_BOT_USER',			'validate' => 'int',			'type' => 'custom', 'method' => 'contact_bot_user_select', 'explain' => true),
+						'contact_bot_poster'		=> array('lang' => 'CONTACT_BOT_POSTER',		'validate' => 'int',			'type' => 'custom', 'method' => 'contact_post_select', 'explain' => true),
+						'contact_bot_forum'			=> array('lang' => 'CONTACT_BOT_FORUM',			'validate' => 'int',			'type' => 'custom', 'method' => 'contact_bot_forum_select', 'explain' => true),
+					),
+				);
+			break;
+//-- fin mod : Contact board administration --------------------------------------------------------]]></find>
+				<action type="replace-with"><![CDATA[]]></action>
+			</edit>
+		<edit>
+				<find><![CDATA[//-- mod : Contact board administration ------------------------------------------------------------
+//-- add
+	/**
+	 * Create the selection for the contact method
+	 */
+	function contact_method_select($value, $key)
+	{
+		$radio_ary = array(
+			CONTACT_METHOD_EMAIL	=> 'CONTACT_METHOD_EMAIL',
+			CONTACT_METHOD_POST		=> 'CONTACT_METHOD_POST',
+			CONTACT_METHOD_PM		=> 'CONTACT_METHOD_PM',
+		);
+
+		return h_radio('config[contact_method]', $radio_ary, $value, $key);
+	}
+	/**
+	 * Create the selection for the post method
+	 */
+	function contact_post_select($value, $key)
+	{
+		$radio_ary = array(
+			CONTACT_POST_NEITHER	=> 'CONTACT_POST_NEITHER',
+			CONTACT_POST_GUEST		=> 'CONTACT_POST_GUEST',
+			CONTACT_POST_ALL		=> 'CONTACT_POST_ALL',
+		);
+
+		return h_radio('config[contact_bot_poster]', $radio_ary, $value, $key);
+	}
+	
+	/**
+	 * Create the selection for the bot forum
+	 */
+	function contact_bot_forum_select($value, $key)
+	{
+		return '<select id="' . $key . '" name="config[contact_bot_forum]">' . make_forum_select($value, false, true, true) . '</select>';
+	}
+	
+	/**
+	 * Create the selection for the posting/pm auth bot
+	 */
+	function contact_bot_user_select($value, $key)
+	{
+		global $phpbb_root_path, $phpEx;
+		if(!function_exists('make_user_select'))
+		{
+			include($phpbb_root_path . 'includes/functions_contact.' . $phpEx);
+		}
+		return '<select id="' . $key . '" name="config[contact_bot_user]">' . make_user_select($value) . '</select>';
+	}
+//-- fin mod : Contact board administration --------------------------------------------------------]]></find>
+				<action type="replace-with"><![CDATA[]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/info/acp_board.php">
+			<edit>
+				<find><![CDATA[//-- mod : Contact board administration ------------------------------------------------------------
+//-- add
+				'contact_admin'	=> array('title' => 'ACP_CONTACT_ADMIN_SETTINGS', 'auth' => 'acl_a_board', 'cat' => array('ACP_BOARD_CONFIGURATION')),
+//-- fin mod : Contact board administration --------------------------------------------------------]]></find>
+				<action type="replace-with"><![CDATA[]]></action>
+			</edit>
+		</open>
+		<open src="language/en/acp/common.php">
+			<edit>
+				<find><![CDATA[//-- mod : Contact board administration ------------------------------------------------------------
+//-- add
+$lang = array_merge($lang, array(
+	'ACP_CONTACT_ADMIN_SETTINGS'	=> 'Contact board administration',
+	'LOG_CONFIG_CONTACT_ADMIN'		=> '<strong>Altered contact page settings</strong>',
+	'LOG_CONTACT_BOT_INVALID'		=> '<strong>The contact bot has an invalid user id selected:</strong><br />»%1$s',
+	'LOG_CONTACT_FORUM_INVALID'		=> '<strong>The contact forum has an invalid forum selected:</strong><br />»%1$s',
+	'LOG_CONTACT_NONE'				=> '<strong>No Administrators are allowing users to contact them via %1$s</strong>',
+));
+//-- fin mod : Contact board administration --------------------------------------------------------]]></find>
+				<action type="replace-with"><![CDATA[//-- mod : Contact board administration ------------------------------------------------------------
+//-- add
+$lang = array_merge($lang, array(
+	'ACP_CONTACT_ADMIN_SETTINGS'	=> 'Contact Board Administration',
+	'LOG_CONFIG_CONTACT_ADMIN'		=> '<strong>Altered Contact Board Administration mod page settings</strong>',
+	'LOG_CONTACT_BOT_INVALID'		=> '<strong>The Contact Board Administration mod bot has an invalid user id selected:</strong><br />»%1$s',
+	'LOG_CONTACT_FORUM_INVALID'		=> '<strong>The Contact Board Administration mod forum has an invalid forum selected:</strong><br />»%1$s',
+	'LOG_CONTACT_NONE'				=> '<strong>No Administrators are allowing users to contact them via %1$s in the Contact Board Administration mod</strong>',
+));
+//-- fin mod : Contact board administration --------------------------------------------------------]]></action>
+			</edit>
+		</open>		
+		<diy-instructions lang="en"><![CDATA[1. Browse to the file contact_install.php in the root of your forum to update the database.
+2. Delete the contact_install.php file from the root of your forum.
+3. Make all edits to all files and upload them to your forum.    
+4. Refresh the styles in the ACP, set the settings for the Contact Board Admin Mod under the ".MODs" tab.  
+5. Enjoy the Mod!!
+]]></diy-instructions>
+</action-group>
+</mod>

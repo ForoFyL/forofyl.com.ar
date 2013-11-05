@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+<header>
+	<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+	<title lang="en">Double Account Preventer</title>
+	<description lang="en">Prevents users from creating multiple accounts by using a cookie and checking their IP address.</description>
+	<author-notes lang="en">Thanks to mtrs for letting me use the code from his Duplicate IP MOD. Also thanks to ameeck for letting me use the code from his Notify Admin On Registration MOD.</author-notes>
+	<author-group>
+		<author>
+			<realname>Kevin Murek</realname>
+			<email></email>
+			<username>kmklr72</username>
+			<homepage>http://www.demoninstall.co.cc</homepage>
+	    </author>
+	</author-group>
+	<mod-version>1.0.0 B3</mod-version>
+	<installation>
+		<level>easy</level>
+		<time>300</time>
+		<target-version>3.0.4</target-version>
+	</installation>
+</header>
+<action-group>
+
+	<copy>
+		<file from="root/adm/mods/dap_version.php" to="adm/mods/dap_version.php" />
+		<file from="root/includes/functions_dap.php" to="includes/functions_dap.php" />
+		<file from="root/includes/acp/info/acp_dap.php" to="includes/acp/info/acp_dap.php" />
+		<file from="root/includes/acp/acp_dap.php" to="includes/acp/acp_dap.php" />
+		<file from="root/language/en/email/admin_notify_duplicates.txt" to="language/en/email/admin_notify_duplicates.txt" />
+		<file from="root/language/en/mods/dap_mod.php" to="language/en/mods/dap_mod.php" />
+		<file from="root/language/en/mods/info_acp_dap_mod.php" to="language/en/mods/info_acp_dap_mod.php" />
+		<file from="root/dap_install.php" to="dap_install.php" />
+	</copy>
+
+	<open src="includes/ucp/ucp_register.php">
+		<edit>
+			<find><![CDATA[		// Begin DAP MOD
+		// We check for the cookie before registration starts.
+		if ($config['require_cookie_check'] == 1)
+		{
+			if (isset($_COOKIE['DAPCheck']))
+			{
+				trigger_error('DOUBLE_ACCOUNT_EXPLAIN');
+			}
+		}
+		// End DAP MOD]]></find>
+			<action type="replace-with"><![CDATA[		/*// Begin DAP MOD
+		// We check for the cookie before registration starts.
+		if ($config['require_cookie_check'] == 1)
+		{
+			if (isset($_COOKIE['DAPCheck']))
+			{
+				trigger_error('DOUBLE_ACCOUNT_EXPLAIN');
+			}
+		}
+		// End DAP MOD*/]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[				// Begin DAP MOD
+				// Taken from Duplicate IP mod by mtrs
+				if ($config['require_ip_check'] > 1)
+				{
+					$dupe_ip = duplicate_ip_check($user->ip);
+					$user_row = array_merge($user_row, $dupe_ip);
+				}
+				// End DAP MOD]]></find>
+			<action type="replace-with"><![CDATA[				// Begin DAP MOD
+				$dap_config = get_dap_config();
+
+				if ($dap_config['require_cookie_check'] == 1)
+				{
+					if (isset($_COOKIE['DAPCheck']))
+					{
+						$double_account = array(
+							'user_double'		=> true,
+						);
+					}
+					$user_row = array_merge($user_row, $double_account);
+				}
+
+				// Taken from Duplicate IP mod by mtrs
+				if ($dap_config['require_ip_check'] > 1)
+				{
+					$dupe_ip = duplicate_ip_check($user->ip);
+
+					if (isset($dupe_ip))
+					{
+						$double_account = array(
+							'user_double'		=> true,
+						);
+					}
+					$user_row = array_merge($user_row, $double_account);
+				}
+				// End DAP MOD]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[					// Begin DAP MOD
+					if (empty($data['user_dupe_ip']) && $config['require_ip_check'] > 1)
+					{
+						notify_admin_dupe_ips($data['username'],$data['email'],$user_row['user_regdate']);
+					}
+					// End DAP MOD]]></find>
+			<action type="replace-with"><![CDATA[					// Begin DAP MOD
+					if ((empty($data['user_dupe_ip']) || empty($data['user_double'])) && ($dap_config['require_ip_check'] > 1 || $dap_config['require_cookie_check'] == 1))
+					{
+						if ($dap_config['enable_email_notification'] == 1)
+						{
+							notify_admin_dupe_ips($data['username'],$data['email'],$user_row['user_regdate']);
+						}
+
+						if ($dap_config['enable_pm_notification'] == 1)
+						{
+							send_dap_pm($data['username'],$data['email'],$user_row['user_regdate']);
+						}
+
+						if ($dap_config['enable_post_notification'] == 1)
+						{
+							submit_dap_post($data['username'],$data['email'],$user_row['user_regdate']);
+						}
+					}
+					// End DAP MOD]]></action>
+		</edit>
+	</open>
+
+	<open src="includes/acp/acp_users.php">
+		<edit>
+			<find><![CDATA[				// Begin DAP MOD
+				if ($config['require_ip_check'])
+				{				
+					dupe_usernames($user_row['user_dupe_ip']);					
+				}
+				// End DAP MOD]]></find>
+			<action type="replace-with"><![CDATA[				// Begin DAP MOD
+				$dap_config = get_dap_config();
+
+				if ($dap_config['require_ip_check'])
+				{				
+					dupe_usernames($user_row['user_dupe_ip']);
+				}
+				// End DAP MOD]]></action>
+		</edit>
+	</open>
+
+	<open src="includes/constants.php">
+		<edit>
+			<find><![CDATA[// Additional tables]]></find>
+			<action type="after-add"><![CDATA[// Begin DAP MOD
+define('DAP_CONFIG_TABLE',			$table_prefix . 'dap_config');
+// End DAP MOD]]></action>
+		</edit>
+	</open>
+
+	<open src="includes/functions.php">
+		<edit>
+			<find><![CDATA[		// Begin DAP MOD
+		if ($result['status'] == LOGIN_SUCCESS && $config['require_cookie_check'] == 1)
+		{
+			if (!isset($_COOKIE['DAPCheck']))
+			{
+				create_cookie();
+			}
+		}
+		// End DAP MOD]]></find>
+			<action type="replace-with"><![CDATA[		// Begin DAP MOD
+		$dap_config = get_dap_config();
+		
+		if ($result['status'] == LOGIN_SUCCESS && $dap_config['require_cookie_check'] == 1)
+		{
+			if (!isset($_COOKIE['DAPCheck']))
+			{
+				create_cookie();
+			}
+		}
+		// End DAP MOD]]></action>
+		</edit>
+	</open>
+
+	<open src="memberlist.php">
+		<edit>
+			<find><![CDATA[// Begin DAP MOD
+//$user->setup(array('memberlist', 'groups'));
+$user->setup(array('memberlist', 'groups', 'mods/dap_mod'));
+// End DAP MOD]]></find>
+			<action type="replace-with"><![CDATA[$user->setup(array('memberlist', 'groups'));
+
+// Begin DAP MOD
+$user->add_lang('mods/dap_mod');
+// End DAP MOD]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[	// Begin DAP MOD
+	if (isset($data['user_dupe_ip']) && $auth->acl_gets('a_') && $config['require_ip_check'])	
+	{
+		dupe_usernames($data['user_dupe_ip']);
+	}
+	// End DAP MOD]]></find>
+			<action type="replace-with"><![CDATA[	// Begin DAP MOD
+	$dap_config = get_dap_config();
+	
+	if (isset($data['user_dupe_ip']) && $auth->acl_gets('a_') && $dap_config['require_ip_check'])	
+	{
+		dupe_usernames($data['user_dupe_ip']);
+	}
+	// End DAP MOD]]></action>
+		</edit>
+	</open>
+
+	<open src="ucp.php">
+		<edit>
+			<find><![CDATA[// Begin DAP MOD
+//$user->setup('ucp');
+$user->setup(array('ucp', 'mods/dap_mod'));
+// End DAP MOD]]></find>
+			<action type="replace-with"><![CDATA[$user->setup('ucp');
+
+// Begin DAP MOD
+$user->add_lang('mods/dap_mod');
+// End DAP MOD]]></action>
+		</edit>
+	</open>
+
+	<diy-instructions lang="en"><![CDATA[Run dap_install.php?mode=upgrade in your browser.
+
+Add ACP module:
+System -> Administration Control Panel -> .MODS
+Select Double Account Preventer PM Notification from the dropdown menu and click Add Module
+Select Double Account Preventer Post Notification from the dropdown menu and click Add Module
+
+Don't forget to enable the new modules]]></diy-instructions>
+
+</action-group>
+</mod>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+<header>
+	<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+	<title lang="en">Anti-Bot Mod Addon</title>
+	<description lang="en">Contrib to add on the Anti-Bot Mod by CoC</description>
+	<author-group>
+		<author>
+			<username>RMcGirr83</username>
+			<realname>Rich McGirr</realname>
+			<homepage>http://www.rmcgirr83.org/</homepage>
+			<email><![CDATA[rmcgirr83@rmcgirr83.org]]></email>
+		</author>
+	</author-group>
+	<mod-version>1.0.2a</mod-version>
+	<installation>
+		<level>easy</level>
+		<time>300</time>
+		<target-version>3.0.6</target-version>
+	</installation>
+		<history>
+				<entry>
+						<date>2009-05-08</date>
+						<rev-version>0.1.0
+						</rev-version>
+						<changelog lang="en">
+							<change>Initial Release</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-05-18</date>
+						<rev-version>1.0.0
+						</rev-version>
+						<changelog lang="en">
+							<change>Code in contact.php corrected, changes to template file updated.</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-05-21</date>
+						<rev-version>1.0.1
+						</rev-version>
+						<changelog lang="en">
+							<change>Code in contact.php corrected.  Anti Bot question only needs to be answered correctly once.</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-12-07</date>
+						<rev-version>1.0.2
+						</rev-version>
+						<changelog lang="en">
+							<change>Final code change for 3.0.6 forum</change>
+						</changelog>
+				</entry>
+				<entry>
+						<date>2009-12-07</date>
+						<rev-version>1.0.2a
+						</rev-version>
+						<changelog lang="en">
+							<change>Minor Fix wrong variable</change>
+						</changelog>
+				</entry>				
+		</history>	
+		<link-group>
+			<link type="parent" href="../install.xml" lang="en">Main install file</link>
+		</link-group>
+			</header>
+			<action-group>
+		<open src="contact.php">	
+			<edit>
+				<find><![CDATA[// only get attachments/use the message parser]]></find>
+		        <action type="before-add"> <![CDATA[// BEGIN Anti Bot Mod by CoC addon
+$solved_abq = false;
+// END Anti Bot Mod by CoC addon]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[	// Replace "error" strings with their real, localised form
+	$error = preg_replace('#^([A-Z_]+)$#e', "(!empty(\$user->lang['\\1'])) ? \$user->lang['\\1'] : '\\1'", $error);]]></find>
+				<action type="before-add"><![CDATA[	// BEGIN Anti Bot Mod by CoC addon
+	if (isset($config['enable_abquestion']) && ($config['enable_abquestion'] && $config_contact['contact_confirm']))
+	{	
+		$ab_question = strtolower(request_var('ab_question', '', true));
+		
+		if ($ab_question == '')
+		{
+			$error[] = $user->lang['AB_NO_ANSWER'];
+		}
+		elseif ($ab_question != strtolower($config['abanswer']) && $ab_question != strtolower($config['abanswer2']))
+		{
+			$error[] = $user->lang['AB_QUESTION_ERROR'];
+		}
+		else
+		{
+			$solved_abq = true;
+		}			
+	}
+	// END Anti Bot Mod by CoC addon]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[$s_hidden_fields = array();]]></find>
+				<action type="before-add"><![CDATA[// BEGIN Anti Bot Mod by CoC addon
+if (($config['enable_abquestion'] && $config_contact['contact_confirm']) && $solved_abq === false)
+{
+	$ab_question = '';
+	$template->assign_vars(array(
+		'S_AB_QUESTION'				=> true,
+		'L_AB_QUESTION'				=> $config['abquestion'],
+		'AB_QUESTION'				=> $ab_question,
+	));	
+}
+// END Anti Bot Mod by CoC addon
+]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[$s_hidden_fields = build_hidden_fields($s_hidden_fields);
+]]></find>
+				<action type="before-add"><![CDATA[// BEGIN Anti Bot Mod by CoC addon
+// Add the ab question to the hidden fields, else an error is displayed on next submit/preview
+if ($solved_abq !== false && $config['enable_abquestion'])
+{
+	$s_hidden_fields = array_merge($s_hidden_fields, array('ab_question' => strtolower(request_var('ab_question', '', true))));
+}
+// END Anti Bot Mod by CoC addon]]></action>
+			</edit>			
+		</open>
+		<open src="styles/prosilver/template/contact_body.html">
+			<edit>
+				<find><![CDATA[		<!-- IF CAPTCHA_TEMPLATE -->]]></find>
+				<action type="before-add"><![CDATA[		<!-- IF S_AB_QUESTION -->
+		<dl>
+			<dt><label for="AB_Question">{L_AB_QUESTION}:</label><br /><span>{L_AB_QUESTION_EXPLAIN}</span></dt>
+			<dd><input type="text" tabindex="7" name="ab_question" id="ab_question" size="25" maxlength="255" value="{AB_QUESTION}" class="inputbox autowidth" title="{L_AB_QUESTION}" /></dd>
+		</dl>
+		<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/contact_body.html">
+			<edit>
+				<find><![CDATA[		<!-- IF CAPTCHA_TEMPLATE -->]]></find>
+				<action type="before-add"><![CDATA[	<!-- IF S_AB_QUESTION -->
+	<tr>
+		<td class="row1" width="25%"><label for="AB_Question"><b class="genmed">{L_AB_QUESTION}:</b></label><br /><span class="gensmall">{L_AB_QUESTION_EXPLAIN}</span></td>
+		<td class="row2" valign="middle"><input class="post" type="text" name="ab_question" id="ab_question" tabindex="7" style="width: 300px" maxlength="100" value="{AB_QUESTION}" /></td>
+	</tr>
+	<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+      <diy-instructions lang="en"><![CDATA[Purge the cache and regenerate the template files!!]]></diy-instructions>
+			</action-group>
+		</mod>

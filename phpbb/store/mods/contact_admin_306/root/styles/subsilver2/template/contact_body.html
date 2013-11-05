@@ -1,0 +1,162 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- IF S_DISPLAY_PREVIEW -->
+<table class="tablebg" width="100%" cellspacing="1">
+<tr> 
+	<th>{L_PREVIEW}</th>
+</tr>
+<tr> 
+	<td class="row1"><span class="postdetails">{L_POST_SUBJECT}: {PREVIEW_SUBJECT}</span></td>
+</tr>
+
+<tr> 
+	<td class="row1">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><div class="postbody">{PREVIEW_MESSAGE}</div>
+			<!-- IF .attachment -->
+				<br clear="all" /><br />
+
+				<table class="tablebg" width="100%" cellspacing="1">
+				<tr>
+					<td class="row3"><b class="genmed">{L_ATTACHMENTS}: </b></td>
+				</tr>
+				<!-- BEGIN attachment -->
+					<tr>
+						<td class="row2">{attachment.DISPLAY_ATTACHMENT}</td>
+					</tr>
+				<!-- END attachment -->
+				</table>
+			<!-- ENDIF -->			
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td class="spacer"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+</tr>
+</table>
+
+<br clear="all" />
+<!-- ENDIF -->
+<div id="contact">
+
+	<form method="post" action="{S_CONTACT_ACTION}" id="postform"{S_FORM_ENCTYPE}>
+	
+	<table class="tablebg" width="100%" cellspacing="1">
+		<tr>
+			<th colspan="2">{L_CONTACT_BOARD_ADMIN}</th>
+		</tr>
+		<!-- IF S_ERROR -->
+		<tr>
+			<td class="row2" colspan="2" align="center"><span class="genmed" style="color:red">{S_ERROR}</span></td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF not S_USER_LOGGED_IN -->
+		<tr>
+			<td class="row1" width="25%"><b class="genmed">{L_CONTACT_YOUR_NAME}: </b><br /><span class="gensmall">{L_CONTACT_YOUR_NAME_EXPLAIN}</span></td>
+			<td class="row2" valign="middle"><input type="text" style="width: 300px" class="post" name="username" id="username" value="{USERNAME}" size="30" tabindex="1" /></td>
+		</tr>
+		<tr>
+			<td class="row1"><b class="genmed">{L_CONTACT_YOUR_EMAIL}: </b><br /><span class="gensmall">{L_CONTACT_YOUR_EMAIL_EXPLAIN}</span></td>
+			<td class="row2" valign="middle"><input type="text" style="width: 300px" class="post" name="email" id="email" value="{EMAIL}" size="30" tabindex="2" /></td>
+		</tr>
+		<tr>
+			<td class="row1"><b class="genmed">{L_CONTACT_YOUR_EMAIL_CONFIRM}: </b><br /><span class="gensmall">{L_CONTACT_YOUR_EMAIL_CONFIRM_EXPLAIN}</span></td>
+			<td class="row2" valign="middle"><input type="text" style="width: 300px" class="post" name="email_confirm" id="email_confirm" value="{EMAIL_CONFIRM}" size="30" tabindex="3" /></td>
+		</tr>	
+		<!-- ENDIF -->
+		<!-- IF CONTACT_REASONS -->
+		<tr>
+			<td class="row1" width="25%"><b class="genmed">{L_CONTACT_REASON}: </b></td>
+			<td class="row2" valign="middle"><select name="contact_reason" id="contact_reason" tabindex="4">{CONTACT_REASONS}</select></td>
+		</tr>
+		<!-- ENDIF -->
+		<tr>
+			<td class="row1" width="25%"><b class="genmed">{L_SUBJECT}: </b></td>
+			<td class="row2" valign="middle"><input type="text" style="width: 300px" class="post" name="contact_subject" id="contact_subject" value="{CONTACT_SUBJECT}" size="30" maxlength="60" tabindex="5" /></td>
+		</tr>
+		<tr>
+			<td class="row1" valign="top"><b class="genmed">{L_MESSAGE_BODY}: </b><span class="gensmall">{L_CONTACT_MSG_BODY_EXPLAIN}</span><br /><br /><br />
+			<!-- IF S_SMILIES_ALLOWED -->
+				<table width="100%" cellspacing="5" cellpadding="0" border="0" align="center">
+					<tr>
+						<td class="gensmall" align="center"><b>{L_SMILIES}</b></td>
+					</tr>
+					<tr>
+						<td align="center">
+							<!-- BEGIN smiley -->
+								<a href="#" onclick="insert_text('{smiley.A_SMILEY_CODE}', true); return false;" style="line-height: 20px;"><img src="{smiley.SMILEY_IMG}" width="{smiley.SMILEY_WIDTH}" height="{smiley.SMILEY_HEIGHT}" alt="{smiley.SMILEY_CODE}" title="{smiley.SMILEY_DESC}" hspace="2" vspace="2" /></a>
+							<!-- END smiley -->
+						</td>
+					</tr>
+
+					<!-- IF S_SHOW_SMILEY_LINK -->
+					<tr>
+						<td align="center"><a class="nav" href="{U_MORE_SMILIES}" onclick="popup(this.href, 300, 350, '_phpbbsmilies'); return false;">{L_MORE_SMILIES}</a></td>
+					</tr>
+					<!-- ENDIF -->
+				</table><hr />
+			<!-- ENDIF -->
+				<table cellspacing="2" cellpadding="0" border="0">
+					<tr>
+						<td class="gensmall">{BBCODE_STATUS}</td>
+					</tr>
+					<tr>
+						<td class="gensmall">{URL_STATUS}</td>
+					</tr>
+					<tr>
+						<td class="gensmall">{SMILIES_STATUS}</td>
+					</tr>
+				</table>			
+			</td>
+			<td class="row2" valign="top">
+			<script type="text/javascript">
+			// <![CDATA[
+				var form_name = 'postform';
+				var text_name = 'message';
+			// ]]>
+			</script>
+				<table width="100%" cellspacing="0" cellpadding="0" border="0">
+				<!-- INCLUDE posting_buttons.html -->
+					<tr>
+						<td valign="top" style="width: 100%;"><textarea name="message" id="message" rows="15" cols="76" tabindex="6" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfocus="initInsertions();" style="width: 98%;">{CONTACT_MESSAGE}</textarea></td>
+						<!-- IF S_BBCODE_ALLOWED -->
+						<td width="80" align="center" valign="top">
+							<script type="text/javascript">
+							// <![CDATA[
+								colorPalette('v', 7, 6)
+							// ]]>
+							</script>
+						</td>
+						<!-- ENDIF -->
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<!-- IF CAPTCHA_TEMPLATE -->
+		<!-- DEFINE $CAPTCHA_TAB_INDEX = 8 -->
+		<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+		<!-- ENDIF -->
+
+		<!-- IF S_ATTACH_BOX --><!-- INCLUDE posting_attach_body.html --><!-- ENDIF -->		
+
+		<tr>
+			<td class="cat" colspan="2" align="center">{S_HIDDEN_FIELDS}
+				<input class="btnlite" type="submit" tabindex="9" name="preview" value="{L_PREVIEW}" />
+				&nbsp; <input class="btnmain" type="submit" accesskey="s" tabindex="10" name="submit" value="{L_SUBMIT}" />
+			</td>
+		</tr>
+	</table>
+	{S_FORM_TOKEN}
+	</form>
+
+	<br clear="all" />
+
+</div>
+
+<!-- INCLUDE breadcrumbs.html -->
+
+<!-- INCLUDE overall_footer.html -->

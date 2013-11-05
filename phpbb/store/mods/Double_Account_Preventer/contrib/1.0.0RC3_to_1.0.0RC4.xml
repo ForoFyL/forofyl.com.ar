@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+<header>
+	<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+	<title lang="en">Double Account Preventer</title>
+	<description lang="en">Prevents users from creating multiple accounts by using a cookie and checking their IP address.</description>
+	<author-notes lang="en">Thanks to mtrs for letting me use the code from his Duplicate IP MOD. Also thanks to ameeck for letting me use the code from his Notify Admin On Registration MOD.</author-notes>
+	<author-group>
+		<author>
+			<realname>Kevin Murek</realname>
+			<email></email>
+			<username>kmklr72</username>
+			<homepage>http://www.demoninstall.co.cc</homepage>
+	    </author>
+	</author-group>
+	<mod-version>1.0.0 RC3</mod-version>
+	<installation>
+		<level>easy</level>
+		<time>120</time>
+		<target-version>3.0.4</target-version>
+	</installation>
+</header>
+<action-group>
+
+	<copy>
+		<file from="root/adm/mods/dap_version.php" to="adm/mods/dap_version.php" />
+		<file from="root/includes/functions_dap.php" to="includes/functions_dap.php" />
+		<file from="root/includes/acp/info/acp_dap.php" to="includes/acp/info/acp_dap.php" />
+		<file from="root/includes/acp/acp_dap.php" to="includes/acp/acp_dap.php" />
+		<file from="root/language/en/mods/info_acp_dap_mod.php" to="language/en/mods/info_acp_dap_mod.php" />
+		<file from="root/dap_install.php" to="dap_install.php" />
+	</copy>
+
+	<diy-instructions lang="en"><![CDATA[Replace the specified files and run dap_install.php in your browser.]]></diy-instructions>
+
+</action-group>
+</mod>

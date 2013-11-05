@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!-- $Id$ -->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+  <header>
+    <license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+    <title lang="en-gb">phpBB Statistics - subsilver2 style</title>
+    <title lang="de">phpBB Statistics - subsilver2 Style</title>
+    <description lang="en">This modification displays many different statistics of your board. These can be controlled via the ACP.</description>
+		<description lang="de">Dieser Mod zeigt verschiedene Statistiken von deinem Forum an. Diese können im Admin-Bereich kontrolliert werden.</description>
+		
+		<author-notes lang="en">based on:
+		Forum Statistics Mod by Nayan Gosh (TheUniqueTiger)</author-notes>
+		<author-notes lang="de">basiert auf:
+		Forum Statistics Mod von Nayan Gosh (TheUniqueTiger)</author-notes>
+    <author-group>
+			<author>
+				<realname>Marc Alexander</realname>
+				<email>admin@m-a-styles.de</email>
+				<username>marc1706</username>
+				<homepage>http://www.m-a-styles.de</homepage>
+				<contributions-group>
+					<contributions status="current" position="Developer"/>
+				</contributions-group>
+			</author>
+    </author-group>
+ 	<mod-version>1.0.3</mod-version>
+    <installation>
+      <level>easy</level>
+      <time>300</time>
+	<target-version>3.0.8</target-version>
+    </installation>
+	 <link-group>
+		<link type="contrib" lang="en" href="update_phpbbstatistics_1.0.2/update_phpbbstatistics_1.0.2.xml">Update instructions for phpBB Statistics Version 1.0.2</link>
+		<link type="contrib" lang="de" href="update_phpbbstatistics_1.0.2/update_phpbbstatistics_1.0.2.xml">Updateanleitung für phpBB Statistics Version 1.0.2</link>
+		<link type="parent" lang="de" href="../install.xml">Installations-Anleitung</link>
+		<link type="parent" lang="en" href="../install.xml">Install instructions</link>
+		<link type="language" lang="de" href="de.xml">Deutsch</link>
+		<link type="language" lang="en-gb" href="de.xml">German</link>
+    </link-group>
+    <meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
+  </header>
+  <action-group>
+    <copy>
+      <file from="root/styles/subsilver2/template/stats/*.*" to="styles/subsilver2/template/stats/*.*" />
+    </copy>
+    <open src="styles/subsilver2/template/overall_header.html">
+      <edit>
+        <find><![CDATA[<a href="{U_FAQ}"><img src="{T_THEME_PATH}/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> {L_FAQ}</a>]]></find>
+        <action type="after-add"><![CDATA[				<!-- IF S_VIEW_STATS -->&nbsp; &nbsp;<a href="{U_STATS}"><img src="{T_THEME_PATH}/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> {L_STATISTICS}</a><!-- ENDIF -->]]></action>
+      </edit>
+    </open>
+	<open src="styles/subsilver2/theme/stylesheet.css">
+      <edit>
+		<comment lang="en">If you can't find this, just add the code to the end of the file.</comment>
+		<comment lang="de">Wenn du die zu suchende Stelle nicht finden kannst, füge den Code einfach am Ende der Datei hinzu.</comment>
+        <find><![CDATA[.username-coloured {
+	font-weight: bold;
+}]]></find>
+        <action type="after-add"><![CDATA[/* phpBB Statistics MOD */
+table.fs_details_graphs div.graph {
+	background-color: #67A3EB;
+}
+
+div.fs {
+	font-size: 1.1em;
+}
+div.fs h3 {
+	font-size: 0.9em;
+}
+div.fs fieldset {
+	font-size: 1.0em;
+}
+div.fs thead {
+	font-weight: bold;
+}
+div.fs td {
+	vertical-align: top;
+	padding: 0 4px 0 4px;
+}
+div.fs div.user_prompt {
+	text-align: center;
+}
+table.fs_details_list, table.fs_details_graphs {
+	width:100%;
+	table-layout: fixed;	
+}
+table.fs_details_list td.col1, table.fs_details_list td.col3 {
+	width: 25%;
+	text-align: right;
+	vertical-align: top; 
+}
+table.fs_details_list td.col2, table.fs_details_list td.col4 {
+	width: 25%;
+	padding-left: 5px;	
+	vertical-align: top; 
+}
+table.fs_details_graphs col.col_cat {
+	width: 50%;
+}
+table.fs_details_graphs col.col_bar {
+	width: 30%;	
+}
+table.fs_details_graphs col.col_count, table.fs_details_graphs col.col_pct {
+	width: 10%;	
+	text-align: right;
+}
+td.table_list {
+	margin-left: 50px;
+}
+/*END MOD*/]]></action>
+      </edit>
+    </open>
+    <diy-instructions lang="en-gb">See general install.xml file</diy-instructions>
+    <diy-instructions lang="de">Siehe install.xml</diy-instructions>
+  </action-group>
+</mod>
