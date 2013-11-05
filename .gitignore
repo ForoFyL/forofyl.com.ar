@@ -1,6 +1,5 @@
 .htaccess
-#/phpbb/cache/*
-#/local-config.php
+/local-config.php
 /sql-dump-*.sql
 /db-sync
 .DS_Store
