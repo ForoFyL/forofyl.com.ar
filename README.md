@@ -22,8 +22,9 @@ A través de este repositorio podés colaborar con el desarrollo del foro, ayund
 
 ### Cosas a tener en cuenta
 
-* La ruta `/phpbb/images/avatars/upload` consiste en un link simbólico a la carpeta `/shared/content/uploads/images/avatars/upload`, la cual debe estar fuera del repositorio para facilitar el proceso de deployment. Nótese que `/shared` también es un link simbólico.
+* La ruta `/phpbb/images/avatars/upload` consiste en un link simbólico a la carpeta `/shared/content/uploads/images/avatars/upload`, la cual debe estar fuera del repositorio para facilitar el proceso de deployment. Nótese que `/shared` también es, a su vez, un link simbólico a `../shared/files`, fuera del working tree del repositorio.
 * Las discusiones acerca de issues y la documentación que vaya surgiendo van a estar escritas en castellano, pero a la hora de documentar en el código, a fin de mantener la coherencia con el desarrollo original, vamos a escribir en inglés. Si se encuentra algo escrito en castellano correspondiente a código antiguo, debería ser traducido.
+* Algunos de los bugs que se vayan reconociendo pueden reportarse tanto acá como en el foro, pero a fin de mantener el trabajo sobre el código ordenado, lo estrictamente técnico se va a tratar acá, en la sección de [issues](https://github.com/ForoFyL/forofyl.com.ar/issues). 
 * La base de datos no puede descargarse del repositorio actualmente, ya que todavía no pudimos asegurarnos de tener una versión sin datos sensibles. Cuando hayamos podido hacerlo, vamos a incluirla acá.
 
 ### ¿Cómo enviar mi código?
