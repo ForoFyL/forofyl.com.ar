@@ -22,7 +22,7 @@ A través de este repositorio podés colaborar con el desarrollo del foro, ayund
 
 ### Cosas a tener en cuenta
 
-* La ruta `/phpbb/images/avatars` consiste en un link simbólico a la carpeta `/shared/content/uploads/images/avatars`, la cual está fuera de la instalación de phpBB e incluida en `.gitignore` para evitar que los avatares que se vayan cargando se suban al repositorio.
+* La ruta `/phpbb/images/avatars/upload` consiste en un link simbólico a la carpeta `/shared/content/uploads/images/avatars/upload`, la cual debe estar fuera del repositorio para facilitar el proceso de deployment. Nótese que `/shared` también es un link simbólico.
 * Las discusiones acerca de issues y la documentación que vaya surgiendo van a estar escritas en castellano, pero a la hora de documentar en el código, a fin de mantener la coherencia con el desarrollo original, vamos a escribir en inglés. Si se encuentra algo escrito en castellano correspondiente a código antiguo, debería ser traducido.
 * La base de datos no puede descargarse del repositorio actualmente, ya que todavía no pudimos asegurarnos de tener una versión sin datos sensibles. Cuando hayamos podido hacerlo, vamos a incluirla acá.
 
