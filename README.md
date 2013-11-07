@@ -18,7 +18,8 @@ A través de este repositorio podés colaborar con el desarrollo del foro, ayund
 2. Importá la base de datos incluida en `phpbb/db` desde tu instalación de MySQL.
 3. Copiá el archivo `local-config-example.php` y renombralo como `local-config.php`.
 4. Ajustá las variables del archivo `local-config.php` según la configuración de tu base de datos local.
-4. Accedé por medio de cualquier browser a la URL correspondiente a tu instalación local.
+5. Accedé por medio de cualquier browser a la URL correspondiente a tu instalación local.
+6. Ingresá con permisos de administrador con el usuario *dev* y el password *dev123*.
 
 ### Cosas a tener en cuenta
 
