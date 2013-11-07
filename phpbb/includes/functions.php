@@ -1698,7 +1698,7 @@ function get_unread_topics($user_id = false, $sql_extra = '', $sql_sort = '', $s
 	if ($config['load_db_lastread'] && $user->data['is_registered'])
 	{
 		// Get list of the unread topics
-		$last_mark = $user->data['user_lastmark'];
+		$last_mark = ( $user->data['user_lastmark'] ) ? $user->data['user_lastmark'] : 0;
 
 		$sql_array = array(
 			'SELECT'		=> 't.topic_id, t.topic_last_post_time, tt.mark_time as topic_mark_time, ft.mark_time as forum_mark_time',
