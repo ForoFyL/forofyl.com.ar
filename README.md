@@ -7,9 +7,9 @@ A través de este repositorio podés colaborar con el desarrollo del foro, ayund
 
 ### ¿Cuáles son los requisitos básicos?
 
-1. Conocimiento de [PHP](http://php.net/) y [MySQL](http://www.mysql.com/).
+1. Conocimiento de [PHP](http://php.net/) y [MySQL](http://www.mysql.com/), y tenerlos instalados en tu máquina.
 2. Manejo de [phpBB](https://www.phpbb.com/).
-3. Manejo de [Git/Github](http://try.github.io/levels/1/challenges/1).
+3. Manejo de [Git/Github](http://try.github.io/levels/1/challenges/1) y tener Git instalado en tu máquina.
 4. Un servidor web local como [Apache](http://httpd.apache.org/) o [NGINX](http://nginx.org/). Usamos NGINX en producción, por lo cual sería ideal que tengas instalado lo mismo, pero un Apache corriendo sobre [XAMPP](http://www.apachefriends.org/en/xampp.html) basta y sobra. De hecho, generalmente es la opción más fácil de instalar.
 
 ### ¿Cómo empezar?
