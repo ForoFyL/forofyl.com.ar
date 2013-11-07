@@ -2,4 +2,6 @@
 /local-config.php
 /sql-dump-*.sql
 /db-sync
+/phpbb/db
+/phpbb/stk
 .DS_Store
