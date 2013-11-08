@@ -1,5 +1,15 @@
-.htaccess
+# Ignore custom local config
 /local-config.php
-/sql-dump-*.sql
-/db-sync
-.DS_Store
+
+# Ignore custom .htaccess
+.htaccess
+
+# Ignore customizable MySQL scripts
+/db/*
+# Make an exception for our testing dump
+!/db/01-forofyl_phpbb.sql
+
+# Ignore files automatically created by our OS
+.*
+# Make an exception for Git files
+!.git*
