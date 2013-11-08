@@ -102,7 +102,7 @@ function insert_thanks($post_id, $user_id)
 	$db->sql_freeresult($result);
 	if ($user->data['user_type'] != USER_IGNORE && !empty($to_id))
 	{
-		if ($row['poster_id'] != $user_id && $row['poster_id'] == $to_id && !already_thanked($post_id, $user_id) && $auth->acl_get('f_thanks', $row['forum_id']))
+		if ($row['poster_id'] != $user_id && $row['poster_id'] == $to_id && !already_thanked($post_id, $user_id) && $auth->acl_get('f_thanks', $forum_id))
 		{
 			$sql = 'INSERT INTO ' . THANKS_TABLE . ' ' . $db->sql_build_array('INSERT', array(
 				'user_id'	=> $user_id,
