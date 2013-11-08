@@ -15,7 +15,7 @@ A través de este repositorio podés colaborar con el desarrollo del foro, ayund
 ### ¿Cómo empezar?
 
 1. Cloná este repositorio a tu máquina.
-2. Importá la base de datos incluida en `phpbb/db` desde tu instalación de MySQL.
+2. Importá la base de datos incluida en `db/01-forofyl_phpbb.sql` desde tu instalación de MySQL. **Opcional:** si querés tener un usuario específico para este proyecto, antes de importar la base de datos, ejecutá el script que está en `db/00-pre_database_settings.sql`, después `db/01-forofyl_phpbb.sql`, y por último `db/02-post_database_settings.sql`. La configuración de `db/00-pre_database_settings.sql` y de `db/02-post_database_settings.sql` podés modificarla a tu gusto.
 3. Copiá el archivo `local-config-example.php` y renombralo como `local-config.php`.
 4. Ajustá las variables del archivo `local-config.php` según la configuración de tu base de datos local.
 5. Accedé por medio de cualquier browser a la URL correspondiente a tu instalación local.
