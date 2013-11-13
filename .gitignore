@@ -7,7 +7,7 @@
 # Ignore customizable MySQL scripts
 /db/*
 # Make an exception for our testing dump
-!/db/01-forofyl_phpbb.sql
+!/db/01-forofyl_phpbb*
 
 # Ignore files automatically created by our OS
 .*
