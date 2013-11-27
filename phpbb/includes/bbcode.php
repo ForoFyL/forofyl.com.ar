@@ -108,8 +108,12 @@ class bbcode
 							$message = str_replace(array('&#58;', '&#46;'), array(':', '.'), $message);
 							$undid_bbcode_specialchars = true;
 						}
-
-						$message = preg_replace($preg['search'], $preg['replace'], $message);
+						
+						if ( $function_name = $this->get_callback_function_name( $preg['replace'][0] ) and function_exists( $function_name ) ) {
+							$message = preg_replace_callback( $preg['search'], $function_name, $message );
+						} else {
+							$message = preg_replace( $preg['search'], $preg['replace'], $message );
+						}
 						$preg = array('search' => array(), 'replace' => array());
 					}
 				}
@@ -119,7 +123,7 @@ class bbcode
 		// Remove the uid from tags that have not been transformed into HTML
 		$message = str_replace(':' . $this->bbcode_uid, '', $message);
 	}
-
+	
 	/**
 	* Init bbcode cache
 	*
@@ -486,7 +490,6 @@ class bbcode
 		{
 			$tpl = strtr($tpl, $replacements[$tpl_name]);
 		}
-
 		return trim($tpl);
 	}
 
@@ -597,6 +600,26 @@ class bbcode
 
 		return $code;
 	}
+	
+	/**
+	 * Function for identifying PHP callbacks on bbcode replaces.
+	 * See #11 for further discussion:
+	 * https://github.com/ForoFyL/forofyl.com.ar/issues/11
+	*/
+	function get_callback_function_name( $string ) {
+		$function_name = '';
+		if ( strpos( $string, '{CALLBACK:' ) !== false ) {
+			$function_name = str_replace( '{CALLBACK:', '', $string );
+			$function_name = str_replace( '}', '', $function_name );
+			$function_name = trim( $function_name );
+		}
+		return $function_name;
+	}
+	
+}
+
+function hoygan($arr){
+	return $arr[1];
 }
 
 ?>
