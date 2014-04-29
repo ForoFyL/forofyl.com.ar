@@ -3,7 +3,7 @@
 function hoygan($str, $rnd = false){
 	$texto = $str;
 	$rnd = ($rnd !== false) ? true : false;
-	mt_srand(strlen($texto));
+	mt_srand(mb_strlen($texto,"UTF-8"));
 
 	$tmp_seed = explode(' ', microtime());
 	$seed = (int) $tmp_seed[0] + ((int) $tmp_seed[1]);
@@ -60,14 +60,14 @@ function hoygan($str, $rnd = false){
 	// CRITERIOS DE HOYGANIFICACIÓN:
 
 	// 1) Mayúsculas
-	$texto = strtoupper($texto);
+	$texto = mb_strtoupper($texto,"UTF-8");
 
 	$tmp1 = explode(" ", $texto);
 	for ($i = 0; $i < count($tmp1); $i++){
 		$palabra = $tmp1[$i];
 		//Trabajo palabras separadas, y letra por letra.
-		for ( $i2 = 0; $i2 < strlen($palabra); $i2++){
-			$inicial = ($i2 == 0) ? substr($palabra,0,1) : "";
+		for ( $i2 = 0; $i2 < mb_strlen($palabra,"UTF-8"); $i2++){
+			$inicial = ($i2 == 0) ? mb_substr($palabra,0,1,"UTF-8") : "";
 			// 2) Las palabras que empiecen con vocal, tienen un 40% de pasar a empezar con H
 			if ($inicial == "A" || $inicial == "E" || $inicial == "I" || $inicial == "O" || $inicial == "U"){
 				if ($semirand() > 60){
@@ -75,12 +75,12 @@ function hoygan($str, $rnd = false){
 				}
 			}
 
-			$letra = substr($palabra,$i2,1);
+			$letra = mb_substr($palabra,$i2,1,"UTF-8");
 			//3) Hay un 12% de chances de que las letras se cambien de lugar
 			if ($semirand() < 12){
-				$inicio  = substr($palabra, 0, $i2);
-				$fin     = substr($palabra, $i2+1, strlen($palabra) - $i2);
-				$palabra = substr($inicio,  0, strlen($inicio) -1) . $letra . substr($inicio, -1) . $fin;
+				$inicio  = mb_substr($palabra, 0, $i2,"UTF-8");
+				$fin     = mb_substr($palabra, $i2+1, mb_strlen($palabra,"UTF-8") - $i2,"UTF-8");
+				$palabra = mb_substr($inicio,  0, mb_strlen($inicio,"UTF-8") - 1) . $letra . mb_substr($inicio,  -1) . mb_substr($inicio, -1,"UTF-8") . $fin;
 			}
 
 		}
@@ -128,13 +128,13 @@ function hoygan($str, $rnd = false){
 	}
 
 	//10) entre una y el 10% de letras NO están en mayúsculas;
-	$cuantas = $semirand( strlen($texto) * 0.1);
+	$cuantas = $semirand( mb_strlen($texto,"UTF-8") * 0.1);
 	for ($i = 0; $i < $cuantas; $i++){
-		$i2 = $semirand(strlen($texto));
-		if ($i2 > strlen($texto) - 1) { $i2 = strlen($texto) -1; }
-		$letra  = strtolower(substr($texto,$i2,1));
-		$inicio = substr($texto,0,$i2);
-		$fin    = substr($texto,$i2+1,strlen($texto) - $i2);
+		$i2 = $semirand(mb_strlen($texto,"UTF-8"));
+		if ($i2 > mb_strlen($texto,"UTF-8") - 1) { $i2 = mb_strlen($texto,"UTF-8") -1; }
+		$letra  = mb_strtolower(mb_substr($texto,$i2,1,"UTF-8"), "UTF-8");
+		$inicio = mb_substr($texto,0,$i2,"UTF-8");
+		$fin    = mb_substr($texto,$i2+1,mb_strlen($texto,"UTF-8") - $i2,"UTF-8");
 		$texto  = $inicio . $letra . $fin;
 	}
 

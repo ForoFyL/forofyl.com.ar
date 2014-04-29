@@ -619,6 +619,6 @@ class bbcode
 }
 
 function hoygan_callback( $arr ){
-	require dirname( __FILE__ ) . '/hoygan.php';
+	require_once dirname( __FILE__ ) . '/hoygan.php';
 	return hoygan( $arr[1] );
 }
