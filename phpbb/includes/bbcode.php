@@ -618,8 +618,7 @@ class bbcode
 	
 }
 
-function hoygan($arr){
-	return $arr[1];
+function hoygan_callback( $arr ){
+	require dirname( __FILE__ ) . '/hoygan.php';
+	return hoygan( $arr[1] );
 }
-
-?>
