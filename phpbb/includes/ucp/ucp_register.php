@@ -442,10 +442,10 @@ class ucp_register
 
 
 				//Begin: Duplicate User IPs
-				if (!empty($dupe_user_ids) && $config['require_ip_check'] > CHECK_NONE)
+				/*if (!empty($dupe_user_ids) && $config['require_ip_check'] > CHECK_NONE)
 				{
 					notify_admin_dupe_ips($data['username'], $data['email'], $user_row['user_regdate'], $user_id, $dupe_user_ids);
-				}
+				}*/
 				//End: Duplicate User IPs
 				$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '">', '</a>');
 				trigger_error($message);
