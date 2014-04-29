@@ -80,7 +80,7 @@ function hoygan($str, $rnd = false){
 			if ($semirand() < 12){
 				$inicio  = mb_substr($palabra, 0, $i2,"UTF-8");
 				$fin     = mb_substr($palabra, $i2+1, mb_strlen($palabra,"UTF-8") - $i2,"UTF-8");
-				$palabra = mb_substr($inicio,  0, mb_strlen($inicio,"UTF-8") - 1) . $letra . mb_substr($inicio,  -1) . mb_substr($inicio, -1,"UTF-8") . $fin;
+				$palabra = mb_substr($inicio,  0, mb_strlen($inicio,"UTF-8") - 1, "UTF-8") . $letra . mb_substr($inicio, -1,null,"UTF-8") . $fin;
 			}
 
 		}
