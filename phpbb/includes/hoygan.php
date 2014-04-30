@@ -15,6 +15,7 @@ function hoygan($str, $rnd = false){
 		if ($rnd === true) {
 			mt_srand(mt_rand(1,$seed));
 		}
+		$max = ( $max > $min ) ? $max : ( $min + 1 );
 		$ret = (int)mt_rand($min, $max);
 		return $ret;
 	};
