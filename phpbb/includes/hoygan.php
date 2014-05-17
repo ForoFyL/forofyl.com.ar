@@ -1,7 +1,7 @@
 <?php
 
 function hoygan($str, $rnd = false){
-	$texto = $str;
+	$texto = strip_tags($str);
 	$rnd = ($rnd !== false) ? true : false;
 	mt_srand(mb_strlen($texto,"UTF-8"));
 
