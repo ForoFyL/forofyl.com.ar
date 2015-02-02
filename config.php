@@ -5,6 +5,7 @@
 // =============
 
 ini_set( 'memory_limit', '128M' ); // Because sometimes phpBB takes lots of memory.
+ini_set( 'display_errors', '0' );  // Don't show ugly phpBB errors.
 
 // =======================
 // Database configuration.
